@@ -144,9 +144,9 @@ These commands will ping the nginx1 and apache1 containers from the mysql1 conta
 
 ## Lab 5a - One more container volume interaction.
 
-In case you missed it, we have the apache1 container a Host Path mount instead of a Docker Volume. This allows us to easily manipulate files in that mount point. In this case, we can add our own custom `index.html`.
+In case you missed it, we have the apache1 container a Bind Mount instead of a Docker Volume. This allows us to easily manipulate files in that mount point. In this case, we can add our own custom `index.html`.
 
-`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER HOST PATH. YAY" | sudo tee /ab/labs/apache1/index.html`
+`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/apache1/index.html`
 
 Now, if you reload http://your-lab-server-name:8081, you will see your page updated without reloading your container.
 
@@ -158,45 +158,12 @@ Because we added persistence, you will notice that even though the containers ar
 
 `docker volume rm nginx1 mysql1`
 
-And the Host Path volume for Apache.
+And the Bind Mount volume for Apache.
 
 `rm -rf /ab/labs/apache1`
 
 And lastly, lets clean up those networks.
 
 `docker network rm external database`
-
-## Lab 6 - Building and Running A Container From Dockerfile
-
-Let's write a Dockerfile and build our own docker image locally, then we can run it.
-
-In you the `section-2-labs` directory on your lab server, you will see a file called `Dockerfile.example`. For more information on Dockerfiles visit:
-
-* [Dockerfile Best Practices](https://docs.docker.com/engine/reference/builder/)
-* [Dockerfile Full Documentation](https://docs.docker.com/engine/reference/builder/)
-
-Copy `Dockerfile.example` to `Dockerfile` in the same folder.
-
-Next, lets make some changes.
-
-Since centos8 is out, lets change the first line to `FROM centos:8`
-
-And lets make a changes to the default `index.html` file. Open /section-2-labs/index.html and change the text.
-
-Now, we can build and then run this container.
-
-`docker build -t mycontainerimage:latest .`
-
-Once the build is complete, we can run this container image.
-
-`docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest`
-
-Run `docker exec -it mycontainer cat /etc/os-release` to confirm it is centos:8.
-
-Visit http://your-lab-server-name to see your custom index file message.
-
-Let's cleanup.
-
-`docker rm -f mycontainer`.
 
 ## Congrats! You have completed the Section 2 labs. You may now proceed with the rest of the course.
