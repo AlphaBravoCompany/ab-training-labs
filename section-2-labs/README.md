@@ -199,4 +199,4 @@ Let's cleanup.
 
 `docker rm -f mycontainer`.
 
-Congrats! You have completed the Section 2 labs. You may now proceed with the rest of the course.
+## Congrats! You have completed the Section 2 labs. You may now proceed with the rest of the course.
