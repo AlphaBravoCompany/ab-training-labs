@@ -1,4 +1,4 @@
-# Section 2 Labs
+# Container Bootcamp - Section 2 Labs
 
 In this section we learned about:
 
