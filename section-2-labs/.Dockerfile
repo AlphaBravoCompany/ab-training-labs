@@ -1,5 +1,5 @@
 # This is the base image that this container image is being built from.
-From centos:7
+From centos:8
 
 # This is the "working directory" that files will be copied to and command be ran from unless the full path is specified.
 WORKDIR /var/www/html
