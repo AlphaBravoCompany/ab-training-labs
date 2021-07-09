@@ -1,5 +1,7 @@
 # Container Bootcamp - Section 2 Labs
 
+## Please Open this in the Markdown preview mode using the Preview button in the upper right. 
+
 In this section we learned about:
 
 * Basic Docker Commands
@@ -9,7 +11,7 @@ In this section we learned about:
 
 ## Lab 1 - Basic Docker Commands
 
-Now let's practice running some of these commands. Click the burger menu in VSCode and go to `Terminal`, `New Terminal`. We will run all of the following commands in this terminal window.
+Now let's practice running some of these commands. Click the burger menu in VSCode and go to `Terminal`, `New Terminal`. We will run all of the following commands in this terminal window. To run these commands, you can copy and paste them from the Markdown Preview window into the Terminal in VSCode.
 
 To see what containers are running on your current system:
 
@@ -60,7 +62,7 @@ The new command looks like this:
 
 `docker run -itd --name nginx-sample -p 80:80 nginx`
 
-Now you should be able to access this at http://YOUR-LAB-SERVER-NAME in your browser. It should greet you with "Welcome to nginx!".
+Now you should be able to access this at http://LABSERVERNAME in your browser. It should greet you with "Welcome to nginx!".
 
 Now, let's stop this container.
 
@@ -111,8 +113,8 @@ Confirm that these are all running by checking `docker ps`.
 
 Also confirm that nginx and apache are available externally on your lab server:
 
-* Nginx: http://your-lab-server-name:8080
-* Apache: http://your-lab-server-name:8081
+* Nginx: http://LABSERVERNAME:8080
+* Apache: http://LABSERVERNAME:8081
 
 ## Lab 5 - Exec into containers to test communications
 
@@ -148,7 +150,7 @@ In case you missed it, we have the apache1 container a Bind Mount instead of a D
 
 `echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/apache1/index.html`
 
-Now, if you reload http://your-lab-server-name:8081, you will see your page updated without reloading your container.
+Now, if you reload http://LABSERVERNAME:8081, you will see your page updated without reloading your container.
 
 Let's clean up these containers, volumes and networks before we move on.
 

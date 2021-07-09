@@ -22,7 +22,7 @@ Next, lets make some changes.
 
 Since centos8 is out, lets change the first line to `FROM centos:8`
 
-And lets make a changes to the default `index.html` file. Open /section-2-labs/index.html and change the text.
+And lets make a changes to the default `index.html` file. Open /section-3-labs/index.html and change the text.
 
 Now, we can build and then run this container.
 
@@ -34,8 +34,13 @@ Once the build is complete, we can run this container image.
 
 Run `docker exec -it mycontainer cat /etc/os-release` to confirm it is centos:8.
 
-Visit http://your-lab-server-name to see your custom index file message.
+Visit http://LABSERVERNAME to see your custom index file message.
 
 Let's cleanup.
 
 `docker rm -f mycontainer`.
+
+## Lab 2
+
+## Lab 3
+
