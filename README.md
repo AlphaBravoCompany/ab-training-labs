@@ -1,4 +1,4 @@
-# AlphaBravo Container Bootcamp
+# AlphaBravo Training Labs
 
 These lab materials are for use with the AlphaBravo Training courses.
 
@@ -8,4 +8,5 @@ These lab materials are for use with the AlphaBravo Training courses.
 * [Rancher Advanced](./rancher-advanced/README.md)
 
 Website: https://alphabravo.io
+
 Training Information: training@alphabravo.io
