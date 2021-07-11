@@ -25,7 +25,15 @@ To see all images (read-only container snapshot) on the system:
 
 `docker image ls`
 
-These commands work for `volumes`, `networks` and other components. For a complete list, visit https://docs.docker.com/engine/reference/commandline/docker/.
+To list the volumes: 
+
+`docker volumes ls`
+
+To list current networks:
+
+`docker network ls`
+
+For a complete list, visit https://docs.docker.com/engine/reference/commandline/docker/.
 
 ## Lab 2 - Running Your First Container
 
@@ -116,7 +124,7 @@ Also confirm that nginx and apache are available externally on your lab server:
 * Nginx: http://LABSERVERNAME:8080
 * Apache: http://LABSERVERNAME:8081
 
-## Lab 5 - Exec into containers to test communications
+## Lab 5a - Exec into containers to test communications
 
 Now that we have 3 containers running, lets `exec` into the containers and test communications to confirm the network separationm is working.
 
@@ -140,11 +148,11 @@ This will drop you into the shell of the apache1 container and you can run the p
 
 These commands will ping the nginx1 and apache1 containers from the mysql1 container to show that the same is true to the DB server.
 
-`docker exec -it mysql /bin/bash ping -c 4 nginx1` (succeeds)
+`docker exec -it mysql1 /bin/bash ping -c 4 nginx1` (succeeds)
 
-`docker exec -it mysql /bin/bash ping -c 4 apache1` (fails)
+`docker exec -it mysql1 /bin/bash ping -c 4 apache1` (fails)
 
-## Lab 5a - One more container volume interaction.
+## Lab 5b - One more container volume interaction.
 
 In case you missed it, we have the apache1 container a Bind Mount instead of a Docker Volume. This allows us to easily manipulate files in that mount point. In this case, we can add our own custom `index.html`.
 
@@ -154,7 +162,7 @@ Now, if you reload http://LABSERVERNAME:8081, you will see your page updated wit
 
 Let's clean up these containers, volumes and networks before we move on.
 
-`docker rm -f nginx1 mysql1`
+`docker rm -f nginx1 mysql1 apache1`
 
 Because we added persistence, you will notice that even though the containers are gone, the volumes are still there when you run `docker volume ls`. Let's remove those volumes.
 
