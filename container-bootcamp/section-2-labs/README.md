@@ -29,13 +29,13 @@ These commands work for `volumes`, `networks` and other components. For a comple
 
 ## Lab 2 - Running Your First Container
 
-Using the information you just learned, lets start and stop your first docker container. We will use nginx, a small web server, for this lab.
+Using the information you just learned, let's start and stop your first docker container. We will use nginx, a small web server, for this lab.
 
 Pull the nginx container from Docker Hub (we will cover what Docker Hub and Registries are in the next section of the course).
 
 `docker pull nginx:latest`
 
-Now, lets run an nginx container based on that image:
+Now, let's run an nginx container based on that image:
 
 `docker run -it nginx`
 
@@ -66,6 +66,14 @@ Now you should be able to access this at http://LABSERVERNAME in your browser. I
 
 Now, let's stop this container.
 
+`docker stop nginx-sample`
+
+To start the container.
+
+`docker start nginx-sample`
+
+Now, let's stop and delete this container.
+
 `docker rm -f nginx-sample`
 
 The web page is no longer available and running `docker ps -a` shows no running nginx containers.
@@ -89,7 +97,7 @@ First, let's create 2 networks.
 
 `docker network create database`
 
-These are 2 separate networks that we can assign to the containers we run. An example for this is if you have 2 external facing containers that you may want to communicate, but only one of them should be able to talk to the database server.
+These are 2 separate networks that we can assign to the containers we run. An example of this is if you have 2 external facing containers that you may want to communicate with, but only one of them should be able to talk to the database server.
 
 In this example we will use Docker Volumes for each container.
 
@@ -118,9 +126,9 @@ Also confirm that nginx and apache are available externally on your lab server:
 
 ## Lab 5 - Exec into containers to test communications
 
-Now that we have 3 containers running, lets `exec` into the containers and test communications to confirm the network separationm is working.
+Now that we have 3 containers running, let's `exec` into the containers and test communications to confirm the network separation is working.
 
-First, lets get a shell in nginx1 and try to ping mysql1.
+First, let's get a shell in nginx1 and try to ping mysql1.
 
 `docker exec -it nginx1 /bin/bash`
 
@@ -140,9 +148,9 @@ This will drop you into the shell of the apache1 container and you can run the p
 
 These commands will ping the nginx1 and apache1 containers from the mysql1 container to show that the same is true to the DB server.
 
-`docker exec -it mysql /bin/bash ping -c 4 nginx1` (succeeds)
+`docker exec -it mysql1 /bin/bash ping -c 4 nginx1` (succeeds)
 
-`docker exec -it mysql /bin/bash ping -c 4 apache1` (fails)
+`docker exec -it mysql1 /bin/bash ping -c 4 apache1` (fails)
 
 ## Lab 5a - One more container volume interaction.
 
@@ -164,7 +172,7 @@ And the Bind Mount volume for Apache.
 
 `rm -rf /ab/labs/apache1`
 
-And lastly, lets clean up those networks.
+And lastly, let's clean up those networks.
 
 `docker network rm external database`
 
