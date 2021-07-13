@@ -21,7 +21,11 @@ Next, lets make some changes.
 
 Since centos8 is out, lets change the first line to `FROM centos:8`
 
-And lets make a changes to the default `index.html` file. Open /section-3-labs/index.html and change the text.
+And lets make a changes to the text "Welcome to the AlphaBravo Container Bootcamp" in the default `index.html` file. Open `/ab/labs/container-bootcamp/section-3-labs/index.html` to change the text.
+
+First, let's switch the the correct directory:
+
+`cd /ab/labs/container-bootcamp/section-3-labs`
 
 Now, we can build and then run this container.
 
@@ -41,11 +45,11 @@ Let's cleanup.
 
 ## Lab 2 - Working with Container Registries
 
-Docker Hub is the the most popular of the online image registries. I would encourage you to create an account at https://hub.docker.com and try pushing images there.
+Docker Hub is the the most popular of the online image registries. I would encourage you to create an account at https://hub.docker.com later and try pushing images there. 
 
 **BE CAREFUL** Do not push images with private or important information to Docker Hub.
 
-For this course, we have a registry running on the local server at http://localhost:5000. There is not pretty web interface, but it works for our purposes.
+For this course, we have a registry running on the local server at http://localhost:5000. There is no pretty web interface, but it works for our purposes.
 
 ### Tagging an image for our registry
 
@@ -55,7 +59,7 @@ Let's retag the image we created in Lab 1 with 2 different tags. Remember, this 
 
 `docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest`
 
-Check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
+Run `docker image ls` to check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
 
 ![Image IDs are the same](./images/container-images.png)
 

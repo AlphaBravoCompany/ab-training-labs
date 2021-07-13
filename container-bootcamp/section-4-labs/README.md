@@ -53,7 +53,7 @@ First, make sure you are in the `/ab/container-bootcamp/section-4-labs/` directo
 
 `docker-compose up -d`
 
-That's it. In a few minutes you can visit http://LABSERVERNAME and see that Wordpress is up and running.
+That's it. In a few seconds you can visit http://LABSERVERNAME and see that Wordpress is up and running.
 
 If you would like to see the logs for the currently running docker-compose deployment, from the same directory as the `docker-compose.yml` file, run:
 
