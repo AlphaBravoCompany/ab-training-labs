@@ -9,14 +9,11 @@ ___
 
 ## Section 3: Lab 1 - Building and Running A Container From Dockerfile
 
-########
-
-### Section-3: Lab 1 Links
+### Section 3: Lab 1 Links
 
 * [Dockerfile Best Practices](https://docs.docker.com/engine/reference/builder/)
 * [Dockerfile Full Documentation](https://docs.docker.com/engine/reference/builder/)
 
-########
 
 ### Section-3: Lab 1 Content
 
@@ -56,19 +53,15 @@ Let's cleanup.
 ___
 
 
-## Section-3: Lab 2 - Working with Container Registries
+## Section 3: Lab 2 - Working with Container Registries
 
-########
-
-### Section-3: Lab 2 Links
+### Section 3: Lab 2 Links
 
 * [Docker Hub Quickstart](https://docs.docker.com/docker-hub/)
 * [Docker Tag Documentation](https://docs.docker.com/engine/reference/commandline/tag/)
 * [Docker Push Documentation](https://docs.docker.com/engine/reference/commandline/push/)
 
-########
-
-### Section-3: Lab 2 Content
+### Section 3: Lab 2 Content
 
 Docker Hub is the the most popular of the online image registries. I would encourage you to create an account at https://hub.docker.com later and try pushing images there.
 

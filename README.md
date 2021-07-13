@@ -1,5 +1,7 @@
 # AlphaBravo Training Labs
 
+![AlphaBravo](./images/ablogo.png)
+
 These lab materials are for use with the AlphaBravo Training courses.
 
 
@@ -7,6 +9,12 @@ These lab materials are for use with the AlphaBravo Training courses.
 * [Rancher Fundamentals](./rancher-fundamentals/README.md)
 * [Rancher Advanced](./rancher-advanced/README.md)
 
-Website: https://alphabravo.io
+___
 
-Training Information: training@alphabravo.io
+**AlphaBravo** Provide products and services for Cloud and DevSecOps.
+
+Contact **AB** today to learn how we can help you.
+
+* **Web:** https://alphabravo.io
+* **Email:** info@alphabravo.io
+* **Phone:** 301-337-8141

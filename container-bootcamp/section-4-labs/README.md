@@ -1,6 +1,6 @@
-# Container Bootcamp - Section 3 Labs
+# Container Bootcamp - Section 4 Labs
 
-In this section we learned about:
+### In this section we learned about:
 
 * Docker-Compose
 
@@ -9,7 +9,6 @@ In this section we learned about:
 In this section, we highlighted the benefit of using docker-compose over CLI commands to manage containers or groups of containers.
 
 First, let's run all the Docker CLI commands we would need to bring a MariaDB and Wordpress container online and allow them to communicate and have persistent storage.
-
 
 ### Creating Networks
 
@@ -29,7 +28,7 @@ First, let's run all the Docker CLI commands we would need to bring a MariaDB an
 
 `docker network connect database_net wordpress`
 
-Now if we visit http://LABSERVERNAME we should see a generic Wordpress page up and running. We can see more about what these containers did during startup by viewing the logs.
+Now if we visit http://LABSERVERNAME we should see the default Wordpress page up and running. We can see more about what these containers did during startup by viewing the logs.
 
 `docker logs mariadb`
 
