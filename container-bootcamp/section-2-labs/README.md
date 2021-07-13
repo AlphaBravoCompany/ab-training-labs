@@ -2,12 +2,14 @@
 
 ## Please Open this in the Markdown preview mode using the Preview button in the upper right. 
 
-In this section we learned about:
+### In this section we learned about:
 
 * Basic Docker Commands
 * Docker Images
 * Docker Containers
 * Docker Run Commands
+
+_____
 
 ## Lab 1 - Basic Docker Commands
 
@@ -35,6 +37,8 @@ To list current networks:
 
 For a complete list, visit https://docs.docker.com/engine/reference/commandline/docker/.
 
+____
+
 ## Lab 2 - Running Your First Container
 
 Using the information you just learned, let's start and stop your first docker container. We will use nginx, a small web server, for this lab.
@@ -57,6 +61,8 @@ In the same terminal window, click `Ctrl + C` to escape the docker container.
 If you run `docker ps -a`, you will see a stopped nginx container with a random name like `funky-rooter`. This was auto assigned because we didn't provide a name. Let's delete this container:
 
 `docker rm funky-rooster` (replace funky rooster with your container name)
+
+____
 
 ## Lab 3 - Additional Run Options
 
@@ -86,14 +92,40 @@ Now, let's stop and delete this container.
 
 The web page is no longer available and running `docker ps -a` shows no running nginx containers.
 
+_____
+
 ## Lab 4 - Adding Volumes for Persistence
 
 Up until now we have used ephemeral storage (goes away once the container is deleted). Let's add some persistent storage.
 
 There are 2 types of volumes in Docker. Host Mounts and Docker Volumes.
 
-* Host Mount - A path on the system where Docker will store file. Indicated by a full path ie: `/srv/storage/nginx:/usr/share/nginx/html`.
+* Host/Bind Mount - A path on the system where Docker will store file. Indicated by a full path ie: `/srv/storage/nginx:/usr/share/nginx/html`.
 * Docker Volume - A path managed completely by Docker. While it is accessible via a path on the host, it is not intended to be accessed that way. Implemented as `nginx1:/usr/share/nginx/html`.
+
+Lets use the Bind Mount volume to show how you can load a custom `index.html` file into Nginx.
+
+First, let's deploy Nginx but just let is deploy the default `index.html` file.
+
+`docker run -itd --name nginx-novol -p 8080:80 nginx:latest`
+
+Visit http://LABSERVERNAME:8080 and you should see "Welcome to nginx!".
+
+Now lets mount a volume using the custom `index.html` in this lab directory.
+
+`docker run -itd --name nginx-vol -v $PWD:/usr/share/nginx/html -p 8081:80 nginx:latest`
+
+Visit http://LABSERVERNAME:8080 and you should see "Welcome to the AlphaBravo Container Bootcamp!".
+
+This also allows for you to persist data from a container. Deleting the container leaves the `index.html` file intact.
+
+Run this for cleanup:
+
+`docker rm -f nginx-novol nginx-vol`
+
+Lab 4 is now complete.
+
+_____
 
 ## Lab 5 Adding Networks
 
@@ -119,7 +151,7 @@ Running `docker container inspect nginx1` will show that this container is now c
 
 *Apache Frontened*- Can talk external but not to MySQL
 
-`docker run -itd --name apache1 -v /ab/labs/apache1:/var/www/html -p 8081:80 --network="external" alphabravoio/ubuntu-apache2:latest`
+`docker run -itd --name apache1 -v /ab/labs/tmp/apache1:/var/www/html -p 8081:80 --network="external" alphabravoio/ubuntu-apache2:latest`
 
 *MySQL Backend* - Can only talk to Nginx and not Apache
 
@@ -131,6 +163,8 @@ Also confirm that nginx and apache are available externally on your lab server:
 
 * Nginx: http://LABSERVERNAME:8080
 * Apache: http://LABSERVERNAME:8081
+
+____
 
 ## Lab 5a - Exec into containers to test communications
 
@@ -160,11 +194,13 @@ These commands will ping the nginx1 and apache1 containers from the mysql1 conta
 
 `docker exec -it mysql1 /bin/bash ping -c 4 apache1` (fails)
 
+____
+
 ## Lab 5b - One more container volume interaction.
 
-In case you missed it, we have the apache1 container a Bind Mount instead of a Docker Volume. This allows us to easily manipulate files in that mount point. In this case, we can add our own custom `index.html`.
+In case you missed it, we have the apache1 container a Bind Mount instead of a Docker Volume. As in Lab 4, this allows us to easily manipulate files in that mount point. In this case, we can live modify our custom `index.html`.
 
-`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/apache1/index.html`
+`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/tmp/apache1/index.html`
 
 Now, if you reload http://LABSERVERNAME:8081, you will see your page updated without reloading your container.
 
@@ -178,10 +214,12 @@ Because we added persistence, you will notice that even though the containers ar
 
 And the Bind Mount volume for Apache.
 
-`rm -rf /ab/labs/apache1`
+`rm -rf /ab/labs/tmp/apache1`
 
 And lastly, let's clean up those networks.
 
 `docker network rm external database`
 
-## Congrats! You have completed the Section 2 labs. You may now proceed with the rest of the course.
+_____
+
+### Congrats! You have completed the Section 2 labs. You may now proceed with the rest of the course.

@@ -1,19 +1,29 @@
-# Container Bootcamp - Section 3 Labs
+# Container Bootcamp - Section 3: Labs
 
-In this section we learned about:
+### In this section we learned about:
 
 * Dockerfiles
 * Docker/Container Registries
 
+___
 
-## Lab 1 - Building and Running A Container From Dockerfile
+## Section 3: Lab 1 - Building and Running A Container From Dockerfile
 
-Let's write a Dockerfile and build our own docker image locally, then we can run it.
+########
 
-In you the `section-3-labs` directory on your lab server, you will see a file called `Dockerfile.example`. For more information on Dockerfiles visit:
+### Section-3: Lab 1 Links
 
 * [Dockerfile Best Practices](https://docs.docker.com/engine/reference/builder/)
 * [Dockerfile Full Documentation](https://docs.docker.com/engine/reference/builder/)
+
+########
+
+### Section-3: Lab 1 Content
+
+Let's write a Dockerfile and build our own docker image locally, then we can run it.
+
+In you the `section-3-labs` directory on your lab server, you will see a file called `Dockerfile.example`.
+
 
 Copy `Dockerfile.example` to `Dockerfile` in the same folder.
 
@@ -41,11 +51,26 @@ Visit http://LABSERVERNAME to see your custom index file message.
 
 Let's cleanup.
 
-`docker rm -f mycontainer`.
+`docker rm -f mycontainer`
 
-## Lab 2 - Working with Container Registries
+___
 
-Docker Hub is the the most popular of the online image registries. I would encourage you to create an account at https://hub.docker.com later and try pushing images there. 
+
+## Section-3: Lab 2 - Working with Container Registries
+
+########
+
+### Section-3: Lab 2 Links
+
+* [Docker Hub Quickstart](https://docs.docker.com/docker-hub/)
+* [Docker Tag Documentation](https://docs.docker.com/engine/reference/commandline/tag/)
+* [Docker Push Documentation](https://docs.docker.com/engine/reference/commandline/push/)
+
+########
+
+### Section-3: Lab 2 Content
+
+Docker Hub is the the most popular of the online image registries. I would encourage you to create an account at https://hub.docker.com later and try pushing images there.
 
 **BE CAREFUL** Do not push images with private or important information to Docker Hub.
 
@@ -89,9 +114,8 @@ Now, lets delete the local version of these images and run a container with the 
 
 Note the messages: 
 
-*Unable to find image 'localhost:5000/mycontainerimage:latest' locally*
-
-*latest: Pulling from mycontainerimage*
+* *Unable to find image 'localhost:5000/mycontainerimage:latest' locally*
+* *latest: Pulling from mycontainerimage*
 
 Because we deleted the images locally, they weren't available locally to run the container and they were automatically downloaded from the registry. 
 
@@ -99,5 +123,7 @@ Let's clean up:
 
 `docker rm -f mycontainer && docker image prune -a -f`
 
-## Congrats! You have completed the Section 3 labs. You may now proceed with the rest of the course.
+___
+
+### Congrats! You have completed the Section 3 labs. You may now proceed with the rest of the course.
 
