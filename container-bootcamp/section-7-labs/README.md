@@ -2,8 +2,8 @@
 
 ### In this section we learned about:
 
-* Kubectl Basics
-* Kubernetes Deployment and Hosting Options
+* [Kubectl Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+* [Kubernetes Deployment and Hosting Options](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
 ____
 
@@ -11,11 +11,11 @@ ____
 
 ### Section 7: Lab 1 Links
 
-* K3s
-* K3d
-* Kubectl Documentation
-* Official Kubectl Cheat Sheet
-* AlphaBravo Kubernetes Cheat Sheet
+* [K3s](https://rancher.com/docs/k3s/latest/en/)
+* [K3d](https://k3d.io/)
+* [Kubectl Documentation](https://kubernetes.io/docs/reference/kubectl/overview/)
+* [Official Kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+* [AlphaBravo Kubernetes Cheat Sheet](https://gitlab.com/alphabravocompany/ab-cheat-sheets/-/blob/master/kubernetes-cheat-sheet.md)
 
 ____
 
@@ -49,9 +49,9 @@ ____
 
 ### Section 7: Lab 2 Links
 
-* Kubectl Documentation
-* Official Kubectl Cheat Sheet
-* AlphaBravo Kubernetes Cheat Sheet
+* [Kubectl Documentation](https://kubernetes.io/docs/reference/kubectl/overview/)
+* [Official Kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+* [AlphaBravo Kubernetes Cheat Sheet](https://gitlab.com/alphabravocompany/ab-cheat-sheets/-/blob/master/kubernetes-cheat-sheet.md)
 
 ### Section 7: Lab 2 Content
 
@@ -90,11 +90,11 @@ ____
 
 ### Section 7: Lab 3 Links
 
-* Kubernetes Namespaces
-* Kubernetes Pods
-* kubectl get
-* kubectl run
-* kubectl delete
+* [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+* [Kubernetes Pods](https://v1-18.docs.kubernetes.io/docs/concepts/workloads/pods/)
+* [kubectl get](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get)
+* [kubectl run](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#run)
+* [kubectl delete](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete)
 
 ### Section 7: Lab 3 Content
 
@@ -128,8 +128,8 @@ _____
 
 ### Section 7: Lab 4 Links
 
-* Kubernetes ReplicaSets
-* Kubernetes Deployments
+* [Kubernetes ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+* [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
 Now let's create a Deployment. As part of the deployment, a ReplicaSet and 3 pods will be created.
 
@@ -155,7 +155,7 @@ We can also see that a ReplicaSet was automatically created:
 
 The ReplicaSet is ensuring that the number of pods we specific in the manifest file is met. 
 
-Lets open a second Terminal in vscode so we can watch the pods. Click the "Split Terminal" button in the upper right of the Terminal window. You should now have 2 windows.
+Let's open a second Terminal in vscode so we can watch the pods. Click the “Split Terminal” button in the upper right of the Terminal window or press `Control+Shift+5`. You should now have 2 windows.
 
 On the right window, run:
 
