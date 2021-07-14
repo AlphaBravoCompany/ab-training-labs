@@ -55,7 +55,7 @@ ____
 
 ### Section 7: Lab 2 Content
 
-Now that we have a cluster running, lets explore the cluster with kubectl commands
+Now that we have a cluster running, let's explore the cluster with kubectl commands
 
 Note that sometimes we add the `-o wide` switch to get additional information from the command.
 
@@ -141,7 +141,7 @@ Open the `nginx-deployment.yml` file and review the structure:
 
 `/ab/labs/container-bootcamp/section-7-labs/nginx-deployment.yml`{{open}}
 
-Now lets deploy `nginx-deployment.yml`:
+Now let's deploy `nginx-deployment.yml`:
 
 `kubectl apply -f nginx-deployment.yml`
 
@@ -189,7 +189,7 @@ We can view the image being used in the pod by describing a pod:
 
 Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
 
-Lets update the nginx-deployments.yml file so that the image is `nginx:1.20.1`. Then reapply the manfest file.
+Let's update the nginx-deployments.yml file so that the image is `nginx:1.20.1`. Then reapply the manfest file.
 
 `kubectl apply -f nginx-deployment.yml`
 
