@@ -59,7 +59,7 @@ This will run an nginx container and serve the default web page. But notice 2 th
 1. You are locked into the process in the terminal window
 2. There is no way to access the web server external to your machine right now
 
-In the same terminal window, click `Ctrl + C` to escape the docker container.
+Click on the terminal window, then press `Ctrl + C` to escape the docker container.
 
 If you run `docker ps -a`, you will see a stopped nginx container with a random name like `funky-rooter`. This was auto assigned because we didn't provide a name. Let's delete this container:
 
