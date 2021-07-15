@@ -168,7 +168,7 @@ Running `docker container inspect nginx1 | jq '.[].NetworkSettings.Networks'` wi
 
 `docker run -itd --name mysql1 -v mysql1:/var/lib/mysql --network="database" -e MYSQL_ROOT_PASSWORD=mysecretpassword alphabravoio/ubuntu-mysql:latest`
 
-Confirm that these are all running by checking `docker ps`.
+Confirm that these are all running by checking `docker ps -n 3`.  You should have the following container names showing: mysql1, apache1, and nginx1
 
 Also confirm that nginx and apache are available externally on your lab server:
 
