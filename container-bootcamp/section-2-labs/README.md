@@ -85,6 +85,8 @@ Now, let's stop this container.
 
 `docker stop nginx-sample`
 
+Let's try revisiting the URL, http://LABSERVERNAME, in your browser.  It should show an error that the site cannot be reached, indicating the container is stopped and no longer accessable.  Note: You may need to click the refresh button if the "Welcome to nginx!" page is still showing, as it may be cached.
+
 To start the container.
 
 `docker start nginx-sample`
