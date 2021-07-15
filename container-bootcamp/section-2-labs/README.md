@@ -29,7 +29,7 @@ To see all images (read-only container snapshot) on the system:
 
 To list the volumes: 
 
-`docker volumes ls`
+`docker volume ls`
 
 To list current networks:
 
