@@ -35,7 +35,10 @@ To list current networks:
 
 `docker network ls`
 
-For a complete list, visit https://docs.docker.com/engine/reference/commandline/docker/.
+For a complete list:
+`docker --help` 
+
+Or visit https://docs.docker.com/engine/reference/commandline/docker/.
 
 ____
 
