@@ -225,10 +225,6 @@ Because we added persistence, you will notice that even though the containers ar
 
 `docker volume rm nginx1 mysql1`
 
-And the Bind Mount volume for Apache.
-
-`rm -rf /ab/labs/tmp/apache1`
-
 And lastly, let's clean up those networks.
 
 `docker network rm external database`
