@@ -142,7 +142,13 @@ First, let's create 2 networks.
 
 `docker network create database`
 
-These are 2 separate networks that we can assign to the containers we run. An example of this is if you have 2 external facing containers that you may want to communicate with, but only one of them should be able to talk to the database server.
+Let's check to verify the networks have been created successfully:
+
+`docker network ls`
+
+You should see the external and database networks in the list provided.
+
+We have now created 2 separate networks which can be assigned to the containers we run. An example of this is if you have 2 external facing containers that you may want to communicate with, but only one of them should be able to talk to the database server.
 
 In this example we will use Docker Volumes for each container.
 
