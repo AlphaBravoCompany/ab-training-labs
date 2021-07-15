@@ -130,7 +130,7 @@ We can see that `mycontainerimage` is listed.
 Let's query to see what tags there are associated that image:
 
 ```
-curl -X GET http://localhost:5000/v2/mycontainerimage/tags/list
+curl -s -X GET http://localhost:5000/v2/mycontainerimage/tags/list | jq
 ```
 
 Now, lets delete the local version of these images and run a container with the new tag. You will see the image automatically get downloaded and run.
