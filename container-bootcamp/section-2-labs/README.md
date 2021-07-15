@@ -199,13 +199,13 @@ Now try running the command `ping -c 4 mysql1`.  This command should fail becaus
 
 Try running the command `ping -c 4 nginx1`. This should succeed because they share the `external` network.
 
-`exit` to escape out of the container shell
+In the terminal, type `exit` to escape out of the container shell.
 
 These commands will ping the nginx1 and apache1 containers from the mysql1 container to show that the same is true to the DB server.
 
-`docker exec -it mysql1 /bin/bash ping -c 4 nginx1` (succeeds)
+`docker exec -it mysql1 ping -c 4 nginx1` (succeeds)
 
-`docker exec -it mysql1 /bin/bash ping -c 4 apache1` (fails)
+`docker exec -it mysql1 ping -c 4 apache1` (fails)
 
 ____
 
