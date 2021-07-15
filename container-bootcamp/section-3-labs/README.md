@@ -34,7 +34,9 @@ Since centos8 is out, lets change the first line to `FROM centos:8`
 
 And lets make a changes to the text "Welcome to the AlphaBravo Container Bootcamp" in the default `index.html` file. Open `/ab/labs/container-bootcamp/section-3-labs/index.html` to change the text.
 
-First, let's switch the the correct directory:
+Be sure to save your changes in both files before continuing.
+
+In the terminal, let's change to the correct directory:
 
 ```
 cd /ab/labs/container-bootcamp/section-3-labs
@@ -100,7 +102,7 @@ docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest
 Let's check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
 
 ```
-docker image ls
+docker image ls | grep mycontainerimage
 ```
 
 ![Image IDs are the same](./images/container-images.png)
@@ -120,7 +122,7 @@ Notice that the first upload takes a long time, but the second is very quick. Th
 We can't visit a pretty UI to see these image in our registry, but we can query the http endpoint.
 
 ```
-curl -X GET http://localhost:5000/v2/_catalog
+curl -s -X GET http://localhost:5000/v2/_catalog | jq
 ```
 
 We can see that `mycontainerimage` is listed.
