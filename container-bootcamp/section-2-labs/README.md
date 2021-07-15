@@ -195,9 +195,9 @@ Now let's test from the Apache container:
 
 This will drop you into the shell of the apache1 container and you can run the ping command to test communication with mysql1.
 
-`ping -c 4 mysql1` should fail because apache1 is not on the database network and therefore cannot reach the mysql1 container.
+Now try running the command `ping -c 4 mysql1`.  This command should fail because apache1 is not on the database network and therefore cannot reach the mysql1 container.
 
-`ping -c 4 nginx1` should succeed because they share the `external` network.
+Try running the command `ping -c 4 nginx1`. This should succeed because they share the `external` network.
 
 `exit` to escape out of the container shell
 
