@@ -24,6 +24,10 @@ In you the `section-3-labs` directory on your lab server, you will see a file ca
 
 Copy `Dockerfile.example` to `Dockerfile` in the same folder.
 
+```
+cp Dockerfile.example Dockerfile
+```
+
 Next, lets make some changes.
 
 Since centos8 is out, lets change the first line to `FROM centos:8`
@@ -32,23 +36,35 @@ And lets make a changes to the text "Welcome to the AlphaBravo Container Bootcam
 
 First, let's switch the the correct directory:
 
-`cd /ab/labs/container-bootcamp/section-3-labs`
+```
+cd /ab/labs/container-bootcamp/section-3-labs
+```
 
 Now, we can build and then run this container.
 
-`docker build -t mycontainerimage:latest .`
+```
+docker build -t mycontainerimage:latest .
+```
 
 Once the build is complete, we can run this container image.
 
-`docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest`
+```
+docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest
+```
 
-Run `docker exec -it mycontainer cat /etc/os-release` to confirm it is centos:8.
+Now let's confirm the release is centos:8.
+
+```
+docker exec -it mycontainer cat /etc/os-release
+```
 
 Visit http://LABSERVERNAME to see your custom index file message.
 
 Let's cleanup.
 
-`docker rm -f mycontainer`
+```
+docker rm -f mycontainer
+```
 
 ___
 
@@ -73,37 +89,57 @@ For this course, we have a registry running on the local server at http://localh
 
 Let's retag the image we created in Lab 1 with 2 different tags. Remember, this is the same image and will not be replicated, just tagged differently. The image hash for both will be the same.:
 
-`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0`
+```
+docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0
+```
 
-`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest`
+```
+docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest
+```
 
-Run `docker image ls` to check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
+Let's check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
+
+```
+docker image ls
+```
 
 ![Image IDs are the same](./images/container-images.png)
 
 Now, we can push that image to our local registry:
 
-`docker push localhost:5000/mycontainerimage:1.0`
+```
+docker push localhost:5000/mycontainerimage:1.0
+```
 
-`docker push localhost:5000/mycontainerimage:latest`
+```
+docker push localhost:5000/mycontainerimage:latest
+```
 
 Notice that the first upload takes a long time, but the second is very quick. This is because the registry recognized these were the same image and just needed to add an additional tag.
 
 We can't visit a pretty UI to see these image in our registry, but we can query the http endpoint.
 
-`curl -X GET http://localhost:5000/v2/_catalog`
+```
+curl -X GET http://localhost:5000/v2/_catalog
+```
 
 We can see that `mycontainerimage` is listed.
 
 Let's query to see what tags there are associated that image:
 
-`curl -X GET http://localhost:5000/v2/mycontainerimage/tags/list`
+```
+curl -X GET http://localhost:5000/v2/mycontainerimage/tags/list
+```
 
 Now, lets delete the local version of these images and run a container with the new tag. You will see the image automatically get downloaded and run.
 
-`docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest`
+```
+docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest
+```
 
-`docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest`
+```
+docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest
+```
 
 Note the messages: 
 
@@ -114,7 +150,9 @@ Because we deleted the images locally, they weren't available locally to run the
 
 Let's clean up:
 
-`docker rm -f mycontainer && docker image prune -a -f`
+```
+docker rm -f mycontainer && docker image prune -a -f
+```
 
 ___
 
