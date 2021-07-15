@@ -95,7 +95,7 @@ Now, let's stop and delete this container.
 
 `docker rm -f nginx-sample`
 
-The web page is no longer available and running `docker ps -a` shows no running nginx containers.
+The container has been deleted, the web page is no longer available, and running `docker ps -n 1` no longer shows an nginx container.
 
 _____
 
