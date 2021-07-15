@@ -158,7 +158,7 @@ In this example we will use Docker Volumes for each container.
 
 `docker network connect database nginx1`
 
-Running `docker container inspect nginx1` will show that this container is now connected to 2 networks.
+Running `docker container inspect nginx1 | jq '.[].NetworkSettings.Networks'` will show that this container is now connected to 2 networks.
 
 *Apache Frontened*- Can talk external but not to MySQL
 
