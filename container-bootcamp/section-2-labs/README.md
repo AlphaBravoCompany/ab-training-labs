@@ -61,9 +61,9 @@ This will run an nginx container and serve the default web page. But notice 2 th
 
 Click on the terminal window, then press `Ctrl + C` to escape the docker container.
 
-If you run `docker ps -a`, you will see a stopped nginx container with a random name like `funky-rooter`. This was auto assigned because we didn't provide a name. Let's delete this container:
+If you run `docker ps -n 1`, you will see the last created nginx container with a random name like `funky_rooter`. This was auto assigned because we didn't provide a name. Let's delete this container:
 
-`docker rm funky-rooster` (replace funky rooster with your container name)
+`docker rm funky_rooster` (replace funky rooster with your container name)
 
 ____
 
