@@ -118,9 +118,9 @@ Visit http://LABSERVERNAME:8080 and you should see "Welcome to nginx!".
 
 Now lets mount a volume using the custom `index.html` in this lab directory.
 
-`docker run -itd --name nginx-vol -v $PWD:/usr/share/nginx/html -p 8081:80 nginx:latest`
+`docker run -itd --name nginx-vol -v $PWD/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest`
 
-Visit http://LABSERVERNAME:8080 and you should see "Welcome to the AlphaBravo Container Bootcamp!".
+Visit http://LABSERVERNAME:8081 and you should see "Welcome to the AlphaBravo Container Bootcamp!".
 
 This also allows for you to persist data from a container. Deleting the container leaves the `index.html` file intact.
 
