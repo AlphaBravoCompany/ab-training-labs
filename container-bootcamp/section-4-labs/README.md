@@ -2,7 +2,7 @@
 
 ### In this section we learned about:
 
-* Docker-Compose
+* [Docker-Compose](https://docs.docker.com/compose/)
 
 ## Lab 1 - Running Wordpress using CLI commands
 
@@ -22,7 +22,7 @@ First, let's run all the Docker CLI commands we would need to bring a MariaDB an
 
 ### Creating the Wordpress container
 
-`docker run -itd -e WORDPRESS_DATABASE_HOST=mariadb -e WORDPRESS_DATABASE_PORT_NUMBER=3306 -e WORDPRESS_DATABASE_USER=wordpress -e WORDPRESS_DATABASE_PASSWORD=yourpassword -e WORDPRESS_DATABASE_NAME=wordpress -e WORDPRESS_BLOG_NAME=AB_Training_Docker_CLI--name wordpress -p 80:8080 -p 443:8443 -v wordpress_data:/var/www/html --net external_net docker.io/bitnami/wordpress:5`
+`docker run -itd -e WORDPRESS_DATABASE_HOST=mariadb -e WORDPRESS_DATABASE_PORT_NUMBER=3306 -e WORDPRESS_DATABASE_USER=wordpress -e WORDPRESS_DATABASE_PASSWORD=yourpassword -e WORDPRESS_DATABASE_NAME=wordpress -e WORDPRESS_BLOG_NAME=AB_Training_Docker_CLI --name wordpress -p 80:8080 -p 443:8443 -v wordpress_data:/var/www/html --net external_net docker.io/bitnami/wordpress:5`
 
 ### Attaching the Wordpress container to the database network
 
