@@ -187,7 +187,7 @@ First, let's get a shell in nginx1 and try to ping mysql1.
 
 `ping -c 4 mysql1` should succeed because they are both part of the `database` network.
 
-`exit` to escape out of the container shell
+In the terminal, type `exit` to escape out of the container shell.
 
 This will drop you into the shell of the apache1 container and you can run the ping command to test communication with mysql1.
 
