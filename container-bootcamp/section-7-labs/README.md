@@ -41,7 +41,7 @@ View nodes in the cluster:
 
 Export the lab-server cluster kubeconfig to `/ab/kubeconfig/` for use with a tool like Lens:
 
-`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/lab-cluster-config.yml`
+`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/kubeconfig/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/kubeconfig/lab-cluster-config.yml`
 
 ____
 
