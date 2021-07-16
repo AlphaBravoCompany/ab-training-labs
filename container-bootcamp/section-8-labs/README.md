@@ -72,6 +72,10 @@ Cleanup the StatefulSet:
 
 `kubectl delete -f nginx-statefulset.yml -n training-lab`
 
+Verify the training-lab namespace has no resources deployed:
+
+`kubectl get all -n training-lab`
+
 ____
 
 ## Section 8: Lab 2 - DaemonSets
