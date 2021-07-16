@@ -97,7 +97,7 @@ ____
 
 ### Section 7: Lab 3 Content
 
-Let's create a namespace and then we can create some resources in that new namespace
+Let's create a namespace and then we can create some resources in that new namespace:
 
 `kubectl create ns training-lab`
 
@@ -136,9 +136,7 @@ Switch to the Section 7 directory where the `nginx-deployment.yml` file is locat
 
 `cd /ab/labs/container-bootcamp/section-7-labs/`
 
-Open the `nginx-deployment.yml` file and review the structure:
-
-`/ab/labs/container-bootcamp/section-7-labs/nginx-deployment.yml`{{open}}
+In VS Code, open the `nginx-deployment.yml` file and review the structure.
 
 Now let's deploy `nginx-deployment.yml`:
 
