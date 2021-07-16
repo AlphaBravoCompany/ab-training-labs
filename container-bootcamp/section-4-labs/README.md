@@ -48,7 +48,7 @@ Notice that it has all of the elements we defined in the Docker CLI, but it is m
 
 Now, let's run this docker-compose against this file. By default docker-compse will look for a file named `docker-compose.yml` in the present working directory (PWD) and run it. If your file is named something else, you will need to specify a `-f filename.yml` for docker-compose to find it.
 
-First, make sure you are in the `/ab/container-bootcamp/section-4-labs/` directory, then run:
+First, make sure you are in the `/ab/labs/container-bootcamp/section-4-labs/` directory, then run:
 
 `docker-compose up -d`
 
