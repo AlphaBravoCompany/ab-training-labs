@@ -96,11 +96,7 @@ Some typical uses of a DaemonSet are:
 
 In this case, we will deploy the fluentd pods as a DaemonSet.
 
-Switch to the Section 8 directory where the `fluentd-daemonset.yml` file is located:
-
-`cd /ab/labs/container-bootcamp/section-8-labs/`
-
-Now lets deploy `fluentd-daemonset.yml`:
+Lets deploy `fluentd-daemonset.yml`:
 
 `kubectl apply -f fluentd-daemonset.yml -n training-lab`
 
