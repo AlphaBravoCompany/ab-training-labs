@@ -62,7 +62,11 @@ We can also see that persistent volumes (more on those in a later section) have 
 
 `kubectl get pvc -n training-lab`
 
-Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
+Lastly, if you look at the `nginx-statefulset.yml` file on lines 1 through 13, we created a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
+
+Let's take a look at the deployed service:
+
+`kubectl get svc -n training-lab -o wide`
 
 Cleanup the StatefulSet:
 
