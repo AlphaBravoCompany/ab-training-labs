@@ -41,7 +41,7 @@ View nodes in the cluster:
 
 Export the lab-server cluster kubeconfig to `/ab/kubeconfig/` for use with a tool like Lens:
 
-`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/lab-cluster-config.yml`
+`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/kubeconfig/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/kubeconfig/lab-cluster-config.yml`
 
 ____
 
@@ -168,7 +168,7 @@ We can see the additional pods get added in the right Terminal.
 
 What happens if we delete a pod manually? 
 
-Choose a pod name from the `kubectl get pods` command and add it below:
+Choose a pod name from the `kubectl get pods -n training-lab` command and add it below:
 
 `kubectl delete pod <podname> -n training-lab`
 
@@ -217,6 +217,8 @@ In the right window, hit `Ctrl + C` to stop the watch and run the below command 
 Let's delete this deployment and see all resources get cleaned up:
 
 `kubectl delete -f nginx-deployment.yml`
+
+Finally, let's close the extra terminal window.  Chose a panel and run the `exit` command.  The extra panel should close and you're back to a single terminal window.
 
 ___
 

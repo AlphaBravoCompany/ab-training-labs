@@ -68,9 +68,18 @@ Notice that persistent volumes (more on those in a later section) have ordinal n
 
 Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
 
+Let's take a look at the deployed service:
+
+`kubectl get svc -n training-lab -o wide`
+
+
 Cleanup the StatefulSet:
 
 `kubectl delete -f nginx-statefulset.yml -n training-lab`
+
+Verify the training-lab namespace has no resources deployed:
+
+`kubectl get all -n training-lab`
 
 ____
 
@@ -92,11 +101,7 @@ Some typical uses of a DaemonSet are:
 
 In this case, we will deploy the fluentd pods as a DaemonSet.
 
-Switch to the Section 8 directory where the `fluentd-daemonset.yml` file is located:
-
-`cd /ab/labs/container-bootcamp/section-8-labs/`
-
-Now lets deploy `fluentd-daemonset.yml`:
+Lets deploy `fluentd-daemonset.yml`:
 
 `kubectl apply -f fluentd-daemonset.yml -n training-lab`
 
@@ -108,15 +113,18 @@ Notice that it automatically created 3 and distributed them across our worker no
 
 Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
 
+
 Add another K3d worker node:
 
 `k3d node create lab-cluster-agent-3 --cluster lab-cluster`
 
-Check pods:
+It will take a moment to add the agent and create the associated pod.  Let's `watch` the pod being created:
 
-`kubectl get pods -n training-lab -o wide`
+`watch kubectl get pods -n training-lab -o wide`
 
 Note that there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
+
+Press `Ctrl + C` to exit the `watch` command.
 ____
 
 ### Congrats! You have completed the Section 8 labs. You may now proceed with the rest of the course.
