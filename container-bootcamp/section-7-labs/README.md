@@ -190,7 +190,9 @@ We can view the image being used in the pod by describing a pod:
 
 Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
 
-Let's update the nginx-deployments.yml file so that the image is `nginx:1.20.1`. Then reapply the manfest file.
+Let's update the nginx-deployments.yml file on line 20 so that the image is `nginx:1.20.1`. 
+
+Now, reapply the manfest file:
 
 `kubectl apply -f nginx-deployment.yml`
 
