@@ -210,7 +210,7 @@ Note there are 2 ReplicaSets now:
 
 You could use the rollback features of kubectl to move back to the previous replicaset, but again, we recommend using manifest files to make these changes.
 
-In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace.
+In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace:
 
 `kubectl get all -n training-lab`
 
