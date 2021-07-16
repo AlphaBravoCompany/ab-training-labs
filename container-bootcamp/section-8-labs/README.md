@@ -100,9 +100,11 @@ Now lets deploy `fluentd-daemonset.yml`:
 
 `kubectl apply -f fluentd-daemonset.yml -n training-lab`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
+
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
 Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
 
