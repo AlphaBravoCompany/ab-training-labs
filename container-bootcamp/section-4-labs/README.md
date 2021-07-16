@@ -40,7 +40,7 @@ Let's clean up these containers, volumes and networks.
 
 ## Lab 2 - Running Wordpress using docker-compose
 
-Docker compose simplifies things quite a bit while also allowing us to be declarative about our configuration and generate an artifact that could be put into source code control like Git.
+Docker Compose simplifies things quite a bit while also allowing us to be declarative about our configuration and generate an artifact that could be put into source code control like Git.
 
 Let's take a look at the docker-compose.yml file in this directory.
 
