@@ -138,7 +138,7 @@ Switch to the Section 7 directory where the `nginx-deployment.yml` file is locat
 
 In VS Code, open the `nginx-deployment.yml` file and review the structure.
 
-Now let's deploy `nginx-deployment.yml`:
+Now that we've reviewed the file, let's deploy `nginx-deployment.yml`:
 
 `kubectl apply -f nginx-deployment.yml`
 
