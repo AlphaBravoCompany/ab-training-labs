@@ -82,7 +82,6 @@ View all services in the cluster:
 
 Feel free to refer to the links for more commands you can run to get information about the cluster. 
 
-This completes Section 7: Lab 2.
 
 ____ 
 
