@@ -192,7 +192,7 @@ Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
 
 Let's update the nginx-deployments.yml file on line 20 so that the image is `nginx:1.20.1`. 
 
-Now, reapply the manfest file:
+Now, re-apply the manfest file:
 
 `kubectl apply -f nginx-deployment.yml`
 
@@ -202,7 +202,9 @@ To verify this, run the following against one of the new pod names:
 
 `kubectl describe pod <podname> -n training-lab`
 
-We can also see that because we changed details about this deployment and redeployed, a new ReplicaSet was deployed with the new spec. Note there are 2 ReplicaSets now. 
+We can also see that because we changed details about this deployment and redeployed, a new ReplicaSet was deployed with the new spec. 
+
+Note there are 2 ReplicaSets now:
 
 `kubectl get rs -n training-lab`
 
