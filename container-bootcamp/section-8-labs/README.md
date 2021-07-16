@@ -60,9 +60,11 @@ View Pods:
 
 Note that the pods have been or are being Terminated and replaced, but the names stay the same.
 
-We can also see that persistent volumes (more on those in a later section) have ordinal names as well.
+Let's take a look at the persistent volume claims:
 
 `kubectl get pvc -n training-lab`
+
+Notice that persistent volumes (more on those in a later section) have ordinal names as well.
 
 Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
 
