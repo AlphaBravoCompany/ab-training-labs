@@ -23,11 +23,11 @@ ____
 
 For these labs we will be using K3d, which is Rancher K3s running in Docker on your local lab server. It will appear as if there are multiple servers and it will act that way too, but they will actually be Docker containers running the K3s Kubernetes control plane and worker nodes. Cool huh?
 
-To bring your local cluster online, run the following command.
+To bring your local cluster online, run the following command:
 
 `k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer`
 
-Now we can switch to that context using a `kubectl` command
+Now we can switch to that context using a `kubectl` command:
 
 `kubectl config use-context k3d-lab-cluster`
 
@@ -55,7 +55,7 @@ ____
 
 ### Section 7: Lab 2 Content
 
-Now that we have a cluster running, let's explore the cluster with kubectl commands
+Now that we have a cluster running, let's explore the cluster with kubectl commands.
 
 Note that sometimes we add the `-o wide` switch to get additional information from the command.
 
