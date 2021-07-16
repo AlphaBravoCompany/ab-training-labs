@@ -142,9 +142,11 @@ Now that we've reviewed the file, let's deploy `nginx-deployment.yml`:
 
 `kubectl apply -f nginx-deployment.yml`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
+
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
 We can also see that a ReplicaSet was automatically created:
 
