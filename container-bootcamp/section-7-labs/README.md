@@ -80,7 +80,7 @@ View all services in the cluster:
 `kubectl get service --all-namespaces -o wide`
 
 
-Feel free to refer to the links for more commands you can run to get information about the cluster. 
+Feel free to refer to the links at the top of this Lab for more commands you can run to get information about the cluster. 
 
 
 ____ 
