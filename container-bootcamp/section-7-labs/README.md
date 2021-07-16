@@ -176,6 +176,8 @@ You can see that the pod we specific get Terminated, but Kubernetes knows we exp
 
 What happens if we reapply the nginx-deployment.yml?
 
+Let's try running the apply again:
+
 `kubectl apply -f nginx-deployment.yml`
 
 2 of the pods are immediately Terminated because the manifest file only specifies 3 pods. This illustrates why we should make changes declaratively via our manifest files. If someone were to apply our code again, it will negate our CLI changes.
