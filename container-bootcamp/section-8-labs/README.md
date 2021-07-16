@@ -34,9 +34,11 @@ Now lets deploy `nginx-statefulset.yml`:
 
 `kubectl apply -f nginx-statefulset.yml -n training-lab`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+View the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
+
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
 In our deployment, our pods were given random names. Here, they are deployed in an ordinal fashion (web-0, web-1, web-2). This is ideal for things like database clusters that rely on specific names for each node.
 
