@@ -104,17 +104,19 @@ View the pods that were created. Notice that it automatically created 3 and dist
 
 `kubectl get pods -n training-lab -o wide`
 
-Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
+Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
 
 Add another K3d worker node:
 
 `k3d node create lab-cluster-agent-3 --cluster lab-cluster`
 
-Check pods:
+It will take a moment to add the agent and create the associated pod.  Let's `watch` the pod being created:
 
-`kubectl get pods -n training-lab -o wide`
+`watch kubectl get pods -n training-lab -o wide`
 
 Note that there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
+
+Press `Ctrl + C` to exit the `watch` command.
 ____
 
 ### Congrats! You have completed the Section 8 labs. You may now proceed with the rest of the course.
