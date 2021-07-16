@@ -23,11 +23,11 @@ ____
 
 For these labs we will be using K3d, which is Rancher K3s running in Docker on your local lab server. It will appear as if there are multiple servers and it will act that way too, but they will actually be Docker containers running the K3s Kubernetes control plane and worker nodes. Cool huh?
 
-To bring your local cluster online, run the following command.
+To bring your local cluster online, run the following command:
 
 `k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer`
 
-Now we can switch to that context using a `kubectl` command
+Now we can switch to that context using a `kubectl` command:
 
 `kubectl config use-context k3d-lab-cluster`
 
@@ -55,7 +55,7 @@ ____
 
 ### Section 7: Lab 2 Content
 
-Now that we have a cluster running, let's explore the cluster with kubectl commands
+Now that we have a cluster running, let's explore the cluster with kubectl commands.
 
 Note that sometimes we add the `-o wide` switch to get additional information from the command.
 
@@ -80,9 +80,8 @@ View all services in the cluster:
 `kubectl get service --all-namespaces -o wide`
 
 
-Feel free to refer to the links for more commands you can run to get information about the cluster. 
+Feel free to refer to the links at the top of this Lab for more commands you can run to get information about the cluster. 
 
-This completes Section 7: Lab 2.
 
 ____ 
 
@@ -98,7 +97,7 @@ ____
 
 ### Section 7: Lab 3 Content
 
-Let's create a namespace and then we can create some resources in that new namespace
+Let's create a namespace and then we can create some resources in that new namespace:
 
 `kubectl create ns training-lab`
 
@@ -137,17 +136,17 @@ Switch to the Section 7 directory where the `nginx-deployment.yml` file is locat
 
 `cd /ab/labs/container-bootcamp/section-7-labs/`
 
-Open the `nginx-deployment.yml` file and review the structure:
+In VS Code, open the `nginx-deployment.yml` file and review the structure.
 
-`/ab/labs/container-bootcamp/section-7-labs/nginx-deployment.yml`{{open}}
-
-Now let's deploy `nginx-deployment.yml`:
+Now that we've reviewed the file, let's deploy `nginx-deployment.yml`:
 
 `kubectl apply -f nginx-deployment.yml`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
+
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
 We can also see that a ReplicaSet was automatically created:
 
@@ -177,6 +176,8 @@ You can see that the pod we specific get Terminated, but Kubernetes knows we exp
 
 What happens if we reapply the nginx-deployment.yml?
 
+Let's try running the apply again:
+
 `kubectl apply -f nginx-deployment.yml`
 
 2 of the pods are immediately Terminated because the manifest file only specifies 3 pods. This illustrates why we should make changes declaratively via our manifest files. If someone were to apply our code again, it will negate our CLI changes.
@@ -189,7 +190,9 @@ We can view the image being used in the pod by describing a pod:
 
 Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
 
-Let's update the nginx-deployments.yml file so that the image is `nginx:1.20.1`. Then reapply the manfest file.
+Let's update the nginx-deployments.yml file on line 20 so that the image is `nginx:1.20.1`. 
+
+Now, re-apply the manfest file:
 
 `kubectl apply -f nginx-deployment.yml`
 
@@ -199,13 +202,15 @@ To verify this, run the following against one of the new pod names:
 
 `kubectl describe pod <podname> -n training-lab`
 
-We can also see that because we changed details about this deployment and redeployed, a new ReplicaSet was deployed with the new spec. Note there are 2 ReplicaSets now. 
+We can also see that because we changed details about this deployment and redeployed, a new ReplicaSet was deployed with the new spec. 
+
+Note there are 2 ReplicaSets now:
 
 `kubectl get rs -n training-lab`
 
 You could use the rollback features of kubectl to move back to the previous replicaset, but again, we recommend using manifest files to make these changes.
 
-In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace.
+In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace:
 
 `kubectl get all -n training-lab`
 

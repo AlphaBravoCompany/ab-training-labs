@@ -24,7 +24,7 @@ Manages the deployment and scaling of a set of Pods, and provides guarantees abo
 
 Like a Deployment, a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
 
-Let's deploy a statefulset and then see how they are named:=.
+Let's deploy a statefulset and then see how they are named.
 
 Switch to the Section 8 directory where the `nginx-statefulset.yml` file is located:
 
@@ -34,9 +34,11 @@ Now lets deploy `nginx-statefulset.yml`:
 
 `kubectl apply -f nginx-statefulset.yml -n training-lab`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+View the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
+
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
 In our deployment, our pods were given random names. Here, they are deployed in an ordinal fashion (web-0, web-1, web-2). This is ideal for things like database clusters that rely on specific names for each node.
 
@@ -58,15 +60,18 @@ View Pods:
 
 Note that the pods have been or are being Terminated and replaced, but the names stay the same.
 
-We can also see that persistent volumes (more on those in a later section) have ordinal names as well.
+Let's take a look at the persistent volume claims:
 
 `kubectl get pvc -n training-lab`
 
-Lastly, if you look at the `nginx-statefulset.yml` file on lines 1 through 13, we created a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
+Notice that persistent volumes (more on those in a later section) have ordinal names as well.
+
+Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
 
 Let's take a look at the deployed service:
 
 `kubectl get svc -n training-lab -o wide`
+
 
 Cleanup the StatefulSet:
 
@@ -100,11 +105,14 @@ Lets deploy `fluentd-daemonset.yml`:
 
 `kubectl apply -f fluentd-daemonset.yml -n training-lab`
 
-View the pods that were created. Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide`
 
-Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
+Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+
+Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
+
 
 Add another K3d worker node:
 
