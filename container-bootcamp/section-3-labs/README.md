@@ -22,36 +22,85 @@ Let's write a Dockerfile and build our own docker image locally, then we can run
 In you the `section-3-labs` directory on your lab server, you will see a file called `Dockerfile.example`.
 
 
-Copy `Dockerfile.example` to `Dockerfile` in the same folder.
+<br />
+
+-----
+
+Copy `Dockerfile.example` to `Dockerfile` in the same folder:
+
+```
+cp Dockerfile.example Dockerfile
+```
+
+<br />
+
+-----
 
 Next, lets make some changes.
 
-Since centos8 is out, lets change the first line to `FROM centos:8`
+Since centos8 is the latest version, lets change the first line to `FROM centos:8`.
 
-And lets make a changes to the text "Welcome to the AlphaBravo Container Bootcamp" in the default `index.html` file. Open `/ab/labs/container-bootcamp/section-3-labs/index.html` to change the text.
+Additionally, lets make a changes to the text **"Welcome to the AlphaBravo Container Bootcamp"** in the default `index.html` file. 
 
-First, let's switch the the correct directory:
+Open `/ab/labs/container-bootcamp/section-3-labs/index.html` to change the text.
 
-`cd /ab/labs/container-bootcamp/section-3-labs`
+Be sure to save your changes in both files before continuing.
 
-Now, we can build and then run this container.
+<br />
 
-`docker build -t mycontainerimage:latest .`
+In the terminal, let's change to the correct directory:
 
-Once the build is complete, we can run this container image.
+```
+cd /ab/labs/container-bootcamp/section-3-labs
+```
 
-`docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest`
+<br />
 
-Run `docker exec -it mycontainer cat /etc/os-release` to confirm it is centos:8.
+-----
+
+Now, we can build and then run this container:
+
+```
+docker build -t mycontainerimage:latest .
+```
+
+<br />
+
+-----
+
+Once the build is complete, we can run this container image:
+
+```
+docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest
+```
+
+<br />
+
+-----
+
+Now let's confirm the release is centos:8.
+
+```
+docker exec -it mycontainer cat /etc/os-release
+```
 
 Visit http://LABSERVERNAME to see your custom index file message.
 
-Let's cleanup.
+<br />
 
-`docker rm -f mycontainer`
+-----
 
-___
+Let's cleanup:
 
+```
+docker rm -f mycontainer
+```
+
+<br />
+<br />
+
+-----
+-----
 
 ## Section 3: Lab 2 - Working with Container Registries
 
@@ -71,52 +120,116 @@ For this course, we have a registry running on the local server at http://localh
 
 ### Tagging an image for our registry
 
-Let's retag the image we created in Lab 1 with 2 different tags. Remember, this is the same image and will not be replicated, just tagged differently. The image hash for both will be the same.:
+Let's retag the image we created in Lab 1 with 2 different tags. Remember, this is the same image and will not be replicated, just tagged differently. The image hash for both will be the same.
 
-`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0`
+<br />
 
-`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest`
 
-Run `docker image ls` to check to see that even though the tags are different, the image ids are the same `a33846438f76`. (NOTE: Your IDs may be different from the ones shown in the example, but the same as each other.)
+First, let's tag an image with `localhost:5000/mycontainerimage:1.0`:
 
+```
+docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0
+```
+
+<br />
+
+-----
+
+Then, let's tag the same image with `localhost:5000/mycontainerimage:latest`:
+
+```
+docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest
+```
+
+<br />
+
+-----
+
+Let's check to see that even though the tags are different, the image IDs are the same: 
+
+```
+docker image ls | grep mycontainerimage
+```
 ![Image IDs are the same](./images/container-images.png)
 
-Now, we can push that image to our local registry:
+**NOTE:** Your IDs will be different from the ones shown in the example above. However, they should all match one another as shown in the screenshot.
 
-`docker push localhost:5000/mycontainerimage:1.0`
+<br />
 
-`docker push localhost:5000/mycontainerimage:latest`
+-----
 
-Notice that the first upload takes a long time, but the second is very quick. This is because the registry recognized these were the same image and just needed to add an additional tag.
+Now, we can push these images to our local registry:
 
-We can't visit a pretty UI to see these image in our registry, but we can query the http endpoint.
+```
+docker push localhost:5000/mycontainerimage:1.0
+```
 
-`curl -X GET http://localhost:5000/v2/_catalog`
+```
+docker push localhost:5000/mycontainerimage:latest
+```
 
+**Note:** The first upload takes a long time, but the second is very quick. This is because the registry recognized these were the same image and just needed to add an additional tag to reference one another.
+
+
+<br />
+
+-----
+
+We can't visit a pretty UI to see these image in our registry, but we can query the http endpoint:
+
+```
+curl -s -X GET http://localhost:5000/v2/_catalog | jq
+```
 We can see that `mycontainerimage` is listed.
 
-Let's query to see what tags there are associated that image:
+<br />
 
-`curl -X GET http://localhost:5000/v2/mycontainerimage/tags/list`
+-----
 
-Now, lets delete the local version of these images and run a container with the new tag. You will see the image automatically get downloaded and run.
+Let's query to see what tags there are associated the image:
 
-`docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest`
+```
+curl -s -X GET http://localhost:5000/v2/mycontainerimage/tags/list | jq
+```
 
-`docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest`
+<br />
 
-Note the messages: 
+-----
+
+Now, delete the local version of these images and run a container with the new tag. You will see the image automatically get downloaded and run.
+
+Delete the current local image:
+
+```
+docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest
+```
+
+Create a container from the remote image in the repository:
+
+```
+docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest
+```
+Because we deleted the images locally, they weren't available locally to run the container and they were automatically downloaded from the registry. Note the messages: 
 
 * *Unable to find image 'localhost:5000/mycontainerimage:latest' locally*
 * *latest: Pulling from mycontainerimage*
 
-Because we deleted the images locally, they weren't available locally to run the container and they were automatically downloaded from the registry. 
+
+<br />
+
+-----
 
 Let's clean up:
 
-`docker rm -f mycontainer && docker image prune -a -f`
+```
+docker rm -f mycontainer && docker image prune -a -f
+```
 
-___
+
+<br />
+
+-----
+-----
 
 ### Congrats! You have completed the Section 3 labs. You may now proceed with the rest of the course.
 
