@@ -2,108 +2,67 @@
 
 ### In this section we learned about:
 
-* StatefulSets
-* DaemonSets
+* [Kubectl Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+* [Kubernetes Deployment and Hosting Options](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
-____
-
-## Section 8: Lab 1 - StatefulSets
+## Section 8: Lab 1 - Creating Namespaces and a Pod
 
 ### Section 8: Lab 1 Links
 
-* Kubernetes StatefulSets
-* [Kubernetes Headless Services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
-
-____
+* [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+* [Kubernetes Pods](https://v1-18.docs.kubernetes.io/docs/concepts/workloads/pods/)
+* [kubectl get](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get)
+* [kubectl run](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#run)
+* [kubectl delete](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete)
 
 ### Section 8: Lab 1 Content
 
-StatefulSet is the workload API object used to manage stateful applications.
+Let's create a namespace and then we can create some resources in that new namespace:
 
-Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
+`kubectl create ns training-lab`
 
-Like a Deployment, a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
+Verify the namespace was created:
 
-Let's deploy a statefulset and then see how they are named.
+`kubectl get ns`
 
-Switch to the Section 8 directory where the `nginx-statefulset.yml` file is located:
+Create a pod in the `training-lab` namespace:
 
-`cd /ab/labs/container-bootcamp/section-8-labs/`
+`kubectl run nginx --image=nginx --restart=Never --namespace=training-lab`
 
-Now lets deploy `nginx-statefulset.yml`:
-
-`kubectl apply -f nginx-statefulset.yml -n training-lab`
-
-View the pods that were created:
+Verify the pod was created and note what Node it is running on:
 
 `kubectl get pods -n training-lab -o wide`
 
-Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Delete the pod:
 
-In our deployment, our pods were given random names. Here, they are deployed in an ordinal fashion (web-0, web-1, web-2). This is ideal for things like database clusters that rely on specific names for each node.
+`kubectl delete pod nginx -n training-lab`
 
-Let's update the image that will redeploy the pods and see what happens.
-
-Modify the following `nginx-statefulset.yml` file and replace `nginx:1.20` with `nginx:1.21`, then apply the manifest again.
-
-Modify:
-
-`/ab/labs/container-bootcamp/section-8-labs/nginx-statefulset`
-
-Apply:
-
-`kubectl apply -f nginx-statefulset.yml -n training-lab`
-
-View Pods: 
+Verify it was deleted:
 
 `kubectl get pods -n training-lab -o wide`
 
-Note that the pods have been or are being Terminated and replaced, but the names stay the same.
+_____
 
-Let's take a look at the persistent volume claims:
-
-`kubectl get pvc -n training-lab`
-
-Notice that persistent volumes (more on those in a later section) have ordinal names as well.
-
-Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a service. That is because StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. (More on Services in a later lab as well).
-
-Let's take a look at the deployed service:
-
-`kubectl get svc -n training-lab -o wide`
-
-
-Cleanup the StatefulSet:
-
-`kubectl delete -f nginx-statefulset.yml -n training-lab`
-
-Verify the training-lab namespace has no resources deployed:
-
-`kubectl get all -n training-lab`
-
-____
-
-## Section 8: Lab 2 - DaemonSets
+## Section 8: Lab 2 - Creating ReplicaSets and Deployments
 
 ### Section 8: Lab 2 Links
 
-* Kubernetes DaemonSets
+* [Kubernetes ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+* [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
 ### Section 8: Lab 2 Content
 
-A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them. As nodes are removed from the cluster, those Pods are garbage collected. Deleting a DaemonSet will clean up the Pods it created.
+Now let's create a Deployment. As part of the deployment, a ReplicaSet and 3 pods will be created.
 
-Some typical uses of a DaemonSet are:
+Switch to the Section 8 directory where the `nginx-deployment.yml` file is located:
 
-* running a cluster storage daemon on every node
-* running a logs collection daemon on every node
-* running a node monitoring daemon on every node
+`cd /ab/labs/container-bootcamp/section-7-labs/`
 
-In this case, we will deploy the fluentd pods as a DaemonSet.
+In VS Code, open the `nginx-deployment.yml` file and review the structure.
 
-Lets deploy `fluentd-daemonset.yml`:
+Now that we've reviewed the file, let's deploy `nginx-deployment.yml`:
 
-`kubectl apply -f fluentd-daemonset.yml -n training-lab`
+`kubectl apply -f nginx-deployment.yml`
 
 Let's view the pods that were created:
 
@@ -111,20 +70,76 @@ Let's view the pods that were created:
 
 Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
-Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
+We can also see that a ReplicaSet was automatically created:
 
+`kubectl get rs -n training-lab`
 
-Add another K3d worker node:
+The ReplicaSet is ensuring that the number of pods we specific in the manifest file is met.
 
-`k3d node create lab-cluster-agent-3 --cluster lab-cluster`
+Let's open a second Terminal in vscode so we can watch the pods. Click the “Split Terminal” button in the upper right of the Terminal window or press `Control+Shift+5`. You should now have 2 windows.
 
-It will take a moment to add the agent and create the associated pod.  Let's `watch` the pod being created:
+On the right window, run:
 
-`watch kubectl get pods -n training-lab -o wide`
+`watch kubectl get pods -n training-lab`
 
-Note that there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
+Let's manually scale this deployment to 5 pods. In the left Terminal:
 
-Press `Ctrl + C` to exit the `watch` command.
-____
+`kubectl scale --replicas=5 -f nginx-deployment.yml`
 
-### Congrats! You have completed the Section 8 labs. You may now proceed with the rest of the course.
+We can see the additional pods get added in the right Terminal.
+
+What happens if we delete a pod manually?
+
+Choose a pod name from the `kubectl get pods -n training-lab` command and add it below:
+
+`kubectl delete pod <podname> -n training-lab`
+
+You can see that the pod we specific get Terminated, but Kubernetes knows we expect 5 pods running, so the control loop automatically reconciles the expected state of 5 pods and starts a new pod in place of the one we deleted.
+
+What happens if we reapply the nginx-deployment.yml?
+
+Let's try running the apply again:
+
+`kubectl apply -f nginx-deployment.yml`
+
+2 of the pods are immediately Terminated because the manifest file only specifies 3 pods. This illustrates why we should make changes declaratively via our manifest files. If someone were to apply our code again, it will negate our CLI changes.
+
+We could also make changes to the manifest file like the nginx image version and when we apply, Kubernetes will remove the existing pods and replace them with the image version specified.
+
+We can view the image being used in the pod by describing a pod:
+
+`kubectl describe pod <podname> -n training-lab`
+
+Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
+
+Let's update the nginx-deployments.yml file on line 20 so that the image is `nginx:1.20.1`.
+
+Now, re-apply the manfest file:
+
+`kubectl apply -f nginx-deployment.yml`
+
+Notice that the existing Pods are terminated and replaced with pods running the new Image we specified.
+
+To verify this, run the following against one of the new pod names:
+
+`kubectl describe pod <podname> -n training-lab`
+
+We can also see that because we changed details about this deployment and redeployed, a new ReplicaSet was deployed with the new spec.
+
+Note there are 2 ReplicaSets now:
+
+`kubectl get rs -n training-lab`
+
+You could use the rollback features of kubectl to move back to the previous replicaset, but again, we recommend using manifest files to make these changes.
+
+In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace:
+
+`kubectl get all -n training-lab`
+
+Let's delete this deployment and see all resources get cleaned up:
+
+`kubectl delete -f nginx-deployment.yml`
+
+Finally, let's close the extra terminal window.  Chose a panel and run the `exit` command.  The extra panel should close and you're back to a single terminal window.
+
+___
