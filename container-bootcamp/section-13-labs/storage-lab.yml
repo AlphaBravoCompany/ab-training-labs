@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+  namespace: training-lab
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp/k3dvol"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim
+  namespace: training-lab
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-lab
+  namespace: training-lab
+spec:
+  selector:
+    matchLabels:
+      app: storage-lab
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: storage-lab
+    spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+      containers:
+      - image: busybox
+        name: storage-lab
+        volumeMounts:
+          - mountPath: "/data"
+            name: task-pv-storage
+        command: ["ping", "127.0.0.1"]

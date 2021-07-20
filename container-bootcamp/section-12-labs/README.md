@@ -45,17 +45,17 @@ Now if we visit the site, we should be greeted "Hello from the Prod Environment"
 
 https://tls-nginx.LABSERVERNAME
 
----
+____
 
 ## Section 12: Lab 2 - Secrets
 
----
+____
 
 ### Section 12: Lab 1 Links
 
 * [Kubernetes Secrets](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
----
+____
 
 ### Section 12: Lab 2 Content
 
