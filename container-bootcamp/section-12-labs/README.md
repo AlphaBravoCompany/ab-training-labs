@@ -49,29 +49,7 @@ https://tls-nginx.LABSERVERNAME
 
 ----
 
-### Section 12: Lab 2 Content
 
-Ingress also MUST support TLS. We recommend never exposing services without TLS in place. The above example is only HTTP, so how can we make it HTTPS? Traefik support LetsEncrypt to automatically generate certificates on demand for your sites, but in this case, lets say that your environment is air-gapped and you need to use a certificate you already have.
-
-First, lets take a look at the annotation we added at the bottom of the `tls-ingress.yml` file. We added `tls` and then a Kubernetes secret (we will talk more about secrets later in the course) that will store the certs.
-
-`./tls-ingress.yml` {{ open }}
-
-Now lets create the secret in the `training-lab` namespace. We have generated a wild card certificate just for your lab server, so we can use that.
-
-`kubectl -n training-lab create secret tls traefik-ui-tls-cert --key=/ab/certs/live/LABSERVERNAME/privkey.pem --cert=/ab/certs/live/LABSERVERNAME/fullchain.pem`
-
-Then, we can apply our new ingress file with TLS support:
-
-`kubectl apply -f tls-ingress.yml`
-
-Once that is done, you should be able to reach a TLS secured version of your NGINX web server. Note that we did not have to modify our application. By properly configuring the ingress, we can add encryption for external traffic coming into our applications without making changes to the application code itself.
-
-`https://tls-nginx.LABSERVERNAME`
-
-**NOTE:** Adding TLS to the Ingress does not secure traffic *inside* the cluster. This requires network policies and service mesh, which are not covered in this course.
-
-----
 
 ### Cleanup
 
