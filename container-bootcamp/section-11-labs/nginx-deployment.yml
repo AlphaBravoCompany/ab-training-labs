@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab-nginx
+  labels:
+    app: lab-nginx
+  namespace: training-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lab-nginx
+  template:
+    metadata:
+      labels:
+        app: lab-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
