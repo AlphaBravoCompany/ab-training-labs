@@ -38,7 +38,7 @@ You can view the Pods, PV, and PVC with kubectl:
 
 Let's exec into the pod and create a file on the storage.
 
-`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) echo $(hostname) > /data/hostname.txt`
+`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) -- sh -c "echo 'Hello from the AlphaBravo Lab PV' > /data/hostname.txt"`
 
 Verify the file was created:
 
@@ -51,6 +51,8 @@ Now, let's delete the pod. If we had not mounted persistent storage, the `/data/
 Query the new pod to see if the `/data/hostname.txt` file still exists:
 
 `kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) cat /data/hostname.txt`
+
+You should see the text "Hello from the AlphaBravo Lab PV" output on the screen.
 
 That is the basics of Persistent Storage. We allow data to persistent longer than the lifecycle of a single pod.
 
