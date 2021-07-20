@@ -21,3 +21,10 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html/index.html
+      volumes:
+      - name: html-volume
+        configMap:
+          name: lab-html

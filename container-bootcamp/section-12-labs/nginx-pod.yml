@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: training-lab
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+      ports:
+        - containerPort: 80
+          name: http
+      volumesMounts:
+        - name: lab-secret
+          mountPath: "/etc/secrets"
+          readOnly: true
+  volumes:
+    - name: lab-secret
+      secret:
+        secretName: lab-secret
+        defaultMode: 0400
+        
