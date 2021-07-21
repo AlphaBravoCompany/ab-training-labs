@@ -25,11 +25,12 @@ Now let's practice running some of these commands. Click the burger menu in VSCo
 To see what containers are running on your current system:
 
 ```
-docker ps
-``` 
+`docker ps` {{ execute }}
+```
+
 or 
 ```
-docker container ls
+`docker container ls` {{ execute }}
 ```
 
 <br />
@@ -39,11 +40,11 @@ docker container ls
 To see all containers on the current system, including stopped containers:
 
 ```
-docker ps -a
+`docker ps -a` {{ execute }}
 ``` 
 or 
 ```
-docker container ls -a
+`docker container ls -a` {{ execute }}
 ```
 
 <br />
@@ -53,7 +54,7 @@ docker container ls -a
 To see all images (read-only container snapshot) on the system:
 
 ```
-docker image ls
+`docker image ls` {{ execute }}
 ```
 
 <br />
@@ -63,7 +64,7 @@ docker image ls
 To list the volumes: 
 
 ```
-docker volume ls
+`docker volume ls` {{ execute }}
 ```
 
 <br />
@@ -73,7 +74,7 @@ docker volume ls
 To list current networks:
 
 ```
-docker network ls
+`docker network ls` {{ execute }}
 ```
 
 <br />
@@ -82,7 +83,7 @@ docker network ls
 
 For a complete list:
 ```
-docker --help
+`docker --help` {{ execute }}
 ``` 
 
 Or visit https://docs.docker.com/engine/reference/commandline/docker/.
@@ -105,7 +106,7 @@ Using the information you just learned, let's start and stop your first docker c
 Pull the nginx container from Docker Hub (we will cover what Docker Hub and Registries are in the next section of the course):
 
 ```
-docker pull nginx:latest
+`docker pull nginx:latest` {{ execute }}
 ```
 
 <br />
@@ -115,7 +116,7 @@ docker pull nginx:latest
 Now, let's run an nginx container based on that image:
 
 ```
-docker run -it nginx
+`docker run -it nginx` {{ execute }}
 ```
 
 This will run an nginx container and serve the default web page. But notice 2 things:
@@ -131,7 +132,7 @@ Click on the terminal window, then press `Ctrl + C` to escape the docker contain
 
 Now, let's find the last created Docker container:
 ```
-docker ps -n 1
+`docker ps -n 1` {{ execute }}
 ```
 *Note*: Using `-n 1` will list the last executed Docker container.  You can also use `--last 1` to achieve the same result.
 
@@ -144,7 +145,7 @@ After running the command, you will see the last created nginx container with a 
 Let's delete this container:
 
 ```
-docker rm funky_rooster
+`docker rm funky_rooster` {{ execute }}
 ``` 
 *Note*: Replace `funky_rooster` with your container name.
 
@@ -169,7 +170,7 @@ Now run it again with 3 new features.
 Let's create a container with the name `nginx-sample`, assign port `80:80`, and run it in the background using the `-d` switch:
 
 ```
-docker run -itd --name nginx-sample -p 80:80 nginx
+`docker run -itd --name nginx-sample -p 80:80 nginx` {{ execute }}
 ```
 
 Now you should be able to access this at http://LABSERVERNAME in your browser. It should greet you with 
@@ -183,7 +184,7 @@ Now you should be able to access this at http://LABSERVERNAME in your browser. I
 Now, let's stop the container using the name `nginx-sample`:
 
 ```
-docker stop nginx-sample
+`docker stop nginx-sample` {{ execute }}
 ```
 
 Let's try revisiting the URL, http://LABSERVERNAME, in your browser.  It should show an error that the site cannot be reached, indicating the container is stopped and no longer accessable.  
@@ -197,7 +198,7 @@ Let's try revisiting the URL, http://LABSERVERNAME, in your browser.  It should 
 Since the container has been stopped, let's start it again using the name `nginx-sample`:
 
 ```
-docker start nginx-sample
+`docker start nginx-sample` {{ execute }}
 ```
 
 <br />
@@ -207,7 +208,7 @@ docker start nginx-sample
 Now, let's stop and delete this container:
 
 ```
-docker rm -f nginx-sample
+`docker rm -f nginx-sample` {{ execute }}
 ```
 
 <br />
@@ -217,7 +218,7 @@ docker rm -f nginx-sample
 The container has been deleted, the web page is no longer available.  We can confirm the container has been removed by running:
 
 ```
-docker ps -n 1
+`docker ps -n 1` {{ execute }}
 ```
 
 <br />
@@ -244,7 +245,7 @@ Lets use the Bind Mount volume to show how you can load a custom `index.html` fi
 First, let's deploy Nginx deploying the default `index.html` file:
 
 ```
-docker run -itd --name nginx-novol -p 8080:80 nginx:latest
+`docker run -itd --name nginx-novol -p 8080:80 nginx:latest` {{ execute }}
 ```
 
 Visit http://LABSERVERNAME:8080 and you should see 
@@ -258,7 +259,7 @@ Visit http://LABSERVERNAME:8080 and you should see
 Now lets mount a volume using the custom `index.html` in this lab directory:
 
 ```
-docker run -itd --name nginx-vol -v $PWD/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest
+`docker run -itd --name nginx-vol -v $PWD/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest` {{ execute }}
 ```
 
 Visit http://LABSERVERNAME:8081 and you should see 
@@ -274,7 +275,7 @@ Visit http://LABSERVERNAME:8081 and you should see
 Run this for cleanup:
 
 ```
-docker rm -f nginx-novol nginx-vol
+`docker rm -f nginx-novol nginx-vol` {{ execute }}
 ```
 
 <br />
@@ -294,11 +295,11 @@ Until now we have used the default network, but let's carve out some networks so
 First, let's create 2 networks:
 
 ```
-docker network create external
+`docker network create external` {{ execute }}
 ```
 
 ```
-docker network create database
+`docker network create database` {{ execute }}
 ```
 
 <br />
@@ -308,7 +309,7 @@ docker network create database
 Let's check to verify the networks have been created successfully:
 
 ```
-docker network ls
+`docker network ls` {{ execute }}
 ```
 
 You should see the `external` and `database` networks in the list provided.
@@ -325,17 +326,17 @@ In the following example we will use Docker Volumes for each container.
 
 Create an container called `nginx1` which can use the `external` network:
 ```
-docker run -itd --name nginx1 -v nginx1:/usr/share/nginx/html -p 8080:80 --network="external" alphabravoio/ubuntu-nginx:latest
+`docker run -itd --name nginx1 -v nginx1:/usr/share/nginx/html -p 8080:80 --network="external" alphabravoio/ubuntu-nginx:latest` {{ execute }}
 ```
 Connect to the `nginx1` container to the `database` network:
 ```
-docker network connect database nginx1
+`docker network connect database nginx1` {{ execute }}
 ```
 
 Verify if the container is connected to the `external` and `database` networks:
 
 ```
-docker container inspect nginx1 | jq '.[].NetworkSettings.Networks'
+`docker container inspect nginx1 | jq '.[].NetworkSettings.Networks'` {{ execute }}
 ```
 
 <br />
@@ -347,7 +348,7 @@ docker container inspect nginx1 | jq '.[].NetworkSettings.Networks'
 Create a container called `apache1` which can use the `external` network:
 
 ```
-docker run -itd --name apache1 -v /ab/labs/tmp/apache1:/var/www/html -p 8081:80 --network="external" alphabravoio/ubuntu-apache2:latest
+`docker run -itd --name apache1 -v /ab/labs/tmp/apache1:/var/www/html -p 8081:80 --network="external" alphabravoio/ubuntu-apache2:latest` {{ execute }}
 ```
 
 <br />
@@ -359,7 +360,7 @@ docker run -itd --name apache1 -v /ab/labs/tmp/apache1:/var/www/html -p 8081:80 
 Create a container called `mysql1` which can use the `database` network:
 
 ```
-docker run -itd --name mysql1 -v mysql1:/var/lib/mysql --network="database" -e MYSQL_ROOT_PASSWORD=mysecretpassword alphabravoio/ubuntu-mysql:latest
+`docker run -itd --name mysql1 -v mysql1:/var/lib/mysql --network="database" -e MYSQL_ROOT_PASSWORD=mysecretpassword alphabravoio/ubuntu-mysql:latest` {{ execute }}
 ```
 
 <br />
@@ -368,7 +369,7 @@ docker run -itd --name mysql1 -v mysql1:/var/lib/mysql --network="database" -e M
 
 Confirm that the three containers are running:
 ```
-docker ps -n 3
+`docker ps -n 3` {{ execute }}
 ```
 
 You should have the following container names showing: `mysql1`, `apache1`, and `nginx1`.
@@ -395,18 +396,18 @@ Now that we have 3 containers running: `mysql1`, `apache1`, and `nginx1`.  Let's
 First, let's get a shell in `nginx1`:
 
 ```
-docker exec -it nginx1 /bin/bash
+`docker exec -it nginx1 /bin/bash` {{ execute }}
 ```
 
 From the command line inside the container, let's try ping `mysql1`:
 ```
-ping -c 4 mysql1
+`ping -c 4 mysql1` {{ execute }}
 ``` 
 The ping test should succeed because both `nginx1` and `mysql1` containers are part of the `database` network.
 
 Let's escape from the `nginx1` container shell:
 ```
-exit
+`exit` {{ execute }}
 ```
 
 <br />
@@ -416,24 +417,24 @@ exit
 Now, let's get a shell in `apache1`:
 
 ```
-docker exec -it apache1 /bin/bash
+`docker exec -it apache1 /bin/bash` {{ execute }}
 ```
 
 From the command line inside the container, let's try ping `mysql1`:
 ```
-ping -c 4 mysql1
+`ping -c 4 mysql1` {{ execute }}
 ```
 This command will fail because `apache1` is not on the `database` network and therefore cannot reach the `mysql1` container.
 
 Now lets try pinging the `nginx1` container:
 ```
-ping -c 4 nginx1
+`ping -c 4 nginx1` {{ execute }}
 ```
 This will succeed because the `apache1` and `nginx1` containers share the `external` network.
 
 Let's escape from the `apache1` container shell:
 ```
-exit
+`exit` {{ execute }}
 ```
 
 <br />
@@ -444,11 +445,11 @@ These commands will ping the `nginx1` and `apache1` containers from the `mysql1`
 
 This command will succeed:
 ```
-docker exec -it mysql1 ping -c 4 nginx1
+`docker exec -it mysql1 ping -c 4 nginx1` {{ execute }}
 ```
 This command will fail:
 ```
-docker exec -it mysql1 ping -c 4 apache1
+`docker exec -it mysql1 ping -c 4 apache1` {{ execute }}
 ``` 
 
 <br />
@@ -466,7 +467,7 @@ In case you missed it, we have the apache1 container a Bind Mount instead of a D
 -----
 Run the following from the command line in the terminal:
 ```
-echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/tmp/apache1/index.html
+`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/tmp/apache1/index.html` {{ execute }}
 ```
 
 If you reload http://LABSERVERNAME:8081, you will see your page updated without reloading your container.
@@ -478,7 +479,7 @@ If you reload http://LABSERVERNAME:8081, you will see your page updated without 
 Let's clean up these containers, volumes and networks before we move on:
 
 ```
-docker rm -f nginx1 mysql1 apache1
+`docker rm -f nginx1 mysql1 apache1` {{ execute }}
 ```
 
 <br />
@@ -487,7 +488,7 @@ docker rm -f nginx1 mysql1 apache1
 
 Because we added persistence, you will notice that even though the containers are gone, the volumes are still there when you run the command: 
 ```
-docker volume ls
+`docker volume ls` {{ execute }}
 ```
 
 <br />
@@ -497,7 +498,7 @@ docker volume ls
 Let's remove those volumes:
 
 ```
-docker volume rm nginx1 mysql1
+`docker volume rm nginx1 mysql1` {{ execute }}
 ```
 
 <br />
@@ -507,7 +508,7 @@ docker volume rm nginx1 mysql1
 And finally, let's clean up those networks:
 
 ```
-docker network rm external database
+`docker network rm external database` {{ execute }}
 ```
 
 <br />
