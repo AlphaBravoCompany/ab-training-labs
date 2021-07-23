@@ -39,7 +39,7 @@ Change directory the Section 10 directory:
 
 Run the whoami Deployment in the `training-lab` namespace:
 
-`kubectl apply -f whoami-deployment`
+`kubectl apply -f whoami-deployment.yml`
 
 And now let's deploy the `clusterip-service.yml` service. This will create a cluster internal only resource. Image this may be a database that doesn't need to be exposed to the outside world, but that other pods running in this namespace may need access to.
 

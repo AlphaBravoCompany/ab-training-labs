@@ -11,7 +11,7 @@ ____
 
 ### Section 9: Lab 1 Links
 
-* Kubernetes StatefulSets
+* [Kubernetes StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 * [Kubernetes Headless Services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
 
 ____
@@ -87,7 +87,7 @@ ____
 
 ### Section 9: Lab 2 Links
 
-* Kubernetes DaemonSets
+* [Kubernetes DaemonSets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 
 ### Section 9: Lab 2 Content
 
