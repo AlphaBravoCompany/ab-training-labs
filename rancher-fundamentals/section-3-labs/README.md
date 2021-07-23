@@ -76,7 +76,7 @@ ____
 
 We have been working with a local K3d Kubernetes cluster thus far, and it should still be deployed. Let's make sure.
 
-`k3d list clusters`
+`k3d cluster list `
 
 You should see a single cluster named `lab-cluster`.
 
