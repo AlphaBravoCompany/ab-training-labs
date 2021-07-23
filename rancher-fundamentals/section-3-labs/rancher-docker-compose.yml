@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  code-server:
+    image: rancher/rancher:latest
+    container_name: rancher1
+    privileged: true
+    volumes:
+      - /ab/misc/rancher1:/var/lib/rancher
+      - /ab/certs/live/{{ ansible_hostname }}.{{ environment_domain }}/fullchain.pem:/etc/rancher/ssl/cert.pem
+      - /ab/certs/live/{{ ansible_hostname }}.{{ environment_domain }}/privkey.pem:/etc/rancher/ssl/key.pem
+    ports:
+      - 12081:80
+      - 12444:443
+    restart: unless-stopped
+    command: '--no-cacerts'
