@@ -11,7 +11,7 @@ ____
 
 ### Section 9: Lab 1 Links
 
-* Kubernetes StatefulSets
+* [Kubernetes StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 * [Kubernetes Headless Services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
 
 ____
@@ -34,11 +34,11 @@ Now lets deploy `nginx-statefulset.yml`:
 
 `kubectl apply -f nginx-statefulset.yml -n training-lab` {{ execute }}
 
-View the pods that were created:
+After a few seconds, view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide` {{ execute }}
 
-Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Notice that it automatically created 3 and distributed them across the nodes for fault tolerance.
 
 In our deployment, our pods were given random names. Here, they are deployed in an ordinal fashion (web-0, web-1, web-2). This is ideal for things like database clusters that rely on specific names for each node.
 
@@ -46,9 +46,9 @@ Let's update the image that will redeploy the pods and see what happens.
 
 Modify the following `nginx-statefulset.yml` file and replace `nginx:1.20` with `nginx:1.21`, then apply the manifest again.
 
-Modify:
+Open the file `nginx-statefulset.yml`, make the changes, and save it:
 
-`/ab/labs/container-bootcamp/section-9-labs/nginx-statefulset` {{ execute }}
+`/ab/labs/container-bootcamp/section-9-labs/nginx-statefulset.yml` {{ open }}
 
 Apply:
 
@@ -109,7 +109,7 @@ Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide` {{ execute }}
 
-Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Notice that it automatically created 4 and distributed them across our worker nodes for fault tolerance.
 
 Note there are 4 running because there is 1 server and 3 worker nodes, so 1 fluentd pod for each.. When we ran a Deployment or StatefulSet, we had to manually scale or update the manifest to change the number of pods. Let's deploy a new K3d worker node and see what happens.
 
@@ -122,9 +122,17 @@ It will take a moment to add the agent and create the associated pod.  Let's `wa
 
 `watch kubectl get pods -n training-lab -o wide` {{ execute }}
 
-Note that there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
+Note that after a few seconds, there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
 
 Press `Ctrl + C` to exit the `watch` command.
+____
+
+### Cleanup
+
+Let's delete the daemonset we created:
+
+`kubectl delete -f fluentd-daemonset.yml` {{ execute }}
+
 ____
 
 ### Congrats! You have completed the Section 9 labs. You may now proceed with the rest of the course.

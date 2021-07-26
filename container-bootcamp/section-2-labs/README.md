@@ -218,7 +218,7 @@ Now, let's stop and delete this container:
 The container has been deleted, the web page is no longer available.  We can confirm the container has been removed by running:
 
 
-`docker ps -n 1` {{ execute }}
+`docker ps` {{ execute }}
 
 
 <br />
@@ -259,7 +259,7 @@ Visit http://LABSERVERNAME:8080 and you should see
 Now lets mount a volume using the custom `index.html` in this lab directory:
 
 
-`docker run -itd --name nginx-vol -v $PWD/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest` {{ execute }}
+`docker run -itd --name nginx-vol -v /ab/labs/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest` {{ execute }}
 
 
 Visit http://LABSERVERNAME:8081 and you should see 
@@ -272,7 +272,7 @@ Visit http://LABSERVERNAME:8081 and you should see
 
 -----
 
-Run this for cleanup:
+Run the following command to cleanup:
 
 
 `docker rm -f nginx-novol nginx-vol` {{ execute }}
@@ -466,10 +466,10 @@ In case you missed it, we have the apache1 container a Bind Mount instead of a D
 -----
 Run the following from the command line in the terminal:
 
-`echo "I MODIFIED APACHE INDEX FILE VIA DOCKER BIND MOUNT." | sudo tee /ab/labs/tmp/apache1/index.html` {{ execute }}
+`echo "<center><h2>I MODIFIED THE APACHE INDEX FILE VIA DOCKER BIND MOUNT.</h2></center>" | sudo tee /ab/labs/tmp/apache1/index.html` {{ execute }}
 
 
-If you reload http://LABSERVERNAME:8081, you will see your page updated without reloading your container.
+If you reload http://LABSERVERNAME:8081, you will see your page updated with your new message without reloading your container.
 
 <br />
 

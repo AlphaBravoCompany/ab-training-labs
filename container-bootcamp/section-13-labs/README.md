@@ -63,4 +63,4 @@ That is the basics of Persistent Storage. We allow data to persistent longer tha
 
 ----
 
-### Congrats! You have completed the Section 13 labs. You may now proceed with the rest of the course.
+### Congrats! You have completed the Section 13 labs. You have now completed all labs in the AlphaBravo Container Bootcamp course.

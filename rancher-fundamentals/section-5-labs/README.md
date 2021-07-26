@@ -41,7 +41,7 @@ ____
 
 ### Section 5: Lab 2 Links
 
-* [Rancher Longhorn]()
+* [Rancher Longhorn](https://rancher.com/products/longhorn/)
 ____
 
 ### Section 5: Lab 2 Content
@@ -70,7 +70,7 @@ You will also note that it is "Degraded" and clicking on the volume name will sh
 
 In our case, we have a single node lab cluster, so this cannot be rectified. In a full cluster deployment, you should see 3 replicas created on separate nodes for high availability.
 
-Well done. You have now completed the Longhorn labs.
+Well done. You have now completed the Longhorn Storage labs.
 
 ___
 
@@ -84,8 +84,8 @@ and enter: `y`
 
 Back on the Rancher UI at https://LABCLUSTERNAME:12443/g/clusters, you will see that the RKE cluster is now failing health checks.
 
-Click the elipses on the right next to the `rke-cluster` and selecte `Delete`. 
+Click the elipses on the right next to the `rke-cluster` and select `Delete`. 
 
 ____
 
-### Congrats! You have completed the Rancher Fundamentals Section 5 labs. You may now proceed with the rest of the course.
+#### Congrats! You have completed the Rancher Fundamentals Section 5 labs. You may now proceed with the rest of the course.

@@ -62,9 +62,11 @@ Now let's create a Deployment. As part of the deployment, a ReplicaSet and 3 pod
 
 Switch to the Section 8 directory where the `nginx-deployment.yml` file is located:
 
-`cd /ab/labs/container-bootcamp/section-7-labs/` {{ execute }}
+`cd /ab/labs/container-bootcamp/section-8-labs/` {{ execute }}
 
 In VS Code, open the `nginx-deployment.yml` file and review the structure.
+
+`/ab/labs/container-bootcamp/section-8-labs/nginx-deployment.yml` {{ open }}
 
 Now that we've reviewed the file, let's deploy `nginx-deployment.yml`:
 
@@ -84,7 +86,7 @@ The ReplicaSet is ensuring that the number of pods we specific in the manifest f
 
 Let's open a second Terminal in vscode so we can watch the pods. Click the “Split Terminal” button in the upper right of the Terminal window or press `Control+Shift+5`. You should now have 2 windows.
 
-On the right window, run:
+Switch your cursor focus to the right terminal window and run:
 
 `watch kubectl get pods -n training-lab` {{ execute }}
 
@@ -96,7 +98,7 @@ We can see the additional pods get added in the right Terminal.
 
 What happens if we delete a pod manually?
 
-Choose a pod name from the `kubectl get pods -n training-lab` command and add it below:
+Choose a pod name from the `kubectl get pods -n training-lab` command, replace <podname> with your actual pod name, then run the command below:
 
 `kubectl delete pod <podname> -n training-lab` {{ execute }}
 
@@ -120,7 +122,9 @@ Scroll through the output and you can see that the `Image` is : `nginx:1.14.2`
 
 Let's update the nginx-deployments.yml file on line 20 so that the image is `nginx:1.20.1`.
 
-Now, re-apply the manfest file:
+`/ab/labs/container-bootcamp/section-8-labs/nginx-deployment.yml` {{ open }}
+
+Now, save then re-apply the manifest file:
 
 `kubectl apply -f nginx-deployment.yml` {{ execute }}
 
@@ -140,9 +144,9 @@ You could use the rollback features of kubectl to move back to the previous repl
 
 In the right window, hit `Ctrl + C` to stop the watch and run the below command to see all resources that our deployment created in the `training-lab` namespace:
 
-`kubectl get all -n training-lab` {{ execute }}
+`watch kubectl get all -n training-lab` {{ execute }}
 
-Let's delete this deployment and see all resources get cleaned up:
+Let's delete this deployment and see all resources get cleaned up, execute the following in the left Terminal window:
 
 `kubectl delete -f nginx-deployment.yml` {{ execute }}
 

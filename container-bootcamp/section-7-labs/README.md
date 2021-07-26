@@ -27,7 +27,7 @@ To bring your local cluster online, run the following command:
 
 `k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 
-Now we can switch to that context using a `kubectl` command:
+Now, once the cluster create command completes, we can switch to that context using a `kubectl` command:
 
 `kubectl config use-context k3d-lab-cluster` {{ execute }}
 
@@ -39,10 +39,13 @@ View nodes in the cluster:
 
 `kubectl get nodes -o wide` {{ execute }}
 
-Export the lab-server cluster kubeconfig to `/ab/kubeconfig/` for use with a tool like Lens:
+Export the lab-server cluster kubeconfig to `/ab/kubeconfig/` for use with a tool like Lens (https://k8slens.dev/):
 
 `mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/kubeconfig/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/kubeconfig/lab-cluster-config.yml` {{ execute }}
 
+You can now take a look at the config file we just created, and copy the contents out to another tool like Lens or `kubectl` on your local machine to interact with the cluster.
+
+`/ab/kubeconfig/lab-cluster-config.yml` {{ open }}
 ____
 
 ## Section 7: Lab 2 - Exploring kubectl commands

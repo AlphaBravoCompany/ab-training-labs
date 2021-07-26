@@ -44,7 +44,9 @@ Let's clean up these containers, volumes and networks:
 
 Docker Compose simplifies things quite a bit while also allowing us to be declarative about our configuration and generate an artifact that could be put into source code control like Git.
 
-Let's take a look at the docker-compose.yml file in this directory.
+Let's take a look at the `docker-compose.yml` file in this directory.
+
+`/ab/labs/container-bootcamp/section-4-labs/docker-compose.yml` {{ open }}
 
 Notice that it has all of the elements we defined in the Docker CLI, but it is much easier to read and modify.
 

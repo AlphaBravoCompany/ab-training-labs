@@ -6,15 +6,15 @@
 
 ____
 
-## Section 3: Lab 1 - Deploying RKE2
+## Section 5: Lab 1 - Deploying RKE2
 
-### Section 3: Lab 1 Links
+### Section 5: Lab 1 Links
 
 * [K3d](https://k3d.io/)
 
 ____
 
-### Section 3: Lab 1 Content
+### Section 5: Lab 1 Content
 
 For the initial labs we were using K3d, which is Rancher K3s running in Docker on your local lab server. It will appear as if there are multiple servers and it will act that way too, but they will actually be Docker containers running the K3s Kubernetes control plane and worker nodes.
 
@@ -43,7 +43,7 @@ And there you have it, a full development grade K3s Kubernetes cluster running o
 
 ____
 
-### Section 3: Lab 2 Content
+### Section 5: Lab 2 Content
 
 Since the K3d clusters are all running locally in docker, we can run more than one cluster at a time (assuming your machine has enough resources). This provides an opportunity to test some multicluster operations.
 

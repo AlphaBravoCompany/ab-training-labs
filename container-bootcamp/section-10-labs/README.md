@@ -39,7 +39,7 @@ Change directory the Section 10 directory:
 
 Run the whoami Deployment in the `training-lab` namespace:
 
-`kubectl apply -f whoami-deployment` {{ execute }}
+`kubectl apply -f whoami-deployment.yml` {{ execute }}
 
 And now let's deploy the `clusterip-service.yml` service. This will create a cluster internal only resource. Image this may be a database that doesn't need to be exposed to the outside world, but that other pods running in this namespace may need access to.
 
@@ -57,15 +57,15 @@ Open a second terminal in split screen next to the first and run the below comma
 
 `kubectl run netshoot -it --rm --namespace=training-lab --image nicolaka/netshoot -- /bin/bash` {{ execute }}
 
-Now that we are in the pod, lets query the `whoami-clusterip-service` to see how it divides traffic to our pods. The below command simply calls curl 10 times and displays the hostname of the pod it hits each time.
+When you see `bash-5.1#`, you have been dropped into the shell of the Netshoot pod. Now that we are in the pod, lets query the `whoami-clusterip-service` to see how it divides traffic to our pods. The below command simply calls curl 10 times and displays the hostname of the pod it hits each time.
 
 `for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname` {{ execute }}
 
-We should see approx a 50/50 split between our 2 running pods.
+Run the above command a few times. We should see approx a 50/50 split between our 2 running pods.
 
 Let's scale our deployment to 10 pods and try this again.
 
-In the right side terminal, on the lab server shell, run:
+Open a new terminal on the right side, and on the lab server shell, run:
 
 `kubectl scale --replicas=10 -f whoami-deployment.yml` {{ execute }}
 

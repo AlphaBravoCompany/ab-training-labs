@@ -21,10 +21,10 @@ Let's write a Dockerfile and build our own docker image locally, then we can run
 
 In you the `section-3-labs` directory on your lab server, you will see a file called `Dockerfile.example`.
 
+First, lets make sure you are in the right directory.
 
-<br />
+`cd /ab/labs/container-bootcamp/section-3-labs` {{ execute }}
 
------
 
 Copy `Dockerfile.example` to `Dockerfile` in the same folder:
 
@@ -38,20 +38,15 @@ Copy `Dockerfile.example` to `Dockerfile` in the same folder:
 
 Next, lets make some changes.
 
-Since centos8 is the latest version, lets change the first line to `FROM centos:8`.
+Since centos8 is the latest version, lets change the first line in the Dockerfile to `FROM centos:8`.
+
+`/ab/labs/container-bootcamp/section-3-labs/Dockerfile` {{ open }}
 
 Additionally, lets make a changes to the text **"Welcome to the AlphaBravo Container Bootcamp"** in the default `index.html` file. 
 
-Open `/ab/labs/container-bootcamp/section-3-labs/index.html` to change the text.
+`/ab/labs/container-bootcamp/section-3-labs/index.html` {{ open }}
 
 Be sure to save your changes in both files before continuing.
-
-<br />
-
-In the terminal, let's change to the correct directory:
-
-
-`cd /ab/labs/container-bootcamp/section-3-labs` {{ execute }}
 
 
 <br />
@@ -67,6 +62,8 @@ Now, we can build and then run this container:
 <br />
 
 -----
+
+Note in the output that the cotnainer is built according to the layers indicated in the Dockerfile.
 
 Once the build is complete, we can run this container image:
 
