@@ -69,7 +69,7 @@ https://tls-nginx.LABSERVERNAME
 
 ### Cleanup
 
-`kubectl delete -f /ab/labs/container-bootcamp/section-11-labs` {{ execute }}
+`kubectl delete -f nginx-deployment.yml nginx-service.yml` {{ execute }}
 
 ____
 

@@ -27,7 +27,8 @@ First, let's create a ConfigMap. In this case, we will use some basic HTML and m
 
 Create the ConfigMaps called `lab-html`:
 
-`kubectl create configmap lab-html -n training-lab --from-file index-dev.html` {{ execute }}
+`cp index-dev.html index.html && kubectl create configmap lab-html -n training-lab --from-file index.html -o yaml --dry-run | kubectl replace -f -` {{ execute }}
+
 
 We can deploy a basic NGINX web server deployment, associated ClusterIP Service and an Ingress.
 
@@ -39,7 +40,11 @@ https://tls-nginx.LABSERVERNAME
 
 Now imagine we push these manifest over and we are now running them in Prod. Without changing the deployment manifests themselves, we can apply a different ConfigMap with the same name and get an updated result.
 
-`kubectl create configmap lab-html -n training-lab --from-file index-prod.html` {{ execute }}
+`cp index-prod.html index.html && kubectl create configmap lab-html -n training-lab --from-file index.html -o yaml --dry-run | kubectl replace -f -` {{ execute }}
+
+The configmap was loaded into the container at runtime and there is no way currently for Kubernetes to signal the pods to restart and apply the new configmap, so let's delete the existing on and deploy it again (imaging that these are 2 separate clusters).
+
+`kubectl delete -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml && kubectl apply -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml` {{ execute }}
 
 Now if we visit the site, we should be greeted "Hello from the Prod Environment".
 
@@ -51,7 +56,7 @@ ____
 
 ____
 
-### Section 12: Lab 1 Links
+### Section 12: Lab 2 Links
 
 * [Kubernetes Secrets](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
@@ -63,7 +68,7 @@ Back in Section 11 we created a secret for TLS secrets. There is actually a spec
 
 We can also just create a secret that is a basic opaque password that could be used as a password.
 
-First, lets just create a secret and mount it in a container, and take a look at how it shows within the container context.
+First, lets just create a secret and mount it in a container, and take a look at how it shows within the container context. We have stored the secret in the `auth` file in an encoded format.
 
 `kubectl create secret generic lab-secret --from-file auth -n training-lab` {{ execute }}
 
@@ -85,7 +90,11 @@ Now let's view how the secret is presented in the pod.
 
 `cat /etc/secrets/auth` {{ execute }}
 
-Type `exit` to escape the Pod.
+This shows the username unencoded and the password as a HASH of the username and password. This is later decoded by Traefik when you try to access the page and are prompted with a username/password prompt.
+
+Let's exit out of the container:
+
+`exit` {{ execute }}
 
 Now that we have a bit more insight into secrets and mounting them, let's use the existing lab-secret and update our ingress from last lab to support basic authentication using our new secret. In this case, it is leveraging a Custom Resource Definition and annotation supported by Traefik Ingress, so we dont need to add a secret mount inside the container.
 

@@ -10,7 +10,7 @@ spec:
       ports:
         - containerPort: 80
           name: http
-      volumesMounts:
+      volumeMounts:
         - name: lab-secret
           mountPath: "/etc/secrets"
           readOnly: true

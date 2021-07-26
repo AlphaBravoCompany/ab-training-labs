@@ -45,7 +45,7 @@ And now let's deploy the `clusterip-service.yml` service. This will create a clu
 
 `kubectl apply -f clusterip-service.yml` {{ execute }}
 
-Check the `training-lab` namespace to make sure all resources are running. There should be 1 netshoot Pod, 2 whoami Pods and a ClusterIP service.
+Check the `training-lab` namespace to make sure all resources are running. There should be 2 whoami Pods and a ClusterIP service.
 
 `kubectl get all -n training-lab` {{ execute }}
 
@@ -59,7 +59,7 @@ Open a second terminal in split screen next to the first and run the below comma
 
 When you see `bash-5.1#`, you have been dropped into the shell of the Netshoot pod. Now that we are in the pod, lets query the `whoami-clusterip-service` to see how it divides traffic to our pods. The below command simply calls curl 10 times and displays the hostname of the pod it hits each time.
 
-`for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname` {{ execute }}
+`for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname | awk -F " " {' print $2 '} | sort | uniq -c | column -N "Count,Hostname" -t` {{ execute }}
 
 Run the above command a few times. We should see approx a 50/50 split between our 2 running pods.
 
@@ -70,6 +70,8 @@ Open a new terminal on the right side, and on the lab server shell, run:
 `kubectl scale --replicas=10 -f whoami-deployment.yml` {{ execute }}
 
 Now if you run the curl command again in the left terminal again, you should see that the service automatically starts routing traffic to the new pods without the need for us to make any changes.
+
+`for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname | awk -F " " {' print $2 '} | sort | uniq -c | column -N "Count,Hostname" -t` {{ execute }}
 
 You can `exit` out of the Netshoot pod now. We don't need that anymore for now.
 

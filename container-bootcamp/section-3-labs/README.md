@@ -63,7 +63,7 @@ Now, we can build and then run this container:
 
 -----
 
-Note in the output that the cotnainer is built according to the layers indicated in the Dockerfile.
+Note in the output that the container is built according to the layers indicated in the Dockerfile.
 
 Once the build is complete, we can run this container image:
 
