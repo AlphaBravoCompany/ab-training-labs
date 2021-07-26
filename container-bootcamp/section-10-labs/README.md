@@ -35,19 +35,19 @@ First, let's get a Deployment with 2 pods initially running in our cluster. This
 
 Change directory the Section 10 directory:
 
-`cd /ab/labs/container-bootcamp/section-10-labs`
+`cd /ab/labs/container-bootcamp/section-10-labs` {{ execute }}
 
 Run the whoami Deployment in the `training-lab` namespace:
 
-`kubectl apply -f whoami-deployment`
+`kubectl apply -f whoami-deployment` {{ execute }}
 
 And now let's deploy the `clusterip-service.yml` service. This will create a cluster internal only resource. Image this may be a database that doesn't need to be exposed to the outside world, but that other pods running in this namespace may need access to.
 
-`kubectl apply -f clusterip-service.yml`
+`kubectl apply -f clusterip-service.yml` {{ execute }}
 
 Check the `training-lab` namespace to make sure all resources are running. There should be 1 netshoot Pod, 2 whoami Pods and a ClusterIP service.
 
-`kubectl get all -n training-lab`
+`kubectl get all -n training-lab` {{ execute }}
 
 Since ClusterIP is internal only, we need another pod running that namespace we can communicate with it from.
 
@@ -55,11 +55,11 @@ For this, we will use a container that is great for troubleshooting called "Nets
 
 Open a second terminal in split screen next to the first and run the below command.
 
-`kubectl run netshoot -it --rm --namespace=training-lab --image nicolaka/netshoot -- /bin/bash`
+`kubectl run netshoot -it --rm --namespace=training-lab --image nicolaka/netshoot -- /bin/bash` {{ execute }}
 
 Now that we are in the pod, lets query the `whoami-clusterip-service` to see how it divides traffic to our pods. The below command simply calls curl 10 times and displays the hostname of the pod it hits each time.
 
-`for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname`
+`for ((i=1;i<=10;i++)); do curl -0 -v whoami-clusterip-service 2>&1; done | grep Hostname` {{ execute }}
 
 We should see approx a 50/50 split between our 2 running pods.
 
@@ -67,7 +67,7 @@ Let's scale our deployment to 10 pods and try this again.
 
 In the right side terminal, on the lab server shell, run:
 
-`kubectl scale --replicas=10 -f whoami-deployment.yml`
+`kubectl scale --replicas=10 -f whoami-deployment.yml` {{ execute }}
 
 Now if you run the curl command again in the left terminal again, you should see that the service automatically starts routing traffic to the new pods without the need for us to make any changes.
 
@@ -84,11 +84,11 @@ We can also deploy multiple services that reference the same set of pods. Rememb
 
 Deploy the NodePort service on port 30007 (defined in the file):
 
-`kubectl apply -f nodeport-service.yml`
+`kubectl apply -f nodeport-service.yml` {{ execute }}
 
 Now we can check the Nodeport service externally on your lab server at port 30007.
 
-`for ((i=1;i<=10;i++)); do curl -0 -v http://LABSERVERNAME:30007 2>&1; done | grep Hostname`
+`for ((i=1;i<=10;i++)); do curl -0 -v http://LABSERVERNAME:30007 2>&1; done | grep Hostname` {{ execute }}
 
 You can also visit the web page, although, due to cookies and cacheing, refreshing the page may show the same pod:
 
@@ -96,7 +96,7 @@ http://LABSERVERNAME:30007
 
 ### Cleanup
 
-`kubectl delete -f /ab/labs/container-bootcamp/section-10-labs`
+`kubectl delete -f /ab/labs/container-bootcamp/section-10-labs` {{ execute }}
 
 ____
 

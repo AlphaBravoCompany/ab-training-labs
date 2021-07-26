@@ -2,7 +2,7 @@
 
 ### In this section we learned about:
 
-## * Rancher Kubernetes Engine (RKE)
+* ### Rancher Kubernetes Engine (RKE)
 
 ____
 
@@ -21,11 +21,11 @@ We have already install the RKE binary on the lab server, but if you can find do
 
 First, let's make sure we are in the right directory
 
-`cd /ab/labs/rancher-fundamentals/section-4-labs`
+`cd /ab/labs/rancher-fundamentals/section-4-labs` {{ execute }}
 
 Then run the following command:
 
-`rke config`
+`rke config` {{ execute }}
 
 This process will walk you through a series of questions. Answer them as below for this install (but obviously modify for other installs).
 
@@ -40,19 +40,19 @@ Other than the question below, you can just hit `ENTER` on all other questions.
 
 Because we are installing RKE on the localhost, we need to trick the install into SSHing into itself. Run the following 2 commands. When actually installing RKE, you would have provided a real SSH key to access the remote hosts and perform the install.
 
-`ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""`
+`ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""` {{ execute }}
 
 And then add that key to authorized_keys:
 
-`cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys`
+`cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys` {{ execute }}
 
 Now we can install RKE by running the following command:
 
-`rke up`
+`rke up` {{ execute }}
 
 Once that completes, run the following command and under "STATUS" you should see "Ready":
 
-`kubectl --kubeconfig kube_config_cluster.yml get nodes`
+`kubectl --kubeconfig kube_config_cluster.yml get nodes` {{ execute }}
 
 Now you have a local, single-node, full featured RKE Kubernetes cluster up and running. Nice work!
 
@@ -69,7 +69,7 @@ ____
 
 To make sure we are in the RKE cluster context, run:
 
-`export KUBECONFIG=/ab/labs/rancher-fundamentals/section-4-labs/kube_config_cluster.yml`
+`export KUBECONFIG=/ab/labs/rancher-fundamentals/section-4-labs/kube_config_cluster.yml` {{ execute }}
 
 Now, let's add this cluster to your Rancher instance running on your lab server. 
 
@@ -92,7 +92,7 @@ Obviously, running multiple clusters on a single machine is not useful. But the 
 
 In your own deployments, it is recommended to have a Rancher MCM UI running for each connected network of clusters. Meaning if you have 3 clusters running that are all on the IL level or network, you can manage them from a single Rancher UI.
 
-If you are running multiple disconnected clusters, you can run a single, lightweight Rancher UI to manage each.
+If you are running multiple disconnected clusters, you can run a single Rancher MCM UI to manage each.
 
 ____
 

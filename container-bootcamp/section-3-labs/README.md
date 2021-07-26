@@ -28,9 +28,9 @@ In you the `section-3-labs` directory on your lab server, you will see a file ca
 
 Copy `Dockerfile.example` to `Dockerfile` in the same folder:
 
-```
-cp Dockerfile.example Dockerfile
-```
+
+`cp Dockerfile.example Dockerfile` {{ execute }}
+
 
 <br />
 
@@ -50,9 +50,9 @@ Be sure to save your changes in both files before continuing.
 
 In the terminal, let's change to the correct directory:
 
-```
-cd /ab/labs/container-bootcamp/section-3-labs
-```
+
+`cd /ab/labs/container-bootcamp/section-3-labs` {{ execute }}
+
 
 <br />
 
@@ -60,9 +60,9 @@ cd /ab/labs/container-bootcamp/section-3-labs
 
 Now, we can build and then run this container:
 
-```
-docker build -t mycontainerimage:latest .
-```
+
+`docker build -t mycontainerimage:latest .` {{ execute }}
+
 
 <br />
 
@@ -70,9 +70,8 @@ docker build -t mycontainerimage:latest .
 
 Once the build is complete, we can run this container image:
 
-```
-docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest
-```
+
+`docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest` {{ execute }}
 
 <br />
 
@@ -80,9 +79,9 @@ docker run -itd --name mycontainer -p 80:80 mycontainerimage:latest
 
 Now let's confirm the release is centos:8.
 
-```
-docker exec -it mycontainer cat /etc/os-release
-```
+
+`docker exec -it mycontainer cat /etc/os-release` {{ execute }}
+
 
 Visit http://LABSERVERNAME to see your custom index file message.
 
@@ -92,9 +91,9 @@ Visit http://LABSERVERNAME to see your custom index file message.
 
 Let's cleanup:
 
-```
-docker rm -f mycontainer
-```
+
+`docker rm -f mycontainer` {{ execute }}
+
 
 <br />
 <br />
@@ -127,9 +126,7 @@ Let's retag the image we created in Lab 1 with 2 different tags. Remember, this 
 
 First, let's tag an image with `localhost:5000/mycontainerimage:1.0`:
 
-```
-docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0
-```
+`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0` {{ execute }}
 
 <br />
 
@@ -137,9 +134,9 @@ docker tag mycontainerimage:latest localhost:5000/mycontainerimage:1.0
 
 Then, let's tag the same image with `localhost:5000/mycontainerimage:latest`:
 
-```
-docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest
-```
+
+`docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest` {{ execute }}
+
 
 <br />
 
@@ -147,9 +144,9 @@ docker tag mycontainerimage:latest localhost:5000/mycontainerimage:latest
 
 Let's check to see that even though the tags are different, the image IDs are the same: 
 
-```
-docker image ls | grep mycontainerimage
-```
+
+`docker image ls | grep mycontainerimage` {{ execute }}
+
 ![Image IDs are the same](./images/container-images.png)
 
 **NOTE:** Your IDs will be different from the ones shown in the example above. However, they should all match one another as shown in the screenshot.
@@ -160,13 +157,12 @@ docker image ls | grep mycontainerimage
 
 Now, we can push these images to our local registry:
 
-```
-docker push localhost:5000/mycontainerimage:1.0
-```
 
-```
-docker push localhost:5000/mycontainerimage:latest
-```
+`docker push localhost:5000/mycontainerimage:1.0` {{ execute }}
+
+
+
+`docker push localhost:5000/mycontainerimage:latest` {{ execute }}
 
 **Note:** The first upload takes a long time, but the second is very quick. This is because the registry recognized these were the same image and just needed to add an additional tag to reference one another.
 
@@ -177,9 +173,9 @@ docker push localhost:5000/mycontainerimage:latest
 
 We can't visit a pretty UI to see these image in our registry, but we can query the http endpoint:
 
-```
-curl -s -X GET http://localhost:5000/v2/_catalog | jq
-```
+
+`curl -s -X GET http://localhost:5000/v2/_catalog | jq` {{ execute }}
+
 We can see that `mycontainerimage` is listed.
 
 <br />
@@ -188,9 +184,9 @@ We can see that `mycontainerimage` is listed.
 
 Let's query to see what tags there are associated the image:
 
-```
-curl -s -X GET http://localhost:5000/v2/mycontainerimage/tags/list | jq
-```
+
+`curl -s -X GET http://localhost:5000/v2/mycontainerimage/tags/list | jq` {{ execute }}
+
 
 <br />
 
@@ -200,15 +196,15 @@ Now, delete the local version of these images and run a container with the new t
 
 Delete the current local image:
 
-```
-docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest
-```
+
+`docker image rm localhost:5000/mycontainerimage:1.0 localhost:5000/mycontainerimage:latest` {{ execute }}
+
 
 Create a container from the remote image in the repository:
 
-```
-docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest
-```
+
+`docker run -itd --name mycontainer -p 80:80 localhost:5000/mycontainerimage:latest` {{ execute }}
+
 Because we deleted the images locally, they weren't available locally to run the container and they were automatically downloaded from the registry. Note the messages: 
 
 * *Unable to find image 'localhost:5000/mycontainerimage:latest' locally*
@@ -221,9 +217,9 @@ Because we deleted the images locally, they weren't available locally to run the
 
 Let's clean up:
 
-```
-docker rm -f mycontainer && docker image prune -a -f
-```
+
+`docker rm -f mycontainer && docker image prune -a -f` {{ execute }}
+
 
 
 <br />

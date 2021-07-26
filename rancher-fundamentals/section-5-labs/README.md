@@ -24,7 +24,7 @@ Let's see how easy it is to deploy Longhorn. With the proper host configuration,
 Let's deploy Longhorn from the Rancher UI onto our RKE cluster.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click rke-cluster
+2. In the upper left next to the Rancher logo, click the down arrow, then click `rke-cluster`
 3. Click the yellow "Cluster Explorer" button on the upper right
 4. Click the down arrow in the upper left and select "Apps and Marketplace"
 5. Under "Charts", click "Longhorn" in the middle of the screen
@@ -66,7 +66,7 @@ Let's deploy a basic NGINX pod that will use the Longhorn Persistent storage.
 7. Navigate back to the Longhorn UI and click on "Volume" at the top
 8. You should see a 1Gi volume Bound to the nginx pod. 
 
-You will also note that it is "Degraded" and clicking on the volume name will show you that while it is has a single replica, it is expecting to be able to create 3 replicas. This is the default setting for Longhorn and recommended to provide resilience in the event of a worker node failure.
+You will also note that it is "Degraded" and clicking on the volume name will show you that while it has a single replica, it is expecting to be able to create 3 replicas. This is the default setting for Longhorn and recommended to provide resilience in the event of a worker node failure.
 
 In our case, we have a single node lab cluster, so this cannot be rectified. In a full cluster deployment, you should see 3 replicas created on separate nodes for high availability.
 
@@ -78,7 +78,7 @@ ___
 
 We no longer need RKE and it will conflict with future labs, so lets remove the RKE cluster.
 
-`cd /ab/labs/rancher-fundamentals/section-4-labs && rke down`
+`cd /ab/labs/rancher-fundamentals/section-4-labs && rke down` {{ execute }}
 
 and enter: `y`
 

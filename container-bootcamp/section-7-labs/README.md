@@ -25,23 +25,23 @@ For these labs we will be using K3d, which is Rancher K3s running in Docker on y
 
 To bring your local cluster online, run the following command:
 
-`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"`
+`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 
 Now we can switch to that context using a `kubectl` command:
 
-`kubectl config use-context k3d-lab-cluster`
+`kubectl config use-context k3d-lab-cluster` {{ execute }}
 
 Get cluster info:
 
-`kubectl cluster-info`
+`kubectl cluster-info` {{ execute }}
 
 View nodes in the cluster:
 
-`kubectl get nodes -o wide`
+`kubectl get nodes -o wide` {{ execute }}
 
 Export the lab-server cluster kubeconfig to `/ab/kubeconfig/` for use with a tool like Lens:
 
-`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/kubeconfig/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/kubeconfig/lab-cluster-config.yml`
+`mkdir /ab/kubeconfig && k3d kubeconfig get lab-cluster > /ab/kubeconfig/lab-cluster-config.yml && sed -i 's/0.0.0.0/LABSERVERNAME/' /ab/kubeconfig/lab-cluster-config.yml` {{ execute }}
 
 ____
 
@@ -61,28 +61,27 @@ Note that sometimes we add the `-o wide` switch to get additional information fr
 
 View all namespaces on the cluster:
 
-`kubectl get ns`
+`kubectl get ns` {{ execute }}
 
 View pods running in the `kube-system` namespace:
 
-`kubectl get pods -n kube-system`
+`kubectl get pods -n kube-system` {{ execute }}
 
 View pods running in all namespaces in the cluster:
 
-`kubectl get pods --all-namespaces -o wide`
+`kubectl get pods --all-namespaces -o wide` {{ execute }}
 
 View all deployments in the cluster:
 
-`kubectl get deploy --all-namespaces -o wide`
+`kubectl get deploy --all-namespaces -o wide` {{ execute }}
 
 View all services in the cluster:
 
-`kubectl get service --all-namespaces -o wide`
+`kubectl get service --all-namespaces -o wide` {{ execute }}
 
 
 Feel free to refer to the links at the top of this Lab for more commands you can run to get information about the cluster.
 
 ____
 
-
-### Congrats! You have completed the Section 7 labs. You may now proceed with the rest of the course.
+#### Congrats! You have completed the Section 7 labs. You may now proceed with the rest of the course.

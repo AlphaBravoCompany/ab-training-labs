@@ -22,7 +22,7 @@ Persistent storage is complex. We discuss this topic more in depth in the **Kube
 
 Switch to the this lab folder:
 
-`cd /ab/labs/container-bootcamp/section-13-labs/`
+`cd /ab/labs/container-bootcamp/section-13-labs/` {{ execute }}
 
 Take a look at the storage-lab.yml file. You can see we have defined a Persistent Volume (PV), a Persistent Volume Claim (PVC), and a Deployment that mounts that persistent volume.
 
@@ -30,27 +30,27 @@ Take a look at the storage-lab.yml file. You can see we have defined a Persisten
 
 Let's deploy this:
 
-`kubectl apply -f storage-lab.yml`
+`kubectl apply -f storage-lab.yml` {{ execute }}
 
 You can view the Pods, PV, and PVC with kubectl:
 
-`kubectl get pv,pvc,pod -n training-lab`
+`kubectl get pv,pvc,pod -n training-lab` {{ execute }}
 
 Let's exec into the pod and create a file on the storage.
 
-`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) -- sh -c "echo 'Hello from the AlphaBravo Lab PV' > /data/hostname.txt"`
+`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) -- sh -c "echo 'Hello from the AlphaBravo Lab PV' > /data/hostname.txt"` {{ execute }}
 
 Verify the file was created:
 
-`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) cat /data/hostname.txt`
+`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) cat /data/hostname.txt` {{ execute }}
 
 Now, let's delete the pod. If we had not mounted persistent storage, the `/data/hostname.txt` file would be gone.
 
-`kubectl delete $(kubectl get pods -n training-lab -o name | head -n1) -n training-lab`
+`kubectl delete $(kubectl get pods -n training-lab -o name | head -n1) -n training-lab` {{ execute }}
 
 Query the new pod to see if the `/data/hostname.txt` file still exists:
 
-`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) cat /data/hostname.txt`
+`kubectl exec -it -n training-lab $(kubectl get pods -n training-lab -o name | head -n1) cat /data/hostname.txt` {{ execute }}
 
 You should see the text "Hello from the AlphaBravo Lab PV" output on the screen.
 
@@ -59,7 +59,7 @@ That is the basics of Persistent Storage. We allow data to persistent longer tha
 
 ### Cleanup
 
-`kubectl delete -f /ab/labs/container-bootcamp/section-13-labs`
+`kubectl delete -f /ab/labs/container-bootcamp/section-13-labs` {{ execute }}
 
 ----
 

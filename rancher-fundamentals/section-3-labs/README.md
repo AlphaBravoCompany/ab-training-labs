@@ -21,17 +21,17 @@ In this section we learned about about the Rancher Management UI, dubbed Multi C
 
 We deployed this using the Single Node Install and Docker-Compose. Of note, we included a local persistent volume using a bind mount and included a path to provided certs so the UI supports HTTPS properly in the browser. Feel free to review the Docker-Compose file here:
 
-`./rancher-docker-compose.yml`
+`./rancher-docker-compose.yml` {{ open }}
 
 To give you the experience of deploying Rancher using the recommended HA deployment, we will use the recommended Helm install to install Rancher on the K3d/K3s Cluster running locally.
 
 First, lets make sure our K3s cluster is up and running:
 
-`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"`
+`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 
 Next, lets make sure we are using the proper context of the K3d cluster.
 
-`kubectl config use-context k3d-lab-cluster`
+`kubectl config use-context k3d-lab-cluster` {{ execute }}
 
 For the rest of the this lab, we will follow the official documentation from Rancher to perform the helm install.
 
@@ -39,19 +39,19 @@ https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/
 
 1. Add Rancher Helm Repo
 
-`helm repo add rancher-stable https://releases.rancher.com/server-charts/stable`
+`helm repo add rancher-stable https://releases.rancher.com/server-charts/stable` {{ execute }}
 
 2. Create Rancher namespace
 
-`kubectl create namespace cattle-system`
+`kubectl create namespace cattle-system` {{ execute }}
 
 3. Choose the "Bring your own certificate" install
 
-`helm install rancher rancher-stable/rancher --namespace cattle-system --set hostname=rancher.LABSERVERNAME  --set ingress.tls.source=secret`
+`helm install rancher rancher-stable/rancher --namespace cattle-system --set hostname=rancher.LABSERVERNAME  --set ingress.tls.source=secret` {{ execute }}
 
 4. Add TLS secrets
 
-`kubectl -n cattle-system create secret tls tls-rancher-ingress --cert=/ab/certs/live/LABSERVERNAME/fullchain.pem --key=/ab/certs/live/LABSERVERNAME/privkey.pem`
+`kubectl -n cattle-system create secret tls tls-rancher-ingress --cert=/ab/certs/live/LABSERVERNAME/fullchain.pem --key=/ab/certs/live/LABSERVERNAME/privkey.pem` {{ execute }}
 
 After 2-3 minutes, you should now be able to reach your new Rancher MCM UI here:
 
@@ -59,7 +59,7 @@ https://rancher.LABSERVERNAME
 
 Since we already have a Rancher MCM UI running on the lab host, let's tear with one down.
 
-`helm uninstall rancher -n cattle-system`
+`helm uninstall rancher -n cattle-system` {{ execute }}
 
 ____
 
@@ -76,7 +76,7 @@ ____
 
 We have been working with a local K3d Kubernetes cluster thus far, and it should still be deployed. Let's make sure.
 
-`k3d list clusters`
+`k3d list clusters` {{ execute }}
 
 You should see a single cluster named `lab-cluster`.
 
@@ -89,7 +89,7 @@ ____
 
 To make sure we are in the right context, run:
 
-`kubectl config use-context k3d-lab-cluster`
+`kubectl config use-context k3d-lab-cluster` {{ execute }}
 
 Now, let's add this cluster to your Rancher instance running on your lab server. 
 

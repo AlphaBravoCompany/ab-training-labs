@@ -28,15 +28,15 @@ Let's deploy a statefulset and then see how they are named.
 
 Switch to the Section 9 directory where the `nginx-statefulset.yml` file is located:
 
-`cd /ab/labs/container-bootcamp/section-9-labs/`
+`cd /ab/labs/container-bootcamp/section-9-labs/` {{ execute }}
 
 Now lets deploy `nginx-statefulset.yml`:
 
-`kubectl apply -f nginx-statefulset.yml -n training-lab`
+`kubectl apply -f nginx-statefulset.yml -n training-lab` {{ execute }}
 
 View the pods that were created:
 
-`kubectl get pods -n training-lab -o wide`
+`kubectl get pods -n training-lab -o wide` {{ execute }}
 
 Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
@@ -48,21 +48,21 @@ Modify the following `nginx-statefulset.yml` file and replace `nginx:1.20` with 
 
 Modify:
 
-`/ab/labs/container-bootcamp/section-9-labs/nginx-statefulset`
+`/ab/labs/container-bootcamp/section-9-labs/nginx-statefulset` {{ execute }}
 
 Apply:
 
-`kubectl apply -f nginx-statefulset.yml -n training-lab`
+`kubectl apply -f nginx-statefulset.yml -n training-lab` {{ execute }}
 
 View Pods:
 
-`kubectl get pods -n training-lab -o wide`
+`kubectl get pods -n training-lab -o wide` {{ execute }}
 
 Note that the pods have been or are being Terminated and replaced, but the names stay the same.
 
 Let's take a look at the persistent volume claims:
 
-`kubectl get pvc -n training-lab`
+`kubectl get pvc -n training-lab` {{ execute }}
 
 Notice that persistent volumes (more on those in a later section) have ordinal names as well.
 
@@ -70,16 +70,16 @@ Lastly, if you look at the `nginx-statefulset.yml` file, we also had to create a
 
 Let's take a look at the deployed service:
 
-`kubectl get svc -n training-lab -o wide`
+`kubectl get svc -n training-lab -o wide` {{ execute }}
 
 
 Cleanup the StatefulSet:
 
-`kubectl delete -f nginx-statefulset.yml -n training-lab`
+`kubectl delete -f nginx-statefulset.yml -n training-lab` {{ execute }}
 
 Verify the training-lab namespace has no resources deployed:
 
-`kubectl get all -n training-lab`
+`kubectl get all -n training-lab` {{ execute }}
 
 ____
 
@@ -103,11 +103,11 @@ In this case, we will deploy the fluentd pods as a DaemonSet.
 
 Lets deploy `fluentd-daemonset.yml`:
 
-`kubectl apply -f fluentd-daemonset.yml -n training-lab`
+`kubectl apply -f fluentd-daemonset.yml -n training-lab` {{ execute }}
 
 Let's view the pods that were created:
 
-`kubectl get pods -n training-lab -o wide`
+`kubectl get pods -n training-lab -o wide` {{ execute }}
 
 Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
 
@@ -116,11 +116,11 @@ Note there are 4 running because there is 1 server and 3 worker nodes, so 1 flue
 
 Add another K3d worker node:
 
-`k3d node create lab-cluster-agent-3 --cluster lab-cluster`
+`k3d node create lab-cluster-agent-3 --cluster lab-cluster` {{ execute }}
 
 It will take a moment to add the agent and create the associated pod.  Let's `watch` the pod being created:
 
-`watch kubectl get pods -n training-lab -o wide`
+`watch kubectl get pods -n training-lab -o wide` {{ execute }}
 
 Note that there are now 5 pods. Kubernetes automatically scaled the DaemonSet and deployed a fluentd pod on the new worker node.
 

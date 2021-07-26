@@ -21,17 +21,17 @@ The cluster we deployed earlier already has Traefik running as part of the defau
 
 Switch to the this lab folder:
 
-`cd /ab/labs/container-bootcamp/section-12-labs/`
+`cd /ab/labs/container-bootcamp/section-12-labs/` {{ execute }}
 
 First, let's create a ConfigMap. In this case, we will use some basic HTML and mount the configmaps as a volume in NGINX containers.
 
 Create the ConfigMaps called `lab-html`:
 
-`kubectl create configmap lab-html -n training-lab --from-file index-dev.html`
+`kubectl create configmap lab-html -n training-lab --from-file index-dev.html` {{ execute }}
 
 We can deploy a basic NGINX web server deployment, associated ClusterIP Service and an Ingress.
 
-`kubectl apply -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml`
+`kubectl apply -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml` {{ execute }}
 
 Visiting the below link you should see "Hello from the Dev Environment".
 
@@ -39,7 +39,7 @@ https://tls-nginx.LABSERVERNAME
 
 Now imagine we push these manifest over and we are now running them in Prod. Without changing the deployment manifests themselves, we can apply a different ConfigMap with the same name and get an updated result.
 
-`kubectl create configmap lab-html -n training-lab --from-file index-prod.html`
+`kubectl create configmap lab-html -n training-lab --from-file index-prod.html` {{ execute }}
 
 Now if we visit the site, we should be greeted "Hello from the Prod Environment".
 
@@ -65,31 +65,31 @@ We can also just create a secret that is a basic opaque password that could be u
 
 First, lets just create a secret and mount it in a container, and take a look at how it shows within the container context.
 
-`kubectl create secret generic lab-secret --from-file auth -n training-lab`
+`kubectl create secret generic lab-secret --from-file auth -n training-lab` {{ execute }}
 
 We can view the contents of the secret via kubectl. Note that it is base64 encoded. Encoded is NOT Encrypted.
 
-`kubectl get secret -n training-lab lab-secret -o jsonpath="{.data.auth}"`
+`kubectl get secret -n training-lab lab-secret -o jsonpath="{.data.auth}"` {{ execute }}
 
 We can actually decode it as an administrator from kubectl by piping to a decode command:
 
-`kubectl get secret -n training-lab lab-secret -o jsonpath="{.data.auth}" | base64 --decode`
+`kubectl get secret -n training-lab lab-secret -o jsonpath="{.data.auth}" | base64 --decode` {{ execute }}
 
 Now, lets deploy an NGINX web server pod and exec into the container:
 
-`kubectl apply -f nginx-pod.yml`
+`kubectl apply -f nginx-pod.yml` {{ execute }}
 
-`kubectl exec -it -n training-lab nginx -- /bin/bash`
+`kubectl exec -it -n training-lab nginx -- /bin/bash` {{ execute }}
 
 Now let's view how the secret is presented in the pod.
 
-`cat /etc/secrets/auth`
+`cat /etc/secrets/auth` {{ execute }}
 
 Type `exit` to escape the Pod.
 
 Now that we have a bit more insight into secrets and mounting them, let's use the existing lab-secret and update our ingress from last lab to support basic authentication using our new secret. In this case, it is leveraging a Custom Resource Definition and annotation supported by Traefik Ingress, so we dont need to add a secret mount inside the container.
 
-`kubectl apply -f tls-auth-ingress.yml`
+`kubectl apply -f tls-auth-ingress.yml` {{ execute }}
 
 Now when we visit that page, we are prompted to enter a username and password based on the secret we created. When prompted, enter `admin` for the username and `password123` for the password.
 
@@ -98,7 +98,7 @@ https://tls-auth-nginx.LABSERVERNAME
 
 ### Cleanup
 
-`kubectl delete -f /ab/labs/container-bootcamp/section-12-labs`
+`kubectl delete -f /ab/labs/container-bootcamp/section-12-labs` {{ execute }}
 
 ----
 

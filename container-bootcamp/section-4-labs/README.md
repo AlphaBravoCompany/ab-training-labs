@@ -12,33 +12,33 @@ First, let's run all the Docker CLI commands we would need to bring a MariaDB an
 
 Let's create two networks, `database_net` and `external_net`:
 
-`docker network create database_net`
+`docker network create database_net` {{ execute }}
 
-`docker network create external_net`
+`docker network create external_net` {{ execute }}
 
 Now, we'll create a MariaDB database container which attaches to the `database_net` network:
 
-`docker run -itd -e MARIADB_ROOT_USER=wordpress -e MARIADB_ROOT_PASSWORD=yourpassword -e MARIADB_DATABASE=wordpress --name mariadb -v mariadb_data:/var/lib/mysql --net database_net docker.io/bitnami/mariadb:10.3`
+`docker run -itd -e MARIADB_ROOT_USER=wordpress -e MARIADB_ROOT_PASSWORD=yourpassword -e MARIADB_DATABASE=wordpress --name mariadb -v mariadb_data:/var/lib/mysql --net database_net docker.io/bitnami/mariadb:10.3` {{ execute }}
 
 Then, let's create a Wordpress container which attaches to the `external_net` network:
 
-`docker run -itd -e WORDPRESS_DATABASE_HOST=mariadb -e WORDPRESS_DATABASE_PORT_NUMBER=3306 -e WORDPRESS_DATABASE_USER=wordpress -e WORDPRESS_DATABASE_PASSWORD=yourpassword -e WORDPRESS_DATABASE_NAME=wordpress -e WORDPRESS_BLOG_NAME=AB_Training_Docker_CLI --name wordpress -p 80:8080 -p 443:8443 -v wordpress_data:/var/www/html --net external_net docker.io/bitnami/wordpress:5`
+`docker run -itd -e WORDPRESS_DATABASE_HOST=mariadb -e WORDPRESS_DATABASE_PORT_NUMBER=3306 -e WORDPRESS_DATABASE_USER=wordpress -e WORDPRESS_DATABASE_PASSWORD=yourpassword -e WORDPRESS_DATABASE_NAME=wordpress -e WORDPRESS_BLOG_NAME=AB_Training_Docker_CLI --name wordpress -p 80:8080 -p 443:8443 -v wordpress_data:/var/www/html --net external_net docker.io/bitnami/wordpress:5` {{ execute }}
 
 Finally, let's attach the Wordpress container to the `database_net` network so it can communicate with the MariaDB container:
 
-`docker network connect database_net wordpress`
+`docker network connect database_net wordpress` {{ execute }}
 
 Now if we visit http://LABSERVERNAME we should see the default Wordpress page up and running. 
 
 Let's take a look at the logs to understand what these containers did during startup:
 
-`docker logs mariadb`
+`docker logs mariadb` {{ execute }}
 
-`docker logs wordpress`
+`docker logs wordpress` {{ execute }}
 
 Let's clean up these containers, volumes and networks:
 
-`docker rm -f wordpress mariadb && docker volume rm mariadb_data wordpress_data && docker network rm database_net external_net`
+`docker rm -f wordpress mariadb && docker volume rm mariadb_data wordpress_data && docker network rm database_net external_net` {{ execute }}
 
 ## Lab 2 - Running Wordpress using docker-compose
 
@@ -52,22 +52,24 @@ Now, let's run this docker-compose against this file. By default docker-compse w
 
 Switch to the Section 4 directory where the `docker-compose.yml` file is located:
 
-`cd /ab/labs/container-bootcamp/section-4-labs/`
+`cd /ab/labs/container-bootcamp/section-4-labs/` {{ execute }}
 
 Then run:
 
-`docker-compose up -d`
+`docker-compose up -d` {{ execute }}
 
 That's it. In a few seconds you can visit http://LABSERVERNAME and see that Wordpress is up and running.
 
 If you would like to see the logs for the currently running docker-compose deployment, from the same directory as the `docker-compose.yml` file, run:
 
-`docker-compose logs`
+`docker-compose logs` {{ execute }}
 
 You can see that logs from both containers in the file are integrated into a single log output with labels for which container produced the log.
 
 Now, to cleanup all containers, volumes, and networks we docker-compose just created, we run:
 
-`docker-compose down -v`
+`docker-compose down -v` {{ execute }}
 
-## Congrats! You have completed the Section 4 labs. You may now proceed with the rest of the course.
+____
+
+#### Congrats! You have completed the Section 4 labs. You may now proceed with the rest of the course.
