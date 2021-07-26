@@ -145,7 +145,7 @@ After running the command, you will see the last created nginx container with a 
 Let's delete this container:
 
 
-`docker rm funky_rooster` {{ copy }}
+`docker rm funky_rooster`
 
 *Note*: Replace `funky_rooster` with your container name.
 
