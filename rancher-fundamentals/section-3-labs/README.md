@@ -27,6 +27,10 @@ To give you the experience of deploying Rancher using the recommended HA deploym
 
 First, lets make sure our K3s cluster is up and running:
 
+`k3d cluster list` {{ execute }}
+
+If our cluster is not online, let's create it.  Otherwise, we can move on to the next step:
+
 `k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 
 Next, lets make sure we are using the proper context of the K3d cluster.
@@ -76,15 +80,15 @@ ____
 
 We have been working with a local K3d Kubernetes cluster thus far, and it should still be deployed. Let's make sure.
 
-`k3d list clusters` {{ execute }}
+`k3d cluster list` {{ execute }}
 
 You should see a single cluster named `lab-cluster`.
 
 ____
 
-*If you do not see a k3d cluster names `lab-cluster` running, run the below command:*
+**NOTE:** *If you do not see a k3d cluster names `lab-cluster` running, run the below command:*
 
-> `k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"`
+`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 ____
 
 To make sure we are in the right context, run:

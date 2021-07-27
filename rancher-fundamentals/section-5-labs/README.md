@@ -78,13 +78,13 @@ ___
 
 We no longer need RKE and it will conflict with future labs, so lets remove the RKE cluster.
 
-`cd /ab/labs/rancher-fundamentals/section-4-labs && rke down` {{ execute }}
+`cd /ab/labs/rancher-fundamentals/section-4-labs && rke remove` {{ execute }}
 
 and enter: `y`
 
-Back on the Rancher UI at https://LABCLUSTERNAME:12443/g/clusters, you will see that the RKE cluster is now failing health checks.
+Back on the Rancher UI at https://LABCLUSTERNAME:12443/g/clusters, you will see that the cluster `rke-cluster` is now failing health checks.
 
-Click the elipses on the right next to the `rke-cluster` and select `Delete`. 
+Let's remove the failing cluster.  Click the elipses on the right next to the `rke-cluster` and select `Delete` from the menu. 
 
 ____
 

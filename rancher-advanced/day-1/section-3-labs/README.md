@@ -1,4 +1,4 @@
-# Rancher Advacned: Day 1 - Section 3: Labs
+# Rancher Advanced: Day 1 - Section 3: Labs
 
 ### In this section we learned about:
 
@@ -23,6 +23,8 @@ This installation is very much like RKE2. They share the similar install methods
 Make sure you have uninstalled RKE2 in the Cleanup section of the last lab, then run the command below to install K3s. 
 
 `curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_KUBECONFIG_OUTPUT="/ab/kubeconfig/k3s.yml" INSTALL_K3S_VERSION=v1.17.3+k3s1 sh - && export KUBECONFIG=/ab/kubeconfig/k3s.yml`  {{ execute }}
+
+Let's take a look at the notes.  Please note it will take approximately `30 seconds` for the nodes to be in a `READY` state.
 
 `kubectl get nodes`  {{ execute }}
 

@@ -1,4 +1,4 @@
-# Rancher Advacned: Day 1 - Section 5: Labs
+# Rancher Advanced: Day 1 - Section 5: Labs
 
 ### In this section we learned about:
 
@@ -29,11 +29,21 @@ The below command will bring your local clusters online with the following optio
 * 3 worker nodes or agents
 * Ports mapped from the host to various in cluster ports.
 
+Before bringing the cluster online, let's check to see if we already have cluster's running:
+
+`k3d cluster list` {{ execute }}
+
+If any clusters are in the list, let's remove them before continuing:
+
+`k3d cluster delete --all` {{ execute }}
+
+Now, let's bring up a fresh cluster called `lab-cluster1`:
+
 `k3d cluster create lab-cluster1 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 18080:80@loadbalancer -p 18443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
 
 Now we can switch to that context using a `kubectl` command:
 
-`kubectl config use-context k3d-lab-cluster` {{ execute }}
+`kubectl config use-context k3d-lab-cluster1` {{ execute }}
 
 And see what nodes are running. 
 
@@ -51,17 +61,21 @@ For now, let's get a 2nd K3d cluster running on the lab server.
 
 `k3d cluster create lab-cluster2 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16444 --servers 1 --agents 3 -p 18081:80@loadbalancer -p 18444:443@loadbalancer -p "30011-30020:30011-30020@server[0]"` {{ execute }}
 
-Run the following command to see that 2 clusters are now up and running on your lab server.
+RRun the following command to see that 2 clusters are now up and running on your lab server.
 
 `k3d cluster list` {{ execute }}
 
-And to allow for these clusters to be accessed as if they were running behind a single DNS name and load balancer, lets deploy HAProxy as a Docker container.
-
-Then run the below command to start the HAProxy container. HAProxy will act as a load balancer in front of the 2 clusters. It is using a specifically crafted HAProxy config file that references the local K3d clusters as backend targets.
+And to allow for these clusters to be accessed as if they were running behind a single DNS name and load balancer, lets deploy HAProxy as a Docker container with the command below:
 
 `docker run -d --name haproxy -p 80:80 -p 443:443 -p 9090:9090 -v /ab/misc/haproxy:/usr/local/etc/haproxy:ro --sysctl net.ipv4.ip_unprivileged_port_start=0 haproxy:2.4.2` {{ execute }}
 
+This load balancer uses a specifically crafted HAProxy config file that references the local K3d clusters as backend targets. Let's visit the UI to see this in action:
+
+http://LOADBALANCERURL
+
 Let's imagine these are geographically diverse Kubernetes clusters with a load balancer in front of them. We will explore this more in a later lab when we see how multicluster deployments of apps behind a load balancer can increase uptime.
+
+**NOTE:** We will leave this environment online as it will be a part of our day 2 training.
 
 ____
 
