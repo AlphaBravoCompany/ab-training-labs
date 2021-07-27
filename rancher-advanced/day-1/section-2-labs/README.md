@@ -1,4 +1,4 @@
-# Rancher Advacned: Day 1 - Section 2: Labs
+# Rancher Advanced: Day 1 - Section 2: Labs
 
 ### In this section we learned about:
 
@@ -37,7 +37,7 @@ Ok, let's run this command:
 
 `sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
 
-After a couple of minutes, you should be able to run the below command and see that the RKE2 server node is in a "READY" state.
+You should be able to run the below command and see that the RKE2 server node is in a `READY` state.  This should take approximately `1 minute` to complete.
 
 `kubectl get nodes` {{ execute }}
 

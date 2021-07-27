@@ -39,7 +39,9 @@ To deploy the RKE2 cluster, in you lab server terminal window, run:
 
 `sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
 
-Go to the Rancher MCM UI and add this as a new cluster called `rke2-cluster`. https://LABSERVERNAME:12443/g/clusters
+Go to the Rancher MCM UI and add this as a new cluster called `rke2-cluster`. 
+
+https://LABSERVERNAME:12443/g/clusters
 
 Let's deploy the CIS Helm Chart and run a scan.
 
@@ -75,11 +77,11 @@ Let's deploy the monitoring and alerting stack that consists of Prometheus, Aler
 2. In the upper left next to the Rancher logo, click the down arrow, then click `rke2-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right
 4. Click the down arrow in the upper left and select `Apps and Marketplace`
-5. Under "Charts", click `Minitoring` in the middle of the screen
+5. Under "Charts", click `Monitoring` in the middle of the screen
 6. There are a large number of options that can be customized for these deployments, but for now, let's just install it with the defaults. Click the blue 'Install' button on the bottom right and wait for the installation to complete.
 7. Once complete, click the down arrow in the upper left and select `Monitoring`
 8. You will be presented with 5 options. For now, click on `Grafana`
-9. One the Grafana home screen you will begin to see metrics start showing up a couple minutes after install showing your the CPU, memory and disk usage of the cluster.
+9. One the Grafana home screen you will begin to see metrics start showing up a couple minutes after install showing your the CPU, memory and disk usage of the cluster. If you don't see any updates after a minute or two, try clicking the refresh button in your browser.
 10. Clicking on the 4 boxes on the left and selecting `Manage` will let you see and select from a huge list of pre-defined dashboards that you can start to gather information from and decide on an alerting plan from.
 
 This is also a very complex topic and will take time to understand all of the components of the system. Visit the Rancher links provided and collaborate with your team and AlphaBravo to help develop an action plan for full implementation.
@@ -88,6 +90,12 @@ ____
 ### Cleanup
 
 Let's remove the RKE2 cluster as we no longer need it.
+
+In the Rancher MCM, let's remove the cluster called `rke2-cluster`:
+
+https://LABSERVERNAME:12443/g/clusters
+
+Once the cluster has been removed from MCM, let's remove it from our lab environment:
 
 `sudo /usr/local/bin/rke2-uninstall.sh` {{ execute }}
 
