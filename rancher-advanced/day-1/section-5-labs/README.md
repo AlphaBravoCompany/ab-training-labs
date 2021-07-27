@@ -61,7 +61,7 @@ For now, let's get a 2nd K3d cluster running on the lab server.
 
 `k3d cluster create lab-cluster2 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16444 --servers 1 --agents 3 -p 18081:80@loadbalancer -p 18444:443@loadbalancer -p "30011-30020:30011-30020@server[0]"` {{ execute }}
 
-RRun the following command to see that 2 clusters are now up and running on your lab server.
+Run the following command to see that 2 clusters are now up and running on your lab server.
 
 `k3d cluster list` {{ execute }}
 
