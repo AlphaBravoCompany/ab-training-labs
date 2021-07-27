@@ -90,7 +90,8 @@ Deploy the NodePort service on port 30007 (defined in the file):
 
 Now we can check the Nodeport service externally on your lab server at port 30007.
 
-`for ((i=1;i<=10;i++)); do curl -0 -v http://LABSERVERNAME:30007 2>&1; done | grep Hostname` {{ execute }}
+
+`for ((i=1;i<=10;i++)); do curl -0 -v http://LABSERVERNAME:30007 2>&1; done | grep Hostname | awk -F " " {' print $2 '} | sort | uniq -c | column -N "Count,Hostname" -t`
 
 You can also visit the web page, although, due to cookies and cacheing, refreshing the page may show the same pod:
 

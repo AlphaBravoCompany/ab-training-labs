@@ -69,7 +69,8 @@ https://tls-nginx.LABSERVERNAME
 
 ### Cleanup
 
-`kubectl delete -f nginx-deployment.yml nginx-service.yml` {{ execute }}
+`kubectl delete -f nginx-deployment.yml` {{ execute }}
+`kubectl delete -f nginx-service.yml` {{ execute }}
 
 ____
 

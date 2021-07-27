@@ -21,7 +21,9 @@ _____
 
 ### Section 8: Lab 1 Content
 
-Let's create a namespace and then we can create some resources in that new namespace:
+Let's create a namespace and then we can create a single pod in that new namespace. Creating single pods would generally be dont for troubleshooting or testing. As you will in a later lab, using a deployment which creates a replication controller is preferred as it can scale and automatically maintain a desired number of pods.
+
+Let's create a new namespace to use for these labs. All of our resource will be deployed in this new namespace.
 
 `kubectl create ns training-lab` {{ execute }}
 
@@ -76,7 +78,7 @@ Let's view the pods that were created:
 
 `kubectl get pods -n training-lab -o wide` {{ execute }}
 
-Notice that it automatically created 3 and distributed them across our worker nodes for fault tolerance.
+Notice that it automatically created 3 pods and distributed them across our worker nodes for fault tolerance.
 
 We can also see that a ReplicaSet was automatically created:
 
