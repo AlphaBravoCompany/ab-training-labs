@@ -84,7 +84,7 @@ and enter: `y`
 
 Back on the Rancher UI at https://LABCLUSTERNAME:12443/g/clusters, you will see that the cluster `rke-cluster` is now failing health checks. If this cluster shouldn't be failing or unreachable by the Rancher UI, this would be an indicator to investigate why the Rancher UI and target cluster aren't able to communicate. Since we intentionally uninstalled the RKE cluster, we can go ahead and remove it from the UI.
 
-Let's remove the failing cluster.  Click the elipses on the right next to the `rke-cluster` and select `Delete` from the menu. 
+Let's remove the failing cluster.  Click the ellipses on the right next to the `rke-cluster` and select `Delete` from the menu. 
 
 ____
 

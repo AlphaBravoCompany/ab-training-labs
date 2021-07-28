@@ -17,9 +17,9 @@ ____
 
 In this section we learned about about the Rancher Kubernetes Engine. For this lab, we will deploy RKE as a single node cluster on our lab server.
 
-We have already install the RKE binary on the lab server, but if you can find download/installinstructions here: https://rancher.com/docs/rke/latest/en/installation/
+We have already installed the RKE binary on the lab server, but if you can find download/install instructions here: https://rancher.com/docs/rke/latest/en/installation/
 
-First, let's make sure we are in the right directory
+First, let's make sure we are in the right directory:
 
 `cd /ab/labs/rancher-fundamentals/section-4-labs` {{ execute }}
 
@@ -73,7 +73,7 @@ Now we can install RKE by running the following command:
 
 `rke up` {{ execute }}
 
-Once that completes, run the following command and under "STATUS" you should see "Ready":
+Once that completes, run the following command and under `STATUS` you should see `Ready`:
 
 `kubectl --kubeconfig kube_config_cluster.yml get nodes` {{ execute }}
 
@@ -98,12 +98,12 @@ Now, let's add this cluster to your Rancher instance running on your lab server.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
 2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click "Add Cluster"
-3. Select "Other Cluster"
-4. Enter a the cluster name "rke-cluster" and click "Create"
+3. Select `Other Cluster`
+4. Enter a the cluster name `rke-cluster` and click `Create`
 5. Copy the bottom command to the clipboard by clicking on the blue button on the right.
 6. Paste this into your code-server terminal on your lab server
 7. Click "Done" in Rancher and soon your should see the cluster added to the UI
-8. Clicking on the name "rke-cluster" will let you navigate this specific cluster
+8. Clicking on the name `rke-cluster` will let you navigate this specific cluster
 
 Now you should have 3 clusters showing.
 
