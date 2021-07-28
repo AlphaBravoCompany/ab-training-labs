@@ -13,6 +13,7 @@ ____
 * [Rancher Multi Cluster Manager]()
 * [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/)
 * [Rancher HA Install](https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/)
+* [Helm](https://helm.sh/)
 ____
 
 ### Section 3: Lab 1 Content
@@ -98,13 +99,13 @@ To make sure we are in the right context, run:
 Now, let's add this cluster to your Rancher instance running on your lab server. 
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click "Add Cluster"
-3. Select "Other Cluster"
-4. Enter a the cluster name "lab-cluster" and click "Create"
+2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click `Add Cluster`
+3. Select `Other Cluster`
+4. Enter a the cluster name `lab-cluster` and click `Create`
 5. Copy the bottom command to the clipboard by clicking on the blue button on the right.
 6. Paste this into your code-server terminal on your lab server
-7. Click "Done" in Rancher and soon your should see the cluster added to the UI
-8. Clicking on the name "lab-cluster" will let you navigate this specific cluster
+7. Click `Done` in Rancher and soon your should see the cluster added to the UI
+8. Clicking on the name `lab-cluster` will let you navigate this specific cluster
 
 That's great. But this is called Multi Cluster Manager. In the next section you will learn about Rancher Kubernetes Engine (RKE) and we will add that cluster to the Rancher UI as well.
 

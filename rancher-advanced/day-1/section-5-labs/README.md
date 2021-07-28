@@ -71,7 +71,7 @@ And to allow for these clusters to be accessed as if they were running behind a 
 
 This load balancer uses a specifically crafted HAProxy config file that references the local K3d clusters as backend targets. Let's visit the UI to see this in action:
 
-http://LOADBALANCERURL
+http://LABSERVERNAME:9090/stats
 
 Let's imagine these are geographically diverse Kubernetes clusters with a load balancer in front of them. We will explore this more in a later lab when we see how multicluster deployments of apps behind a load balancer can increase uptime.
 
