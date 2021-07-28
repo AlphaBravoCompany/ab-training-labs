@@ -7,8 +7,8 @@ services:
     privileged: true
     volumes:
       - /ab/misc/rancher1:/var/lib/rancher
-      - /ab/certs/live/{{ ansible_hostname }}.{{ environment_domain }}/fullchain.pem:/etc/rancher/ssl/cert.pem
-      - /ab/certs/live/{{ ansible_hostname }}.{{ environment_domain }}/privkey.pem:/etc/rancher/ssl/key.pem
+      - /ab/certs/live/LABSERVERNAME/fullchain.pem:/etc/rancher/ssl/cert.pem
+      - /ab/certs/live/LABSERVERNAME/privkey.pem:/etc/rancher/ssl/key.pem
     ports:
       - 12081:80
       - 12444:443
