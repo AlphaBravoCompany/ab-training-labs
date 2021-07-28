@@ -71,12 +71,12 @@ Let's setup the Rancher MCM UI for the first time.
 5. Click `Continue`
 6. On the `Rancher Server URL` page, leave the auto-filled name, and then click `Save URL`. You may want to change this in your own setups, but make sure you enter a proper and valid URL to reach the cluster if you are going to modify it.
 
-Feel free to navigate around, but note that the Rancher MCM already shows you information about the cluster you installed it on. Let's take a look at what is already knows about your cluster.
+Feel free to navigate around, but note that the Rancher MCM already shows you information about the cluster you installed it on. Let's take a look at what it already knows about your cluster.
 
 1. The `local` cluster referenced here is the K3d cluster we just installed the Rancher MCM onto. Click the name `local`
 2. Note that it knows that the cluster is K3s and what version of Kubernetes it is running. Also, look at the Meters. Rancher has already started to gather info about the cluster. It knows the CPU, Memory and Pod capacity usage of the cluster
 3. In the top menu, click `Nodes`. Rancher lists out all of the nodes in your cluster. If you click on each, it will tell you information about that Node. You can also, via the 3 dots at the top right, Edit the nodes to add `Labels and Annotations`, as well as `Cordon` and `Drain` the node as you would want to do before maintenance.
-4. You will also not that this view is called the `Cluster Manager`, but there is also a yellow `Cluster Explorer` button at the top. These interfaces have a number of overlapping functionality because Rancher is in the process of moving over to the `Cluster Explorer` interface and integration all features into that view.
+4. You will also note that this view is called the `Cluster Manager`, but there is also a yellow `Cluster Explorer` button at the top. These interfaces have some overlapping functionality because Rancher is in the process of moving over to the `Cluster Explorer` interface and integrating all features into that view.
 
 Since we already have a Rancher MCM UI running on the lab host, let's tear with one down.
 
@@ -112,7 +112,7 @@ To make sure we are in the right context, run:
 
 `kubectl config use-context k3d-lab-cluster` {{ execute }}
 
-Now, let's add this cluster to your Rancher instance running on your lab server. 
+Now, let's add this cluster to your Rancher instance running on your lab server.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
 2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click `Add Cluster`
