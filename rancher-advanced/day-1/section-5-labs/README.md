@@ -73,6 +73,12 @@ This load balancer uses a specifically crafted HAProxy config file that referenc
 
 http://LABSERVERNAME:9090/stats
 
+And login with the following credentials:
+**User:** admin
+**Pass:** changemeplease!!
+
+Note that the 2 k3d clusters are already showing as `Status` as `UP` in green at the bottom. We will experiment with bringing clusters down tomorrow and seeing how easy it is to maintain applications across multiple clusters in a highly available way.
+
 Let's imagine these are geographically diverse Kubernetes clusters with a load balancer in front of them. We will explore this more in a later lab when we see how multicluster deployments of apps behind a load balancer can increase uptime.
 
 **NOTE:** We will leave this environment online as it will be a part of our day 2 training.
