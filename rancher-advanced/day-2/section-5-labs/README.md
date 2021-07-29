@@ -41,7 +41,7 @@ Now, let's deploy using the Rancher MCM Continuous Deployment feature to both cl
 6. You could enter all these details manually, but you can also provide a configuration in YAML format. We will use YAML in this case. Click the `Edit as YAML` button in the bottom right.
 7. Open the following file and paste the contents of that file into the YAML window in Rancher MCM, replacing all of the other content, and then click the blue `Create` button in the bottom right
 
-`/home/mj/mjcode/ab-training-labs/rancher-advanced/day-2/section-5-labs/ranchercd.yml` {{ open }}
+`/ab/labs/rancher-advanced/day-2/section-5-labs/ranchercd.yml` {{ open }}
 
 8. On the `Continuous Deployment` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed.
 9. Click on 3 dots on the right of `lab-cluster1` and select `Edit Config`.
