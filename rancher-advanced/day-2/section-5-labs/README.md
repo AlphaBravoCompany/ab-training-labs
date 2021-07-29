@@ -19,7 +19,7 @@ Fleet is GitOps at scale. Fleet is designed to manage up to a million clusters. 
 
 Fleet is a separate project from Rancher, and can be installed on any Kubernetes cluster with Helm.
 
-In this exercise, we will use use the Rancher MCM Continuous Deployment functionality under the Cluster Explorer to deploy to 2 separate clusters simultaneously.
+In this exercise, we will use use the Rancher MCM Continuous Delivery functionality under the Cluster Explorer to deploy to 2 separate clusters simultaneously.
 
 First, let's add the K3d clusters we created from yesterday to the Rancher MCM UI. We are not going to be verbose, so look at this as a bit of challenge. We will give you a couple of hints. You will need to make sure you are in the proper context when applying the commands Rancher MCM provides. To switch context:
 
@@ -31,24 +31,25 @@ First, let's add the K3d clusters we created from yesterday to the Rancher MCM U
 
 ____
 
-Now, let's deploy using the Rancher MCM Continuous Deployment feature to both clusters. 
+Now, let's deploy using the Rancher MCM Continuous Delivery feature to both clusters.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
 2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Continuous Deployment`
+4. Click the down arrow in the upper left and select `Continuous Delivery`
 5. On the `Git Repos` tab, click `Create`
 6. You could enter all these details manually, but you can also provide a configuration in YAML format. We will use YAML in this case. Click the `Edit as YAML` button in the bottom right.
 7. Open the following file and paste the contents of that file into the YAML window in Rancher MCM, replacing all of the other content, and then click the blue `Create` button in the bottom right
 
 `/ab/labs/rancher-advanced/day-2/section-5-labs/ranchercd.yml` {{ open }}
 
-8. On the `Continuous Deployment` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed.
+8. On the `Continuous Delivery` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed.
 9. Click on 3 dots on the right of `lab-cluster1` and select `Edit Config`.
 10. Under `Labels`, click `Add Label`. Under `Key` put `env`. Under `Value` put `dev`. Click the blue `Save` button in the bottom right. These tags are identifiers so Fleet knows where it should deploy a specific configuration of an application.
 11. Repeat steps 9-10 on `lab-cluster2`
 12. Click on the `Git Repos` menu again, and under the repo we added, we should see the `State` as `Active` and the `Clusters Ready` as `2`. This means that the deployment has seen the proper tags on those clusters, and that the application is deployed as expected.
-13. We can confirm that we see these apps running. Click `Cluster Explorer` and under `Pods` filter (at the top) for the Namespace `fleet-mc-helm-example`. You should see 2 pods. A `frontend` pod and a `redis` pod.
+13. We can confirm that we see these apps running.  Click the drop down menu in the top left corner and select `Cluster Explorer`. In the upper right, make sure you have `lab-cluster1` selected. Once the page has loaded, find `Pods` in the menu on the left and select it.  Once this page has loaded, select `fleet-mc-helm-example` from the Namespace drop down menu at the top of the page.  You should see 2 pods: `frontend` and `redis`.
+14. In the upper right corner, select the cluster dropdown menu (currently showing `lab-cluster1`).  Select `lab-cluster2` from the list.  This will reload the `Cluster Explorer`.  Select `Pods` on the menu in the far left.  You will see `frontend` and `redis` running on this cluster as well.
 
 ____
 
@@ -60,7 +61,7 @@ ____
 
 ### Section 5: Lab 2 Content
 
-Now we have an application running in 2 clusters, but no one externally can reach it. If you will recall, Rancher K3s ships with Traefik as it's Ingress Controller and the Ingress controllers whole job is to expose HTTP and HTTPS traffic externally to the cluster.
+Now we have an application running in 2 clusters, but no one externally can reach it. If you will recall, Rancher K3s ships with Traefik as its Ingress Controller and the Ingress controllers whole job is to expose HTTP and HTTPS traffic externally to the cluster.
 
 Let's create an Ingress rule on each cluster to point to the `frontend` service.
 
@@ -107,7 +108,7 @@ Now we have, at least for the sake of this lab environment, a highly available m
 
 It is time to simulate the failure of a cluster. First, run the below command to see the distribution of traffic. You should see roughly a 50/50 split between 2 PodIPs.
 
-`for ((i=1;i<=10;i++)); do curl -0 -v http://guestbook.LABSERVERNAME 2>&1; done | grep PodIP | awk -F " " {' print $1 '} | sort | uniq -c | column -N "Count,PodIP" -t` {{ execute }}
+`for ((i=1;i<=10;i++)); do curl -0 -v http://guestbook.LABSERVERNAME 2>&1; done | grep PodName | awk -F " " {' print $1 '} | awk -F "=" {' print $2 '} | awk -F "<" {' print $1 '} | sort | uniq -c | column -t` {{ execute }}
 
 Let's open up our load balancer view so we can watch what our cluster health.
 
@@ -128,11 +129,11 @@ Visit the guestbook page again and refresh a few times:
 http://guestbook.LABSERVERNAME
 
 Run the curl test again:
-`for ((i=1;i<=10;i++)); do curl -0 -v http://guestbook.LABSERVERNAME 2>&1; done | grep PodIP | awk -F " " {' print $1 '} | sort | uniq -c | column -N "Count,PodIP" -t` {{ execute }}
+`for ((i=1;i<=10;i++)); do curl -0 -v http://guestbook.LABSERVERNAME 2>&1; done | grep PodName | awk -F " " {' print $1 '} | awk -F "=" {' print $2 '} | awk -F "<" {' print $1 '} | sort | uniq -c | column -t` {{ execute }}
 
 Note that all traffic is now returning from a single PodIP on the cluster that is still online.
 
-With some straight forward cluster configuration, multicluster gitops deployments, and some robust infrastructure engineering, our application was able to survive an entire cluster failure without impacting our customer facing services.
+With some straight forward cluster configuration, multi-cluster Gitops deployments, and some robust infrastructure engineering, our application was able to survive an entire cluster failure without impacting our customer facing services.
 
 Let's bring `lab-cluster2` back online for the final lab.
 
@@ -141,7 +142,7 @@ Let's bring `lab-cluster2` back online for the final lab.
 Make sure you see it turn green in the HAProxy web interface.
 ____
 
-## Section 5: Lab 4 - Continuous Deployment Updates and Cluster "Tiers" (Dev/Test/Prod/etc)
+## Section 5: Lab 4 - Continuous Delivery Updates and Cluster "Tiers" (Dev/Test/Prod/etc)
 
 ### Section 5: Lab 4 Links
 
@@ -149,9 +150,9 @@ ____
 
 ### Section 5: Lab 4 Content
 
-Updating application can often be a struggle and consume large amounts of time between the developer and infrastrucute teams. With Gitops, the Continuous Deployment system is able to monitor the Git repo for changes and automatically apply them when updates are published a specific branch.
+Updating application can often be a struggle and consume large amounts of time between the developer and infrastrucute teams. With Gitops, the Continuous Delivery system is able to monitor the Git repo for changes and automatically apply them when updates are published a specific branch.
 
-Unfortunately to demonstrate that, you all would have to have your own, editable version of the guestbook git repo to make changes to. 
+Unfortunately to demonstrate that, you all would have to have your own, editable version of the guestbook git repo to make changes to.
 
 Since we can't do that easily, let's do the next best thing and see how based on the simple but powerful tagging capability of Fleet, we can easily and automatically update our deployment and leverage different configurations per cluster type/label.
 
@@ -159,13 +160,13 @@ First, visit the guestbook site a few times to make sure we are seeing the traff
 
 http://guestbook.LABSERVERNAME
 
-Now, imagine that `lab-cluster1` is `dev`, and `lab-cluster2` is `prod`. Let's update `lab-cluster2` to reflect that in `Continuous Deployment`.
+Now, imagine that `lab-cluster1` is `dev`, and `lab-cluster2` is `prod`. Let's update `lab-cluster2` to reflect that in `Continuous Delivery`.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
 2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Continuous Deployment`
-5. On the `Continuous Deployment` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
+4. Click the down arrow in the upper left and select `Continuous Delivery`
+5. On the `Continuous Delivery` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
 6. Click on 3 dots on the right of `lab-cluster2` and select `Edit Config`
 7. Under `Labels`, edit the `Value` next to be `prod`. Click the blue `Save` button in the bottom right.
 8. In the upper right, click the dropdown and select `Cluster Explorer`. In the top left, click the dropdown and select `lab-cluster2`
@@ -176,14 +177,14 @@ We have now separated our clusters from being HA to being more of a `Dev` and `P
 
 Now, if we visit the guestbook link on the Dev cluster, we should see the Guestbook app:
 
-https://guestbook.LABSERVERNAME
+http://guestbook.LABSERVERNAME
 
-And if we visit the hello link on the Prod cluster, we should see the `Hello from AlphaBravo Training`.
+After a `2 minutes` you should be able to visit the `hello` link on the Prod cluster, we should see the `Hello from AlphaBravo Training`.
 
-https://hello.LABSERVERNAME
+http://hello.LABSERVERNAME
 
 
-Not only does Continuous Deployment / Fleet allow us to deploy the SAME configuration across multiple clusters from the same source code repo, it can also deploy a DIFFERENT configuration from the same source code repo to DIFFERENT tiers of clusters, all from a single configuration item.
+Not only does Continuous Delivery / Fleet allow us to deploy the SAME configuration across multiple clusters from the same source code repo, it can also deploy a DIFFERENT configuration from the same source code repo to DIFFERENT tiers of clusters, all from a single configuration item.
 
 Thanks so much for joining us for this training. Please reach out to us with any questions or clarity on what you have learned here.
 
