@@ -11,6 +11,7 @@ ____
 ### Section 2: Lab 1 Links
 
 * [RKE2](https://docs.rke2.io/)
+* [Trivy](https://github.com/aquasecurity/trivy)
 
 ____
 
@@ -44,6 +45,8 @@ You should be able to run the below command and see that the RKE2 server node is
 You could, as in previous labs, add this RKE2 cluster to the Rancher UI and even deploy Longhorn if you like.
 
 The steps to expand this this out to a full HA deployment are more involved, but still straight forward. https://docs.rke2.io/install/ha/
+
+You would typically run Kubernetes manager nodes in HA with odd number nodes. 3 is the minimum for high availability and 5 master nodes may be required for a large cluster with many worker nodes and a large amount of pods.
 
 Additionally, leveraging automation like Terraform and Ansible will allow you easily and repeatable deploy, expand and upgrade clusters to any environment you need.
 
