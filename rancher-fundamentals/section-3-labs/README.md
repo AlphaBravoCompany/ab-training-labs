@@ -52,7 +52,7 @@ https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/
 
 3. Choose the "Bring your own certificate" install
 
-`helm install rancher rancher-stable/rancher --namespace cattle-system --set hostname=rancher.LABSERVERNAME  --set ingress.tls.source=secret` {{ execute }}
+`helm install rancher rancher-stable/rancher --namespace cattle-system --set hostname=rancher.LABSERVERNAME  --set ingress.tls.source=secret --set bootstrapPassword=supersecretpassword` {{ execute }}
 
 4. Add TLS secrets
 
