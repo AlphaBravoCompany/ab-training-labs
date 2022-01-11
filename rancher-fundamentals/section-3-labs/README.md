@@ -11,7 +11,7 @@ ____
 ### Section 3: Lab 1 Links
 
 * [Rancher Multi Cluster Manager]()
-* [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/)
+* [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.6/en/installation/other-installation-methods/single-node-docker/)
 * [Rancher HA Install](https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/)
 * [Helm](https://helm.sh/)
 ____
@@ -32,7 +32,7 @@ First, lets make sure our K3s cluster is up and running:
 
 If our cluster is not online, let's create it.  Otherwise, we can move on to the next step:
 
-`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
+`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server:0"` {{ execute }}
 
 Next, lets make sure we are using the proper context of the K3d cluster.
 
@@ -40,7 +40,7 @@ Next, lets make sure we are using the proper context of the K3d cluster.
 
 For the rest of the this lab, we will follow the official documentation from Rancher to perform the helm install.
 
-https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/
+https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/
 
 1. Add Rancher Helm Repo
 
@@ -89,8 +89,8 @@ ____
 ### Section 3: Lab 2 Links
 
 * [Rancher Multi Cluster Manager]()
-* [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/)
-* [Rancher HA Install](https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/)
+* [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.6/en/installation/other-installation-methods/single-node-docker/)
+* [Rancher HA Install](https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/)
 ____
 
 ### Section 3: Lab 2 Content
@@ -105,7 +105,7 @@ ____
 
 **NOTE:** *If you do not see a k3d cluster names `lab-cluster` running, run the below command:*
 
-`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
+`k3d cluster create lab-cluster --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 80:80@loadbalancer -p 443:443@loadbalancer -p "30000-30010:30000-30010@server:0"` {{ execute }}
 ____
 
 To make sure we are in the right context, run:

@@ -12,3 +12,8 @@ spec:
     clusterSelector:
       matchLabels:
         env: dev
+
+  - name: prod
+    clusterSelector:
+      matchLabels:
+        env: prod
