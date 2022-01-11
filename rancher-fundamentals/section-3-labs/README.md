@@ -64,21 +64,17 @@ https://rancher.LABSERVERNAME
 
 Let's setup the Rancher MCM UI for the first time.
 
-1. Enter a `New Password` (twice)
-2. Select if you want to create or manage multiple clusters, or if this is the only cluster you want to manage. For the sake of this example, leave it as the default
-3. Leave checked / deselect `Allow collection of anonymous statistics`
-4. Check `I agree to the Terms and Conditions for using Rancher`
-5. Click `Continue`
-6. On the `Rancher Server URL` page, leave the auto-filled name, and then click `Save URL`. You may want to change this in your own setups, but make sure you enter a proper and valid URL to reach the cluster if you are going to modify it.
+1. Enter the existing password `supersecretpassword` and click `Continue`
+2. Select the checkbox next to `I agree to the terms and conditions...` and click `Continue`
 
 Feel free to navigate around, but note that the Rancher MCM already shows you information about the cluster you installed it on. Let's take a look at what it already knows about your cluster.
 
-1. The `local` cluster referenced here is the K3d cluster we just installed the Rancher MCM onto. Click the name `local`
+1. Click burger menu in the upper left, and under `Explore Cluster`, click `local`. The `local` cluster referenced here is the K3d cluster we just installed the Rancher MCM onto.
 2. Note that it knows that the cluster is K3s and what version of Kubernetes it is running. Also, look at the Meters. Rancher has already started to gather info about the cluster. It knows the CPU, Memory and Pod capacity usage of the cluster
-3. In the top menu, click `Nodes`. Rancher lists out all of the nodes in your cluster. If you click on each, it will tell you information about that Node. You can also, via the 3 dots at the top right, Edit the nodes to add `Labels and Annotations`, as well as `Cordon` and `Drain` the node as you would want to do before maintenance.
+3. In the left menu, click `Nodes`. Rancher lists out all of the nodes in your cluster. If you click on each, it will tell you information about that Node. You can also, via the 3 dots at the top right, Edit the nodes to add `Labels and Annotations`. ON cluster other than the `local` cluster, you will also have the options to `Cordon` and `Drain` the nodes as you would want to do before maintenance.
 4. You will also note that this view is called the `Cluster Manager`, but there is also a yellow `Cluster Explorer` button at the top. These interfaces have some overlapping functionality because Rancher is in the process of moving over to the `Cluster Explorer` interface and integrating all features into that view.
 
-Since we already have a Rancher MCM UI running on the lab host, let's tear with one down.
+Since we already have a Rancher MCM UI running on the lab host (preinstalled for the class), let's tear with one down.
 
 `helm uninstall rancher -n cattle-system` {{ execute }}
 
@@ -115,13 +111,13 @@ To make sure we are in the right context, run:
 Now, let's add this cluster to your Rancher instance running on your lab server.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click `Add Cluster`
-3. Select `Other Cluster`
+2. In the upper left click the burger menu, then click `Cluster Management`
+3. Click the button that says `Import Existing` and select `Generic`
 4. Enter a the cluster name `lab-cluster` and click `Create`
-5. Copy the bottom command to the clipboard by clicking on the blue button on the right.
+5. Copy the `curl --insecure` middle command to the clipboard by clicking on the line of text
 6. Paste this into your code-server terminal on your lab server
-7. Click `Done` in Rancher and soon your should see the cluster added to the UI
-8. Clicking on the name `lab-cluster` will let you navigate this specific cluster
+7. Wait for this process to complete. You will notice the status updating at the top of the window.
+8. Clicking on the burger menu, then on `lab-cluster` will let you navigate this specific cluster
 
 That's great. But this is called Multi Cluster Manager. In the next section you will learn about Rancher Kubernetes Engine (RKE) and we will add that cluster to the Rancher UI as well.
 

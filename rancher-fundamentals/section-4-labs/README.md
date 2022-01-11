@@ -97,13 +97,13 @@ To make sure we are in the RKE cluster context, run:
 Now, let's add this cluster to your Rancher instance running on your lab server. 
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click Global, then click "Add Cluster"
-3. Select `Other Cluster`
+2. In the upper left click the burger menu, then click `Cluster Management`
+3. Click the button that says `Import Existing` and select `Generic`
 4. Enter a the cluster name `rke-cluster` and click `Create`
-5. Copy the bottom command to the clipboard by clicking on the blue button on the right.
+5. Copy the `curl --insecure` middle command to the clipboard by clicking on the line of text
 6. Paste this into your code-server terminal on your lab server
-7. Click "Done" in Rancher and soon your should see the cluster added to the UI
-8. Clicking on the name `rke-cluster` will let you navigate this specific cluster
+7. Wait for this process to complete. You will notice the status updating at the top of the window.
+8. Clicking on the burger menu, then on `rke-cluster` will let you navigate this specific cluster
 
 Now you should have 3 clusters showing.
 
