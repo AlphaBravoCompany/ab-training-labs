@@ -41,7 +41,7 @@ To deploy the RKE2 cluster, in you lab server terminal window, run:
 
 Go to the Rancher MCM UI and add this as a new cluster called `rke2-cluster`. 
 
-https://LABSERVERNAME:12443/g/clusters
+https://LABSERVERNAME:12443/dashboard/c/_/manager/provisioning.cattle.io.cluster
 
 Let's deploy the CIS Helm Chart and run a scan.
 
@@ -91,7 +91,7 @@ Let's remove the RKE2 cluster as we no longer need it.
 
 In the Rancher MCM, let's remove the cluster called `rke2-cluster`:
 
-https://LABSERVERNAME:12443/g/clusters
+https://LABSERVERNAME:12443/dashboard/c/_/manager/provisioning.cattle.io.cluster
 
 Once the cluster has been removed from MCM, let's remove it from our lab environment:
 
