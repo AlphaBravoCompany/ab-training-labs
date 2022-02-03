@@ -8,7 +8,7 @@
 
 ### Section 5: Lab 1 Links
 
-* [Fleet](https://rancher.com/docs/rancher/v2.5/en/deploy-across-clusters/fleet/)
+* [Fleet](https://rancher.com/docs/rancher/v2.6/en/deploy-across-clusters/fleet/)
 ____
 
 ### Section 5: Lab 1 Content

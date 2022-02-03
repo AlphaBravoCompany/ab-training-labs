@@ -20,8 +20,8 @@ ____
 
 ### Section 3: Lab 1 Links
 
-* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.5/en/helm-charts/)
-* [CIS Benchmarks](https://rancher.com/docs/rancher/v2.5/en/cis-scans/)
+* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
+* [CIS Benchmarks](https://rancher.com/docs/rancher/v2.6/en/cis-scans/)
 
 ____
 
@@ -46,15 +46,14 @@ https://LABSERVERNAME:12443/g/clusters
 Let's deploy the CIS Helm Chart and run a scan.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click `rke2-cluster`
-3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Apps and Marketplace`
-5. Under "Charts", click `CIS Benchmarks` in the middle of the screen
-6. Click the blue `Install` button at the bottom and wait for the install to complete.
-7. Click the down arrow in the upper left and select `CIS Benchmark`
-8. Click `Create` and for this test, select `rke2-cis-1.6-profile-permissive`. You would select the appropriate test for the type of cluster you are running against and what security posture (permissive or hardened) you expect to scan against.
-9. Click blue `Create` button in the bottom right and let the test run. This will take a while, so let this run and come back later to review the results.
-10. Once the first scan is complete, click `Create` again and run `rke2-cis-1.6-profile-hardened` and see how the results differ
+2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
+3. Click the down arrow in the upper left and select `Apps and Marketplace`
+4. Under "Charts", click `CIS Benchmarks` in the middle of the screen
+5. Click the blue `Install` button at the bottom and wait for the install to complete.
+6. Click the down arrow in the upper left and select `CIS Benchmark`
+7. Click `Create` and for this test, select `rke2-cis-1.6-profile-permissive`. You would select the appropriate test for the type of cluster you are running against and what security posture (permissive or hardened) you expect to scan against.
+8. Click blue `Create` button in the bottom right and let the test run. This will take a while, so let this run and come back later to review the results.
+9. Once the first scan is complete, click `Create` again and run `rke2-cis-1.6-profile-hardened` and see how the results differ
 
 You can now review and develop policies and automation around cluster deployments that addresses the security concerns identified in the reports.
 
@@ -64,8 +63,8 @@ ____
 
 ### Section 3: Lab 2 Links
 
-* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.5/en/helm-charts/)
-* [Monitoring and Alerting](https://rancher.com/docs/rancher/v2.5/en/monitoring-alerting/)
+* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
+* [Monitoring and Alerting](https://rancher.com/docs/rancher/v2.6/en/monitoring-alerting/)
 
 ### Section 3: Lab 2 Content
 
@@ -74,15 +73,14 @@ Deploying a full monitoring and alerting stack with Rancher MCM is easy as well.
 Let's deploy the monitoring and alerting stack that consists of Prometheus, Alertmanager and Grafana.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click `rke2-cluster`
-3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Apps and Marketplace`
-5. Under "Charts", click `Monitoring` in the middle of the screen
-6. There are a large number of options that can be customized for these deployments, but for now, let's just install it with the defaults. Click the blue 'Install' button on the bottom right and wait for the installation to complete.
-7. Once complete, click the down arrow in the upper left and select `Monitoring`
-8. You will be presented with 5 options. For now, click on `Grafana`
-9. One the Grafana home screen you will begin to see metrics start showing up a couple minutes after install showing your the CPU, memory and disk usage of the cluster. If you don't see any updates after a minute or two, try clicking the refresh button in your browser.
-10. Clicking on the 4 boxes on the left and selecting `Manage` will let you see and select from a huge list of pre-defined dashboards that you can start to gather information from and decide on an alerting plan from.
+2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
+3. Click the down arrow in the upper left and select `Apps and Marketplace`
+4. Under "Charts", click `Monitoring` in the left middle of the screen
+5. There are a large number of options that can be customized for these deployments, but for now, let's just install it with the defaults. Click the blue 'Install' button on the bottom right and wait for the installation to complete.
+6. Once complete, click the down arrow in the upper left and select `Monitoring`
+7. You will be presented with 5 options. For now, click on `Grafana`
+8. One the Grafana home screen you will begin to see metrics start showing up a couple minutes after install showing your the CPU, memory and disk usage of the cluster. If you don't see any updates after a minute or two, try clicking the refresh button in your browser.
+9. Clicking on the 4 boxes on the left and selecting `Manage` will let you see and select from a huge list of pre-defined dashboards that you can start to gather information from and decide on an alerting plan from.
 
 This is also a very complex topic and will take time to understand all of the components of the system. Visit the Rancher links provided and collaborate with your team and AlphaBravo to help develop an action plan for full implementation.
 ____
