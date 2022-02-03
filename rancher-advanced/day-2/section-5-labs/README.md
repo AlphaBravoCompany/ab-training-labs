@@ -161,13 +161,12 @@ Now, imagine that `lab-cluster1` is `dev`, and `lab-cluster2` is `prod`. Let's u
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
 2. In the upper left next to the Rancher logo, click the burger menu, then click `Continuous Delivery` 
-3. 
-4. On the `Continuous Delivery` menu on the left, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
-5. Click on 3 dots on the right of `lab-cluster2` and select `Edit Config`
-6. Under `Labels`, edit the `Value` next to be `prod`. Click the blue `Save` button in the bottom right.
-7. In the upper left, click the burger menu and select `lab-cluster2` under `Cluster Explorer`.
-8. Under `Service Discovery` click `Ingresses` on the right side menu, click the 3 dots next to the `guestbook` ingress and select `Edit Config`
-10. Change the `Request Host` to be `hello.LABSERVERNAME` and click the blue `Save` button in the bottom right.
+3. On the `Continuous Delivery` menu on the left, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
+4. Click on 3 dots on the right of `lab-cluster2` and select `Edit Config`
+5. Under `Labels`, edit the `Value` next to be `prod`. Click the blue `Save` button in the bottom right.
+6. In the upper left, click the burger menu and select `lab-cluster2` under `Cluster Explorer`.
+7. Under `Service Discovery` click `Ingresses` on the right side menu, click the 3 dots next to the `guestbook` ingress and select `Edit Config`
+8. Change the `Request Host` to be `hello.LABSERVERNAME` and click the blue `Save` button in the bottom right.
 
 We have now separated our clusters from being HA to being more of a `Dev` and `Prod` environment setup, at least with the respect to what Fleet is deploying to each.
 
