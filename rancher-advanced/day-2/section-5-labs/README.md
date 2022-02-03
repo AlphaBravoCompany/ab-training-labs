@@ -34,22 +34,20 @@ ____
 Now, let's deploy using the Rancher MCM Continuous Delivery feature to both clusters.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
-3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Continuous Delivery`
-5. On the `Git Repos` tab, click `Create`
-6. You could enter all these details manually, but you can also provide a configuration in YAML format. We will use YAML in this case. Click the `Edit as YAML` button in the bottom right.
-7. Open the following file and paste the contents of that file into the YAML window in Rancher MCM, replacing all of the other content, and then click the blue `Create` button in the bottom right
+2. In the upper left next to the Rancher logo, click the burger menu, then click `Continuous Delivery`
+3. On the `Git Repos` tab, click `Create`
+4. You could enter all these details manually, but you can also provide a configuration in YAML format. We will use YAML in this case. Click the `Edit as YAML` button in the bottom right.
+5. Open the following file and paste the contents of that file into the YAML window in Rancher MCM, replacing all of the other content, and then click the blue `Create` button in the bottom right
 
 `/ab/labs/rancher-advanced/day-2/section-5-labs/ranchercd.yml` {{ open }}
 
-8. On the `Continuous Delivery` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed.
-9. Click on 3 dots on the right of `lab-cluster1` and select `Edit Config`.
-10. Under `Labels`, click `Add Label`. Under `Key` put `env`. Under `Value` put `dev`. Click the blue `Save` button in the bottom right. These tags are identifiers so Fleet knows where it should deploy a specific configuration of an application.
-11. Repeat steps 9-10 on `lab-cluster2`
-12. Click on the `Git Repos` menu again, and under the repo we added, we should see the `State` as `Active` and the `Clusters Ready` as `2`. This means that the deployment has seen the proper tags on those clusters, and that the application is deployed as expected.
-13. We can confirm that we see these apps running.  Click the drop down menu in the top left corner and select `Cluster Explorer`. In the upper right, make sure you have `lab-cluster1` selected. Once the page has loaded, find `Pods` in the menu on the left and select it.  Once this page has loaded, select `fleet-mc-helm-example` from the Namespace drop down menu at the top of the page.  You should see 2 pods: `frontend` and `redis`.
-14. In the upper right corner, select the cluster dropdown menu (currently showing `lab-cluster1`).  Select `lab-cluster2` from the list.  This will reload the `Cluster Explorer`.  Select `Pods` on the menu in the far left.  You will see `frontend` and `redis` running on this cluster as well.
+6. On the `Continuous Delivery` menu on the left, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed.
+7. Click on 3 dots on the right of `lab-cluster1` and select `Edit Config`.
+8. Under `Labels`, click `Add Label`. Under `Key` put `env`. Under `Value` put `dev`. Click the blue `Save` button in the bottom right. These tags are identifiers so Fleet knows where it should deploy a specific configuration of an application.
+9. Repeat steps 9-10 on `lab-cluster2`
+10. Click on the `Git Repos` menu again, and under the repo we added, we should see the `State` as `Active` and the `Clusters Ready` as `2`. This means that the deployment has seen the proper tags on those clusters, and that the application is deployed as expected.
+11. We can confirm that we see these apps running.  Click the burger menu in the top left corner under `Cluster Explorer`. Make sure you have `lab-cluster1` and selected. Once the page has loaded, find `Pods` in the menu on the left under `Workload` and select it.  Once this page has loaded, select `fleet-mc-helm-example` from the Namespace drop down menu at the top of the page.  You should see 2 pods: `frontend` and `redis`.
+12. In the burger menu select the cluster `lab-cluster2` (currently showing `lab-cluster1`).This will reload the `Cluster Explorer`.  Select `Pods` under Workload. You will see `frontend` and `redis` running on this cluster as well.
 
 ____
 
@@ -66,20 +64,19 @@ Now we have an application running in 2 clusters, but no one externally can reac
 Let's create an Ingress rule on each cluster to point to the `frontend` service.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
-3. Click the yellow `Cluster Explorer` button on the upper right.
-4. On the left menu under `Service Discovery` click `Ingresses`.
-5. In the upper right, click the blue `Create` button.
-6. Fill in the fields.
+2. In the upper left next to the Rancher logo, click the burget menu, then click `lab1-cluster` Under `Cluster Explorer`
+3. On the left menu under `Service Discovery` click `Ingresses`.
+4. In the upper right, click the blue `Create` button.
+5. Fill in the fields.
     * Namespace: `fleet-mc-helm-example`
     * Name: `guestbook`
     * Request Host: `guestbook.LABSERVERNAME`
     * Path: Leave as prefix. Enter the value: `/`
     * Target Service: Select `frontend` from the dropdown
     * Port: Select `80` from the dropdown
-7. Click the blue `Create` button in the bottom right.
-8. In the upper right, switch to the `lab-cluster2` from the dropdown.
-9. Perform the same steps 4-7 on `lab-cluster2` and you did for `lab-cluster1`. Use all of the same values.
+6. Click the blue `Create` button in the bottom right.
+7. In the upper left, switch to the `lab-cluster2` from the burger menu.
+8. Perform the same steps 4-7 on `lab-cluster2` and you did for `lab-cluster1`. Use all of the same values.
 
 Now that we have created the Ingress routes defined, we can visit the cluster at the address we defined.
 
@@ -163,14 +160,13 @@ http://guestbook.LABSERVERNAME
 Now, imagine that `lab-cluster1` is `dev`, and `lab-cluster2` is `prod`. Let's update `lab-cluster2` to reflect that in `Continuous Delivery`.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
-2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
-3. Click the yellow `Cluster Explorer` button on the upper right
-4. Click the down arrow in the upper left and select `Continuous Delivery`
-5. On the `Continuous Delivery` menu on the right, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
-6. Click on 3 dots on the right of `lab-cluster2` and select `Edit Config`
-7. Under `Labels`, edit the `Value` next to be `prod`. Click the blue `Save` button in the bottom right.
-8. In the upper right, click the dropdown and select `Cluster Explorer`. In the top left, click the dropdown and select `lab-cluster2`
-9. Under `Ingresses` on the left side menu, click the 3 dots next to the `guestbook` ingress and select `Edit Config`
+2. In the upper left next to the Rancher logo, click the burger menu, then click `Continuous Delivery` 
+3. 
+4. On the `Continuous Delivery` menu on the left, click `Clusters`. You should see both `lab-cluster1` and `lab-cluster2` listed
+5. Click on 3 dots on the right of `lab-cluster2` and select `Edit Config`
+6. Under `Labels`, edit the `Value` next to be `prod`. Click the blue `Save` button in the bottom right.
+7. In the upper left, click the burger menu and select `lab-cluster2` under `Cluster Explorer`.
+8. Under `Service Discovery` click `Ingresses` on the right side menu, click the 3 dots next to the `guestbook` ingress and select `Edit Config`
 10. Change the `Request Host` to be `hello.LABSERVERNAME` and click the blue `Save` button in the bottom right.
 
 We have now separated our clusters from being HA to being more of a `Dev` and `Prod` environment setup, at least with the respect to what Fleet is deploying to each.
