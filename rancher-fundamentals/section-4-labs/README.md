@@ -85,7 +85,7 @@ ____
 
 ### Section 4: Lab 2 Links
 
-* [Rancher Multi Cluster Manager]()
+* [Rancher Multi Cluster Manager](https://rancher.com/products/rancher/)
 ____
 
 ### Section 4: Lab 2 Content

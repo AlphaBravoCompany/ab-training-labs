@@ -10,7 +10,7 @@ ____
 
 ### Section 3: Lab 1 Links
 
-* [Rancher Multi Cluster Manager]()
+* [Rancher Multi Cluster Manager](https://rancher.com/products/rancher/)
 * [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.6/en/installation/other-installation-methods/single-node-docker/)
 * [Rancher HA Install](https://rancher.com/docs/rancher/v2.x/en/installation/install-rancher-on-k8s/)
 * [Helm](https://helm.sh/)
@@ -84,7 +84,7 @@ ____
 
 ### Section 3: Lab 2 Links
 
-* [Rancher Multi Cluster Manager]()
+* [Rancher Multi Cluster Manager](https://rancher.com/products/rancher/)
 * [Rancher Single Node Install](https://rancher.com/docs/rancher/v2.6/en/installation/other-installation-methods/single-node-docker/)
 * [Rancher HA Install](https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/)
 ____
