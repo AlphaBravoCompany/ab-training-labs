@@ -39,7 +39,7 @@ If any clusters are in the list, let's remove them before continuing:
 
 Now, let's bring up a fresh cluster called `lab-cluster1`:
 
-`k3d cluster create lab-cluster1 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 18080:80@loadbalancer -p 18443:443@loadbalancer -p "30000-30010:30000-30010@server[0]"` {{ execute }}
+`k3d cluster create lab-cluster1 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16443 --servers 1 --agents 3 -p 18080:80@loadbalancer -p 18443:443@loadbalancer -p "30000-30010:30000-30010@server:0"` {{ execute }}
 
 Now we can switch to that context using a `kubectl` command:
 
@@ -59,7 +59,7 @@ Since the K3d clusters are all running locally in docker, we can run more than o
 
 For now, let's get a 2nd K3d cluster running on the lab server.
 
-`k3d cluster create lab-cluster2 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16444 --servers 1 --agents 3 -p 18081:80@loadbalancer -p 18444:443@loadbalancer -p "30011-30020:30011-30020@server[0]"` {{ execute }}
+`k3d cluster create lab-cluster2 --volume /ab/k3dvol:/tmp/k3dvol --api-port 16444 --servers 1 --agents 3 -p 18081:80@loadbalancer -p 18444:443@loadbalancer -p "30011-30020:30011-30020@server:0"` {{ execute }}
 
 Run the following command to see that 2 clusters are now up and running on your lab server.
 

@@ -40,9 +40,9 @@ https://tls-nginx.LABSERVERNAME
 
 Now imagine we push these manifest over and we are now running them in Prod. Without changing the deployment manifests themselves, we can apply a different ConfigMap with the same name and get an updated result.
 
-`cp index-prod.html index.html && kubectl create configmap lab-html -n training-lab --from-file index.html -o yaml --dry-run | kubectl replace -f -` {{ execute }}
+`cp index-prod.html index.html && kubectl create configmap lab-html -n training-lab --from-file index.html -o yaml --dry-run | kubectl apply -f -` {{ execute }}
 
-The configmap was loaded into the container at runtime and there is no way currently for Kubernetes to signal the pods to restart and apply the new configmap, so let's delete the existing on and deploy it again (imaging that these are 2 separate clusters).
+The configmap was loaded into the container at runtime and there is no way currently for Kubernetes to signal the pods to restart and apply the new configmap, so let's delete the existing one and deploy it again (imaging that these are 2 separate clusters).
 
 `kubectl delete -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml && kubectl apply -f nginx-deployment.yml -f nginx-service.yml -f tls-ingress.yml` {{ execute }}
 

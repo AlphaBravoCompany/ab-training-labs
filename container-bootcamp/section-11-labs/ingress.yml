@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: lab-nginx-ingress
@@ -8,10 +8,13 @@ metadata:
   namespace: training-lab
 spec:
   rules:
-    - host: nginx.LABSERVERNAME
+    - host: nginx.rt22-lab20.ablabs.io
       http:
         paths:
         - path: /
+          pathType: Prefix
           backend:
-            serviceName: lab-nginx-service
-            servicePort: 80
+            service:
+              name: lab-nginx-service
+              port:
+                number: 80

@@ -10,7 +10,7 @@ ____
 
 ### Section 13: Lab 1 Links
 
-* [Persisten Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+* [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 * [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 * [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
 
