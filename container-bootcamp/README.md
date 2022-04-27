@@ -8,11 +8,11 @@ Please navigate to the appropriate directory that matches the section you are wo
 
 ### Lab Server Links:
 
-VSCode Server: https://LABSERVERNAME:11443
+VSCode Server: https://code-LABSERVERNAME
 
-Portainer: https://LABSERVERNAME:9000
+Portainer: https://portainer-LABSERVERNAME
 
-Rancher: https://LABSERVERNAME:12443
+Rancher: https://rancher-LABSERVERNAME
 
 ___
 

@@ -8,7 +8,7 @@ metadata:
   namespace: training-lab
 spec:
   rules:
-    - host: tls-nginx.rt22-lab20.ablabs.io
+    - host: tls-nginx.LABSERVERNAME
       http:
         paths:
         - path: /

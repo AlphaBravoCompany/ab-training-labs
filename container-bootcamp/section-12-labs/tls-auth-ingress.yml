@@ -9,7 +9,7 @@ metadata:
   namespace: training-lab
 spec:
   rules:
-    - host: tls-auth-nginx.rt22-lab20.ablabs.io
+    - host: tls-auth-nginx.LABSERVERNAME
       http:
         paths:
         - path: /
