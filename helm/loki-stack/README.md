@@ -24,7 +24,7 @@ The Loki project was started at Grafana Labs in 2018, and announced at KubeCon S
 
 First, we need to deploy RKE2 on the host. Please make sure no other K8s clusters are running (K3s, RKE, K3d, etc)
 
-`sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo mkdir /ab/kubeconfig && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
+`sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo mkdir -p /ab/kubeconfig && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
 
 You should be able to run the below command and see that the RKE2 server node is in a `READY` state.  This should take approximately `1 minute` to complete.
 
