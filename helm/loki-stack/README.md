@@ -43,11 +43,11 @@ Switch to the proper directory:
 
 Let's preview the `values.yaml` we will use for this deployment. Note, the values files are specific to their respective helm charts.
 
-`./values.yml` {{ open }}
+`./values.yaml` {{ open }}
 
 Next, let's deploy the `loki-stack` with Helm.
 
-`helm install loki-stack grafana/loki-stack --values values.yaml -n loki`  {{ execute }}
+`helm install loki-stack grafana/loki-stack --values values.yaml -n loki --create-namespace`  {{ execute }}
 
 Once this is complete, we need to apply the ingress so we can reach the Loki UI.
 
@@ -61,6 +61,8 @@ Lastly, we need to print the auto generated password for Loki.
 Now, visit http://grafana-loki.LABSERVERNAME and login with the username `admin` and the password from the command above.
 
 Once there, you can click on `Explore` in the right menu, `Log browser` at the top, and then select the logs you want to see. For example, you can select `Namespaces` and highlight each namespace individually, then click `Show Logs` to see the logs from all namespaces.
+
+Loki logs are queried using LogQL. You can learn more about LogQL querying here: https://grafana.com/docs/loki/latest/logql/
 
 ____
 
