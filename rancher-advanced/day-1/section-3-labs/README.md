@@ -46,7 +46,7 @@ ____
 
 K3s currently supports upgrading from the Rancher UI. Unfortunately, it requires availability of 1 server node to actually perform the upgrade. Since this is a single node lab cluster, the upgrade will fail if we try. We can at least see this feature availability in the Rancher UI.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the burger menu, then click  `Cluster Management`
 3. Click the button that says `Import Existing` and select `Generic`
 4. Enter a the cluster name `k3s-cluster` and click `Create`

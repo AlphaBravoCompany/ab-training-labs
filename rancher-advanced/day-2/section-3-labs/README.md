@@ -41,11 +41,11 @@ To deploy the RKE2 cluster, in you lab server terminal window, run:
 
 Go to the Rancher MCM UI and add this as a new cluster called `rke2-cluster`. 
 
-https://LABSERVERNAME:12443/g/clusters
+https://rancher-LABSERVERNAME/g/clusters
 
 Let's deploy the CIS Helm Chart and run a scan.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
 3. Click the down arrow in the upper left and select `Apps and Marketplace`
 4. Under "Charts", click `CIS Benchmarks` in the middle of the screen
@@ -72,7 +72,7 @@ Deploying a full monitoring and alerting stack with Rancher MCM is easy as well.
 
 Let's deploy the monitoring and alerting stack that consists of Prometheus, Alertmanager and Grafana.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
 3. Click the down arrow in the upper left and select `Apps and Marketplace`
 4. Under "Charts", click `Monitoring` in the left middle of the screen
@@ -91,7 +91,7 @@ Let's remove the RKE2 cluster as we no longer need it.
 
 In the Rancher MCM, let's remove the cluster called `rke2-cluster`:
 
-https://LABSERVERNAME:12443/g/clusters
+https://rancher-LABSERVERNAME/g/clusters
 
 Once the cluster has been removed from MCM, let's remove it from our lab environment:
 

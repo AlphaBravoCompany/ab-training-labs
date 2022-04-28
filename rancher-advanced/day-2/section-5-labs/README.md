@@ -33,7 +33,7 @@ ____
 
 Now, let's deploy using the Rancher MCM Continuous Delivery feature to both clusters.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right
 4. Click the down arrow in the upper left and select `Continuous Delivery`
@@ -65,7 +65,7 @@ Now we have an application running in 2 clusters, but no one externally can reac
 
 Let's create an Ingress rule on each cluster to point to the `frontend` service.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right.
 4. On the left menu under `Service Discovery` click `Ingresses`.
@@ -162,7 +162,7 @@ http://guestbook.LABSERVERNAME
 
 Now, imagine that `lab-cluster1` is `dev`, and `lab-cluster2` is `prod`. Let's update `lab-cluster2` to reflect that in `Continuous Delivery`.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the down arrow, then click `lab1-cluster`
 3. Click the yellow `Cluster Explorer` button on the upper right
 4. Click the down arrow in the upper left and select `Continuous Delivery`

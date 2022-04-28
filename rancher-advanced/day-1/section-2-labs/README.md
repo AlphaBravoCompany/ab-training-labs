@@ -36,7 +36,7 @@ The below commands a few things that make it easy to setup a single node RKE2 de
 
 Ok, let's run this command:
 
-`sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
+`sudo curl -sfL https://get.rke2.io | sudo sh - && sudo systemctl start rke2-server.service && sudo mkdir /ab/kubeconfig && sudo cp /etc/rancher/rke2/rke2.yaml /ab/kubeconfig/rke2.yml && sudo chmod 0644 /ab/kubeconfig/rke2.yml && export KUBECONFIG=/ab/kubeconfig/rke2.yml`  {{ execute }}
 
 You should be able to run the below command and see that the RKE2 server node is in a `READY` state.  This should take approximately `1 minute` to complete.
 

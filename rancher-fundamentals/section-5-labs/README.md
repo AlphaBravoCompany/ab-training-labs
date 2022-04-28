@@ -23,7 +23,7 @@ Let's see how easy it is to deploy Longhorn. With the proper host configuration,
 
 Let's deploy Longhorn from the Rancher UI onto our RKE cluster.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left click the burger menu, then click `rke-cluster`
 3. Select `Apps and Marketplace`
 4. Under `Charts`, click `Longhorn` in the middle of the screen
@@ -74,7 +74,7 @@ We no longer need RKE and it will conflict with future labs, so lets remove the 
 
 and enter: `y`
 
-Back on the Rancher UI at https://LABSERVERNAME:12443/ under `Cluster Management`, you will see that the cluster `rke-cluster` is now failing health checks. If this cluster shouldn't be failing or unreachable by the Rancher UI, this would be an indicator to investigate why the Rancher UI and target cluster aren't able to communicate. Since we intentionally uninstalled the RKE cluster, we can go ahead and remove it from the UI.
+Back on the Rancher UI at https://rancher-LABSERVERNAME/ under `Cluster Management`, you will see that the cluster `rke-cluster` is now failing health checks. If this cluster shouldn't be failing or unreachable by the Rancher UI, this would be an indicator to investigate why the Rancher UI and target cluster aren't able to communicate. Since we intentionally uninstalled the RKE cluster, we can go ahead and remove it from the UI.
 
 Let's remove the failing cluster.  Click the ellipses on the right next to the `rke-cluster` and select `Delete` from the menu. 
 

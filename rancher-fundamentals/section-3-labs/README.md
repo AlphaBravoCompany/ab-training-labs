@@ -110,7 +110,7 @@ To make sure we are in the right context, run:
 
 Now, let's add this cluster to your Rancher instance running on your lab server.
 
-1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://LABSERVERNAME:12443
+1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left click the burger menu, then click `Cluster Management`
 3. Click the button that says `Import Existing` and select `Generic`
 4. Enter a the cluster name `lab-cluster` and click `Create`
