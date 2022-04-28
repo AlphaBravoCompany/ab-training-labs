@@ -1,0 +1,24 @@
+loki:
+  enabled: true
+  isDefault: true
+  persistence:
+    enabled: true
+    storageClassName: longhorn
+    size: 1Gi
+
+promtail:
+  enabled: false
+  config:
+    lokiAddress: http://{{ .Release.Name }}:3100/loki/api/v1/push
+
+fluent-bit:
+  enabled: true
+
+grafana:
+  enabled: true
+  sidecar:
+    datasources:
+      enabled: true
+      maxLines: 1000
+  image:
+    tag: 8.3.5
