@@ -2,7 +2,7 @@
 
 ### In this section we learned about:
 
-* Rancher MCM Apps and Marketplace
+* Rancher MCM Apps
   * Backups
   * CIS Benchmarks
   * Istio
@@ -20,7 +20,7 @@ ____
 
 ### Section 3: Lab 1 Links
 
-* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
+* [Apps / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
 * [CIS Benchmarks](https://rancher.com/docs/rancher/v2.6/en/cis-scans/)
 
 ____
@@ -47,7 +47,7 @@ Let's deploy the CIS Helm Chart and run a scan.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
-3. Click the down arrow in the upper left and select `Apps and Marketplace`
+3. Click the down arrow in the upper left and select `Apps`
 4. Under "Charts", click `CIS Benchmarks` in the middle of the screen
 5. Click the blue `Install` button at the bottom and wait for the install to complete.
 6. Click the down arrow in the upper left and select `CIS Benchmark`
@@ -63,7 +63,7 @@ ____
 
 ### Section 3: Lab 2 Links
 
-* [Apps and Marketplace / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
+* [Apps / Helm Charts](https://rancher.com/docs/rancher/v2.6/en/helm-charts/)
 * [Monitoring and Alerting](https://rancher.com/docs/rancher/v2.6/en/monitoring-alerting/)
 
 ### Section 3: Lab 2 Content
@@ -74,7 +74,7 @@ Let's deploy the monitoring and alerting stack that consists of Prometheus, Aler
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left next to the Rancher logo, click the burger menu, then in EXPLORE CLUSTER click `rke2-cluster` 
-3. Click the down arrow in the upper left and select `Apps and Marketplace`
+3. Click the down arrow in the upper left and select `Apps`
 4. Under "Charts", click `Monitoring` in the left middle of the screen
 5. There are a large number of options that can be customized for these deployments, but for now, let's just install it with the defaults. Click the blue 'Install' button on the bottom right and wait for the installation to complete.
 6. Once complete, click the down arrow in the upper left and select `Monitoring`

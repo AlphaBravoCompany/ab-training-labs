@@ -6,7 +6,7 @@
 
 ____
 
-## Section 5: Lab 1 - Deploying RKE2
+## Section 5: Lab 1 - Deploying K3d
 
 ### Section 5: Lab 1 Links
 
@@ -18,7 +18,7 @@ ____
 
 For the initial labs we were using K3d, which is Rancher K3s running in Docker on your local lab server. It will appear as if there are multiple servers and it will act that way too, but they will actually be Docker containers running the K3s Kubernetes control plane and worker nodes.
 
-There are numerous configuration switches we can use to create a cluster. To learn more about them visit this link: https://k3d.io/v5.2.2/usage/commands/k3d_cluster_create/
+There are numerous configuration switches we can use to create a cluster. To learn more about them visit this link: https://k3d.io/v5.4.6/usage/commands/k3d_cluster_create/
 
 The below command will bring your local clusters online with the following options:
 

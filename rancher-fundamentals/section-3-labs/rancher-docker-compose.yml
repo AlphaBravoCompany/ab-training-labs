@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   code-server:
-    image: rancher/rancher:v2.6.3
+    image: rancher/rancher:v2.6.9
     container_name: rancher1
     privileged: true
     volumes:

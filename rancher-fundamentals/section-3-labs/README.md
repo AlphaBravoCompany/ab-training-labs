@@ -78,6 +78,11 @@ Since we already have a Rancher MCM UI running on the lab host (preinstalled for
 
 `helm uninstall rancher -n cattle-system` {{ execute }}
 
+Sometimes, due to odd lab server config, this will hang up. If it doesn't complete in about 2 minutes, press `Ctrl+C` and run the below command.
+
+`kubectl create -f https://raw.githubusercontent.com/rancher/rancher-cleanup/main/deploy/rancher-cleanup.yaml` {{ execute }}
+
+This is a removal script based on the following repo: https://github.com/rancher/rancher-cleanup 
 ____
 
 ## Section 3: Lab 2 - Adding a Kubernetes cluster to Rancher MCM

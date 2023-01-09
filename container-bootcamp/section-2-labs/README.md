@@ -136,7 +136,7 @@ Now, let's find the last created Docker container:
 
 *Note*: Using `-n 1` will list the last executed Docker container.  You can also use `--last 1` to achieve the same result.
 
-After running the command, you will see the last created nginx container with a random name like `funky_rooter`. This dynamically generated name was auto assigned to the container because we didn't specify a name to use. 
+After running the command, you will see the last created nginx container with a random name like `funky_rooster`. This dynamically generated name was auto assigned to the container because we didn't specify a name to use. 
 
 <br />
 

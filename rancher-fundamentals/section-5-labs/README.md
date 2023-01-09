@@ -25,7 +25,7 @@ Let's deploy Longhorn from the Rancher UI onto our RKE cluster.
 
 1. Open the Rancher UI and login using the credentials provided at the beginning of class at https://rancher-LABSERVERNAME
 2. In the upper left click the burger menu, then click `rke-cluster`
-3. Select `Apps and Marketplace`
+3. Select `Apps`
 4. Under `Charts`, click `Longhorn` in the middle of the screen
 5. You could configure this cluster with additional options in the bottom section with the options under `README`, but for this lab, simply click the blue `Install` button on the bottom right
 6. A terminal window will show up on the bottom showing the progress of the installation. When you see `Longhorn is now installed on the cluster!`, the install is complete and ready for use. 

@@ -22,7 +22,7 @@ This installation is very much like RKE2. They share the similar install methods
 
 Make sure you have uninstalled RKE2 in the Cleanup section of the last lab, then run the command below to install K3s. 
 
-`curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_KUBECONFIG_OUTPUT="/ab/kubeconfig/k3s.yml" INSTALL_K3S_VERSION=v1.17.3+k3s1 sh - && export KUBECONFIG=/ab/kubeconfig/k3s.yml`  {{ execute }}
+`curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_KUBECONFIG_OUTPUT="/ab/kubeconfig/k3s.yml" INSTALL_K3S_VERSION=v1.22.16+k3s1 sh - && export KUBECONFIG=/ab/kubeconfig/k3s.yml`  {{ execute }}
 
 Let's take a look at the notes.  Please note it will take approximately `30 seconds` for the nodes to be in a `READY` state.
 
@@ -55,13 +55,13 @@ K3s currently supports upgrading from the Rancher UI. Unfortunately, it requires
 7. In the upper left next to the Rancher logo, click the burger menu, then click  `Cluster Management` and soon your should see the cluster added to the UI.
 8. Once the `k3s-cluster` shows as `Active` in the Rancher UI, click the 3 dots on the right next to the cluster and select `Edit config`.
 9. At the bottom, expand `K3S Options`
-10. Under `Kubernetes Version`, click the dropdown. Note that we installed `v1.17.3+k3s1` of K3s, but the Rancher UI knows there are newer version available. If we wanted to and had multiple `server nodes` available, we could select a newer version like `v1.21.5+k3s1`, then click the blue `Save` button at the bottom of the screen, and the K3s cluster would be automatically upgraded to the latest version.
+10. Under `Kubernetes Version`, click the dropdown. Note that we installed `v1.22.16+k3s1` of K3s, but the Rancher UI knows there are newer version available. If we wanted to and had multiple `server nodes` available, we could select a newer version like `v1.23.14+k3s1`, then click the blue `Save` button at the bottom of the screen, and the K3s cluster would be automatically upgraded to the latest version.
 
 ____
 
 ### Cleanup
 
-`sudo /usr/local/bin/k3s-uninstall.sh` {{ execute }}
+`sudo /usr/local/bin/k3s-uninstall.sh && rm /ab/k3s*` {{ execute }}
 
 ____
 
