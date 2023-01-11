@@ -21,13 +21,25 @@ Fleet is a separate project from Rancher, and can be installed on any Kubernetes
 
 In this exercise, we will use use the Rancher MCM Continuous Delivery functionality under the Cluster Explorer to deploy to 2 separate clusters simultaneously.
 
-First, let's add the K3d clusters we created from yesterday to the Rancher MCM UI. We are not going to be verbose, so look at this as a bit of challenge. We will give you a couple of hints. You will need to make sure you are in the proper context when applying the commands Rancher MCM provides. To switch context:
+First, let's add the K3d clusters we created from yesterday to the Rancher MCM UI. 
 
+First lets update the `kubeconfig` variable: 
+`export KUBECONFIG=~/.kube/config` {{ execute }}
+
+Now we can add `lab-cluster1` in Rancher MCM.
+
+Now, for each K3d cluster, let's switch to the proper context.
 `lab-cluster1`
+`k3d kubeconfig merge lab-cluster1 -d` {{ execute }}
 `kubectl config use-context k3d-lab-cluster1` {{ execute }}
 
+Now we can add `lab-cluster2` in Rancher MCM.
+
 `lab-cluster2`
+`k3d kubeconfig merge lab-cluster2 -d` {{ execute }}
 `kubectl config use-context k3d-lab-cluster2` {{ execute }}
+
+Now add `lab-cluster2` in Rancher MCM.
 
 ____
 
