@@ -71,7 +71,7 @@ And to allow for these clusters to be accessed as if they were running behind a 
 
 This load balancer uses a specifically crafted HAProxy config file that references the local K3d clusters as backend targets. Let's visit the UI to see this in action:
 
-http://LABSERVERNAME:9090/stats
+https://haproxy-LABSERVERNAME/stats
 
 And login with the following credentials:
 **User:** admin
