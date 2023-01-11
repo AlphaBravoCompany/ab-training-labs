@@ -67,7 +67,7 @@ Run the following command to see that 2 clusters are now up and running on your 
 
 And to allow for these clusters to be accessed as if they were running behind a single DNS name and load balancer, lets deploy HAProxy as a Docker container with the command below:
 
-`docker run -d --name haproxy --restart always -p 80:80 -p 443:443 -p 9090:9090 -v /ab/misc/haproxy:/usr/local/etc/haproxy:ro --sysctl net.ipv4.ip_unprivileged_port_start=0 haproxy:2.4.2` {{ execute }}
+`docker run -d --name haproxy --restart always -p 80:80 -p 443:443 -p 9090:10090 -v /ab/misc/haproxy:/usr/local/etc/haproxy:ro --sysctl net.ipv4.ip_unprivileged_port_start=0 haproxy:2.4.2` {{ execute }}
 
 This load balancer uses a specifically crafted HAProxy config file that references the local K3d clusters as backend targets. Let's visit the UI to see this in action:
 
