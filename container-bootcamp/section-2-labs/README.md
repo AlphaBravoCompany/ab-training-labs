@@ -375,8 +375,8 @@ You should have the following container names showing: `mysql1`, `apache1`, and 
 
 Also confirm that nginx and apache are available externally on your lab server:
 
-* Nginx: http://LABSERVERNAME:8080
-* Apache: http://LABSERVERNAME:8081
+* Nginx: http://8080-LABSERVERNAME
+* Apache: http://8081-LABSERVERNAME
 
 <br />
 <br />
@@ -469,7 +469,7 @@ Run the following from the command line in the terminal:
 `echo "<center><h2>I MODIFIED THE APACHE INDEX FILE VIA DOCKER BIND MOUNT.</h2></center>" | sudo tee /ab/labs/tmp/apache1/index.html` {{ execute }}
 
 
-If you reload http://LABSERVERNAME:8081, you will see your page updated with your new message without reloading your container.
+If you reload http://8081-LABSERVERNAME, you will see your page updated with your new message without reloading your container.
 
 <br />
 
