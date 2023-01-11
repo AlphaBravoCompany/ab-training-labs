@@ -187,7 +187,7 @@ Now, let's stop the container using the name `nginx-sample`:
 `docker stop nginx-sample` {{ execute }}
 
 
-Let's try revisiting the URL, http://LABSERVERNAME, in your browser.  It should show an error that the site cannot be reached, indicating the container is stopped and no longer accessable.  
+Let's try revisiting the URL, http://LABSERVERNAME, in your browser.  It should show an error that the site cannot be reached, indicating the container is stopped and no longer accessible.  
 
 *Note:* You may need to click the refresh button if the **"Welcome to nginx!"** page is still showing, as it may be cached.
 
@@ -248,7 +248,7 @@ First, let's deploy Nginx deploying the default `index.html` file:
 `docker run -itd --name nginx-novol -p 8080:80 nginx:latest` {{ execute }}
 
 
-Visit http://LABSERVERNAME:8080 and you should see 
+Visit http://8080-LABSERVERNAME and you should see 
 
 **"Welcome to nginx!"**
 
@@ -262,7 +262,7 @@ Now lets mount a volume using the custom `index.html` in this lab directory:
 `docker run -itd --name nginx-vol -v /ab/labs/container-bootcamp/section-2-labs:/usr/share/nginx/html -p 8081:80 nginx:latest` {{ execute }}
 
 
-Visit http://LABSERVERNAME:8081 and you should see 
+Visit http://8081-LABSERVERNAME and you should see 
 
 **"Welcome to the AlphaBravo Container Bootcamp!"**
 
