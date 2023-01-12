@@ -124,7 +124,7 @@ It is time to simulate the failure of a cluster. First, run the below command to
 
 Let's open up our load balancer view so we can watch what our cluster health.
 
-http://LABSERVERNAME:9090/stats
+http://haproxy-LABSERVERNAME/stats
 
 And login with the following credentials:
 **User:** admin
